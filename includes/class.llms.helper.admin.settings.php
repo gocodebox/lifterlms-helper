@@ -68,7 +68,7 @@ class LLMS_Helper_Admin_Settings
 	 * @param  array  $custom_attributes array of custom attributes formatted as HTML strings
 	 * @return void
 	 */
-	public function output_field( $field = array(), $value, $description = '', $tooltip = '', $custom_attributes = array() )
+	public function output_field( $field = array(), $value = '', $description = '', $tooltip = '', $custom_attributes = array() )
 	{
 
 		?><tr valign="top">
