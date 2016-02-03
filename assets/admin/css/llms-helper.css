@@ -1,0 +1,9 @@
+.llms-helper-dismiss {
+	color: #dc3232;
+	float: right;
+}
+.error a.llms-helper-dismiss { text-decoration: none; }
+
+.llms-helper-activation-status .dashicons { vertical-align: middle; }
+.llms-helper-activation-status .dashicons-warning { color: #dc3232; }
+.llms-helper-activation-status .dashicons-yes { color: #46b450; }
