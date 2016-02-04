@@ -25,7 +25,13 @@ class LLMS_Helper
 	 * Array of plugins to update via the helper
 	 * @var array
 	 */
-	public $plugins = array();
+	private $plugins = array();
+
+	/**
+	 * Array of themes to update via the helper
+	 * @var array
+	 */
+	private $themes = array();
 
 	/**
 	 * Constructor, get things started!
@@ -34,12 +40,6 @@ class LLMS_Helper
 	 */
 	public function __construct()
 	{
-
-		add_action( 'admin_head', function() {
-
-			echo '<style type="text/css">.xdebug-var-dump { padding: 15px; position: relative; background: white; z-index: 9234234; };</style>';
-
-		} );
 
 		// Define class constants
 		$this->define_constants();
@@ -61,14 +61,14 @@ class LLMS_Helper
 			// include necessary classes
 			$this->includes();
 
+			// get products that can be updated by this plugin
+			add_action( 'admin_init', array( $this, 'get_products' ) );
+
 			// enqueue
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
 			$nonce = wp_create_nonce( '3lcYCG8cgGsYidpWjN196sUA1Nxig8R7' );
 			define( 'LLMS_HELPER_NONCE', $nonce );
-
-			// build array of plugins to use helper to update
-			$this->plugins = apply_filters( 'lifterlms_helper_plugins_to_update', array() );
 
 			// get release information and add our plugin to the update object if available
 			add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_transient' ), 20, 1 );
@@ -81,6 +81,9 @@ class LLMS_Helper
 
 			// return a WP error if previous filter returns an error
 			add_filter( 'upgrader_pre_download', array( $this, 'upgrader_pre_download' ), 7, 2 );
+
+			// move & rename dir after installation
+			add_filter( 'upgrader_post_install', array( $this, 'upgrader_post_install' ), 10, 3 );
 
 		}
 
@@ -161,6 +164,52 @@ class LLMS_Helper
 
 
 	/**
+	 * Setup plugins and themes that can be updated by this plugin
+	 * @return void
+	 */
+	public function get_products()
+	{
+
+		$products = get_transient( 'lifterlms-helper-products' );
+
+		// nothing saved, retrieve them from the remote list
+		if( !$products ) {
+
+			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.json' );
+
+			if( !is_wp_error( $r ) ) {
+
+				if( $r['response']['code'] == 200 ) {
+
+					$products = json_decode( $r['body'], true );
+
+					if(
+						isset( $products['plugins'] )
+						&& is_array( $products['plugins'] )
+						&& isset( $products['themes'] )
+						&& is_array( $products['themes'] )
+					) {
+
+						set_transient( 'lifterlms-helper-products', $products, HOUR_IN_SECONDS * 12 );
+
+					}
+
+				}
+			}
+
+		}
+
+		if( $products ) {
+
+			$this->themes = $products['themes'];
+			$this->plugins = $products['plugins'];
+
+		}
+
+	}
+
+
+	/**
 	 * Include all clasess required by the plugin
 	 * @return void
 	 */
@@ -182,6 +231,30 @@ class LLMS_Helper
 
 
 	/**
+	 * Determine if a plugin is in our array of plugins
+	 * @param  string $plugin Plugin slug, plugin __FILE__, or plugin basename
+	 * @return bool / string
+	 */
+	function in_helper_plugins_array( $plugin )
+	{
+
+		foreach( $this->plugins as $p )
+		{
+
+			if( strpos( $p, $plugin ) !== false ) {
+
+				return $p;
+
+			}
+
+		}
+
+		return false;
+
+	}
+
+
+	/**
 	 * Output lightbox information for our custom plugins
 	 * @param  mixed  $result response object
 	 * @param  string $action api call action
@@ -196,22 +269,14 @@ class LLMS_Helper
 			return $result;
 		}
 
-		// check to see if this is one of our plugins
-		foreach( $this->plugins as $plugin )
-		{
+		$slug = $this->in_helper_plugins_array( $args->slug );
+		if( $slug ) {
 
-			$p = new LLMS_Helper_Updater( $plugin );
-			if( $args->slug === $p->plugin_basename )
-			{
-
-				// override result with our info
-				$result = $p->get_lightbox_data();
-
-			}
+			$p = new LLMS_Helper_Updater( $slug );
+			// override result with our info
+			$result = $p->get_lightbox_data();
 
 		}
-
-		// var_dump( $result, $action, $args );
 
 		return $result;
 
@@ -226,8 +291,18 @@ class LLMS_Helper
 	public function pre_set_transient( $transient )
 	{
 
+		// prevent the double checking that's happening for some reason
+		if( $transient->llms_helper_checked ) {
+			return $transient;
+		}
+
 		// start updater for all plugins that need updates
 		foreach( $this->plugins as $plugin ) {
+
+			// only check for installed plugins
+			if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+				continue;
+			}
 
 			$p = new LLMS_Helper_Updater( $plugin );
 			$latest = $p->get_latest_version_data();
@@ -241,6 +316,8 @@ class LLMS_Helper
 				$transient->response[$p->plugin_slug] = $p->get_transient_object( $latest['version'] );
 
 			}
+
+			$transient->llms_helper_checked = true;
 
 		}
 
@@ -263,23 +340,63 @@ class LLMS_Helper
 				'sslverify' => false, // dev
 			) );
 
+			$body = json_decode( $r['body'], true );
+
 			if( $r['response']['code'] === 200 ) {
 
-				$body = json_decode( $r['body'], true );
-
+				// success
 				if( !empty( $body['zip'] ) ) {
 
 					$options['package'] = $body['zip'];
-
-				} else {
-
-					$options['package'] = 'llms-error';
+					return $options;
 
 				}
 
-			} else {
+				// error of some kind
+				else {
 
-				$options['package'] = 'llms-error';
+					$options['package'] = array(
+						'LLMS-ERROR' => true,
+						'data' => $r,
+					);
+
+					if( isset( $body['message'] ) ) {
+
+						$options['package']['code'] = 'LLMS-PU-001';
+						$options['package']['message'] = 'An unkown error occurred during license key validation, please try again. If this problem persists, please contact LifterLMS Support at https://lifterlms.com/';
+
+					} else {
+
+						$options['package']['code'] = 'LLMS-PU-002';
+						$options['package']['message'] = $body['message'];
+
+					}
+
+				}
+
+			}
+
+			// response code was not 200
+			else {
+
+				$options['package'] = array(
+					'LLMS-ERROR' => true,
+					'data' => $r,
+				);
+
+				if( isset( $body['message'] ) ) {
+
+					$options['package']['code'] = 'LLMS-PU-003';
+					$options['package']['message'] = $body['message'];
+
+				}
+				// something else
+				else {
+
+					$options['package']['code'] = 'LLMS-PU-004';
+					$options['package']['message'] = 'An unkown error occurred during license key validation, please try again. If this problem persists, please contact LifterLMS Support at https://lifterlms.com/';
+
+				}
 
 			}
 
@@ -298,26 +415,15 @@ class LLMS_Helper
 	 * @param array $hook_extra Extra arguments passed to hooked filters.
 	 * @param array $result     Installation result data.
 	 */
-	public function post_install( $response, $hook_extra, $result ) {
+	public function upgrader_post_install( $response, $hook_extra, $result ) {
 
-		var_dump( $response, $hook_extra, $result );
+		// only run post install on our plugins
+		if( $this->in_helper_plugins_array( $hook_extra['plugin'] ) ) {
 
-		// // Get plugin info
-		// $this->get_plugin_data();
+			$p = new LLMS_Helper_Updater( $hook_extra['plugin'] );
+			$result = $p->post_install( $result );
 
-		// // Remember if our plugin was previously activated
-		// $was_activated = is_plugin_active( $this->plugin_slug );
-
-		// // Since we are hosted in GitHub, our plugin folder would have a dirname of
-		// // reponame-tagname change it to our original one:
-		// global $wp_filesystem;
-		// $plugin_dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . dirname( $this->plugin_slug );
-		// $wp_filesystem->move( $result['destination'], $plugin_dir );
-		// $result['destination'] = $plugin_dir;
-
-		// // reactivate the plugin if it was active previously
-		// if( $was_activated )
-		// 	$activate = activate_plugin( $this->slug );
+		}
 
 		return $result;
 
@@ -336,12 +442,14 @@ class LLMS_Helper
 	public function upgrader_pre_download( $response, $url )
 	{
 
-		if( $url == 'llms-error' ) {
+		// $url will be an error with an "LLMS-ERROR" key if we're hijacking this to pass key errors
+		if( is_array( $url ) && isset( $url['LLMS-ERROR'] ) ) {
 
-			return new WP_Error( 'error', 'Invalid Activation Key', array() );
+			return new WP_Error( $url['code'], $url['message'], $url );
 
 		}
 
+		// otherwise just return the response
 		return $response;
 
 	}

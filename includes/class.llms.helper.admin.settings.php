@@ -146,6 +146,17 @@ class LLMS_Helper_Admin_Settings
 
 			}
 
+			// if value is empty we need to clear the update key and deactivate
+			else {
+
+				// update key for updates
+				update_option( llms_helper_get_extension_slug( $field['extension'] ) . '_update_key', '' );
+
+				// show activation status near the license key box
+				update_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', '' );
+
+			}
+
 		}
 
 	}
