@@ -175,7 +175,7 @@ class LLMS_Helper
 		// nothing saved, retrieve them from the remote list
 		if( !$products ) {
 
-			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.json' );
+			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.min.json' );
 
 			if( !is_wp_error( $r ) ) {
 
