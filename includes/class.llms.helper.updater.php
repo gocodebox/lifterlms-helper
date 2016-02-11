@@ -150,14 +150,20 @@ class LLMS_Helper_Updater
 
 		$package = $this->api_url . '/download';
 
-		$package = add_query_arg(
-			array(
-				'slug'       => $this->plugin_basename,
-				'update_key' => $this->update_key,
-				'url'        => get_site_url(),
-			),
-			$package
+		$args = array(
+			'slug'       => $this->plugin_basename,
+			'url'        => get_site_url(),
 		);
+
+		// helper will not have an update key
+		// other plugins will fail without an update key when they actually attempt to request an update
+		if( $this->update_key ) {
+
+			$args['update_key'] = $this->update_key;
+
+		}
+
+		$package = add_query_arg( $args, $package );
 
 		// create an object of plugin data
 		$obj = new stdClass();
