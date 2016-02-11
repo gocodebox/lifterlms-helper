@@ -41,7 +41,7 @@ class LLMS_Helper_Updater
 	 * URL to query for release info
 	 * @var string
 	 */
-	private $api_url = 'https://lifterlms.com.dev/llms-api';
+	private $api_url = 'https://lifterlms.com/llms-api';
 
 
 	/**
