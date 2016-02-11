@@ -2,7 +2,7 @@
 class LLMS_Helper_Admin_Settings
 {
 
-	private $activation_url = 'https://lifterlms.com.dev/llms-api/activate';
+	private $activation_url = 'https://lifterlms.com/llms-api/activate';
 
 	/**
 	 * Constructor
