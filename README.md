@@ -29,6 +29,12 @@ Therefore, update information will be served regardless of extension state, but 
 
 Additionally, the LifterLMS Update API will only serve updates when a license is active. The status of a license is determined during an update request (when the user clicks the "update" button) so if a license expires, the download will not actually be served and the user will receive an error during the update attempt.
 
+### Ensuring the Extension can receive updates
+
+In order to determine what extensions are eligible for automatic updates, this plugin queries static data from a LifterLMS Cloudfront domain. The static data is json object of plugins and themes that can receive updates via the Helper.
+
+Your extension must be added to our static data, to do so, please contact Thomas Levy.
+
 ### Adding a LifterLMS License Key Activation Field to a premium LifterLMS Extension
 
 To add a license key field and take advantage of the API simply add an array to a LifterLMS settings array using any of the available settings filters.
