@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 1.0.0
+* Version: 1.0.1
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
