@@ -127,6 +127,7 @@ class LLMS_Helper_Updater
 		$r->version = $data['version'];
 		$r->author = $this->plugin_data['AuthorName'];
 		$r->homepage = $this->plugin_data['PluginURI'];
+		$r->name = $this->plugin_data['Name'];
 
 		// Create tabs in the lightbox
 		$r->sections = array(
