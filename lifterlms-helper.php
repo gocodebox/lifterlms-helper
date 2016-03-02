@@ -33,8 +33,6 @@ class LLMS_Helper
 	 */
 	private $themes = array();
 
-	private $llms_helper_checked = false;
-
 	/**
 	 * Constructor, get things started!
 	 *
