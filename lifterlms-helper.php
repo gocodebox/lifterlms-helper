@@ -169,7 +169,6 @@ class LLMS_Helper
 	 */
 	public function get_products()
 	{
-
 		$products = get_transient( 'lifterlms-helper-products' );
 
 		// nothing saved, retrieve them from the remote list
@@ -190,8 +189,13 @@ class LLMS_Helper
 						&& is_array( $products['themes'] )
 					) {
 
-						set_transient( 'lifterlms-helper-products', $products, HOUR_IN_SECONDS * 12 );
+						foreach ($products['plugins'] as $key => $plugin) {
+							if(!file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin )) {
+								unset($products['plugins'][$key]);
+							}
+						}
 
+						set_transient( 'lifterlms-helper-products', $products, HOUR_IN_SECONDS * 12 );
 					}
 
 				}
@@ -200,7 +204,6 @@ class LLMS_Helper
 		}
 
 		if( $products ) {
-
 			$this->themes = $products['themes'];
 			$this->plugins = $products['plugins'];
 
@@ -237,7 +240,7 @@ class LLMS_Helper
 	 */
 	function in_helper_plugins_array( $plugin )
 	{
-
+		$plugin .= '.php';
 		foreach( $this->plugins as $p )
 		{
 
@@ -268,6 +271,7 @@ class LLMS_Helper
 		if( $action != 'plugin_information' ) {
 			return $result;
 		}
+
 
 		$slug = $this->in_helper_plugins_array( $args->slug );
 		if( $slug ) {
