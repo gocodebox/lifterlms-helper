@@ -296,7 +296,7 @@ class LLMS_Helper
 	{
 
 		// prevent the double checking that's happening for some reason
-		if( $transient->llms_helper_checked ) {
+		if( isset( $transient->llms_helper_checked ) && $transient->llms_helper_checked ) {
 			return $transient;
 		}
 
