@@ -1,6 +1,8 @@
 LifterLMS Helper
 ================
 
+### [Changelog](CHANGELOG.md)
+
 ### Activation
 
 This plugin adds a new admin field type that can be used by LifterLMS admin settings arrays.
