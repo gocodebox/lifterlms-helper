@@ -282,7 +282,6 @@ class LLMS_Helper
 			return $result;
 		}
 
-
 		$slug = $this->in_helper_plugins_array( $args->slug );
 		if( $slug ) {
 
@@ -377,6 +376,9 @@ class LLMS_Helper
 	public function upgrader_package_authorization( $options )
 	{
 
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start package auth -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+		llms_log( $options );
+
 		// only check auth on lifterlms plugins
 		if( strpos( $options['package'], '//lifterlms.com' )  ) {
 
@@ -446,6 +448,9 @@ class LLMS_Helper
 
 		}
 
+		llms_log( $options );
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end package auth -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+
 		return $options;
 
 	}
@@ -460,6 +465,12 @@ class LLMS_Helper
 	 * @param array $result     Installation result data.
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
+
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start upgrader post install -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+		llms_log( $response );
+		llms_log( $hook_extra );
+		llms_log( $result );
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end upgrader post install -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
 
 		// only run post install on our plugins
 		if( $this->in_helper_plugins_array( $hook_extra['plugin'] ) ) {
@@ -485,6 +496,11 @@ class LLMS_Helper
 	 */
 	public function upgrader_pre_download( $response, $url )
 	{
+
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start pre download -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+		llms_log( $response );
+		llms_log( $url );
+		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end pre download -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
 
 		// $url will be an error with an "LLMS-ERROR" key if we're hijacking this to pass key errors
 		if( is_array( $url ) && isset( $url['LLMS-ERROR'] ) ) {

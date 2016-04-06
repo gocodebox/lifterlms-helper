@@ -91,48 +91,6 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	}
 
 
-
-
-
-
-
-
-
-
-
-	/**
-	 * Output data to display in the lightbox when the "View Version {$version} details" link is clicked on the plugins screen
-	 * @todo  possibly add download link
-	 * @todo  add banners
-	 * @todo  figure out why the "Plugin Name" isn't displaying
-	 * @return obj
-	 */
-	public function get_lightbox_data()
-	{
-
-		$data = $this->get_latest_version_data();
-
-		$r = new stdClass();
-		$r->last_updated = $data['release_date'];
-		$r->slug = $this->plugin_slug;
-		$r->plugin_name  = $this->plugin_data['Name'];
-		$r->version = $data['version'];
-		$r->author = $this->plugin_data['AuthorName'];
-		$r->homepage = $this->plugin_data['PluginURI'];
-		$r->name = $this->plugin_data['Name'];
-
-		// Create tabs in the lightbox
-		$r->sections = array(
-			'description' => $this->plugin_data['Description'],
-			'changelog' => $data['notes'],
-		);
-
-
-		return $r;
-
-	}
-
-
 	/**
 	 * Get an array of data to load into the theme transient object when an update is available
 	 * @param  string $version new version number
@@ -173,8 +131,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * @param  array $install_result   install data array
 	 * @return array
 	 */
-	public function post_install( $install_result )
-	{
+	public function post_install( $install_result ) {
 
 		// is the plugin currently active? we'll re-activate later if it is
 		$active = is_plugin_active( $this->plugin_slug );
