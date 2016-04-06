@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 1.0.2
+* Version: 1.1.0
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
@@ -55,6 +55,10 @@ class LLMS_Helper
 	 */
 	public function init()
 	{
+
+		// remove transient on load for testing purposes
+		delete_site_transient( 'update_themes' );
+
 		// only load plugin if LifterLMS class exists.
 		if ( class_exists( 'LifterLMS') ) {
 
@@ -62,7 +66,8 @@ class LLMS_Helper
 			$this->includes();
 
 			// get products that can be updated by this plugin
-			add_action( 'admin_init', array( $this, 'get_products' ) );
+			$this->get_products();
+			// add_action( 'admin_init', array( $this, 'get_products' ) );
 
 			// enqueue
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -72,9 +77,10 @@ class LLMS_Helper
 
 			// get release information and add our plugin to the update object if available
 			add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_transient' ), 20, 1 );
+			add_filter( 'pre_set_site_transient_update_themes', array( $this, 'pre_set_transient' ), 20, 1 );
 
 			// handle lightbox data
-			add_filter( 'plugins_api', array( $this, 'plugins_api' ), 20, 3 );
+			add_filter( 'plugins_api', array( $this, 'handle_lightbox' ), 20, 3 );
 
 			// check license key
 			add_filter( 'upgrader_package_options', array( $this, 'upgrader_package_authorization' ), 10, 1 );
@@ -169,6 +175,7 @@ class LLMS_Helper
 	 */
 	public function get_products()
 	{
+
 		$products = get_transient( 'lifterlms-helper-products' );
 
 		// nothing saved, retrieve them from the remote list
@@ -176,7 +183,7 @@ class LLMS_Helper
 
 			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.min.json' );
 
-			if( !is_wp_error( $r ) ) {
+			if( ! is_wp_error( $r ) ) {
 
 				if( $r['response']['code'] == 200 ) {
 
@@ -204,6 +211,7 @@ class LLMS_Helper
 		}
 
 		if( $products ) {
+
 			$this->themes = $products['themes'];
 			$this->plugins = $products['plugins'];
 
@@ -226,7 +234,9 @@ class LLMS_Helper
 			require_once 'includes/class.llms.helper.admin.settings.php';
 			require_once 'includes/class.llms.helper.admin.notices.php';
 			require_once 'includes/class.llms.helper.admin.ajax.php';
-			require_once 'includes/class.llms.helper.updater.php';
+			require_once 'includes/abstract.llms.helper.updater.php';
+			require_once 'includes/class.llms.helper.theme.updater.php';
+			require_once 'includes/class.llms.helper.plugin.updater.php';
 
 		}
 
@@ -258,13 +268,13 @@ class LLMS_Helper
 
 
 	/**
-	 * Output lightbox information for our custom plugins
+	 * Output lightbox information for our custom plugins & themes
 	 * @param  mixed  $result response object
 	 * @param  string $action api call action
 	 * @param  obj    $args   object of arguments
 	 * @return obj
 	 */
-	public function plugins_api( $result, $action, $args )
+	public function handle_lightbox( $result, $action, $args )
 	{
 
 		// skip other actions
@@ -276,7 +286,7 @@ class LLMS_Helper
 		$slug = $this->in_helper_plugins_array( $args->slug );
 		if( $slug ) {
 
-			$p = new LLMS_Helper_Updater( $slug );
+			$p = new LLMS_Helper_Plugin_Updater( $slug );
 			// override result with our info
 			$result = $p->get_lightbox_data();
 
@@ -300,27 +310,56 @@ class LLMS_Helper
 			return $transient;
 		}
 
-		// start updater for all plugins that need updates
-		foreach( $this->plugins as $plugin ) {
+		if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
 
-			// only check for installed plugins
-			if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
-				continue;
+			foreach ( $this->themes as $theme ) {
+
+				$path = WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme;
+
+				// only check for installed plugins
+				if( ! file_exists( $path ) ) {
+					continue;
+				}
+
+				$t = new LLMS_Helper_Theme_Updater( $theme );
+				$latest = $t->get_latest_version_data();
+
+				// if latest is greater than current, we want to update
+				$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $t->theme_data['Version'], '>' ) : false;
+
+				// if we need an update, load the data into the transient object
+				if( $update ) {
+
+					$transient->response[$t->theme_slug] = $t->get_transient_data( $latest['version'] );
+
+				}
+
 			}
 
-			$p = new LLMS_Helper_Updater( $plugin );
-			$latest = $p->get_latest_version_data();
+		} elseif ( 'pre_set_site_transient_update_plugins' === current_filter() ) {
 
-			// if latest is greater than current, we want to update
-			$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
+			// start updater for all plugins that need updates
+			foreach ( $this->plugins as $plugin ) {
 
-			// if we need an update, load the data into the transient object
-			if( $update ) {
+				// only check for installed plugins
+				if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+					continue;
+				}
 
-				$transient->response[$p->plugin_slug] = $p->get_transient_object( $latest['version'] );
+				$p = new LLMS_Helper_Plugin_Updater( $plugin );
+				$latest = $p->get_latest_version_data();
+
+				// if latest is greater than current, we want to update
+				$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
+
+				// if we need an update, load the data into the transient object
+				if( $update ) {
+
+					$transient->response[$p->plugin_slug] = $p->get_transient_object( $latest['version'] );
+
+				}
 
 			}
-
 
 		}
 
@@ -425,7 +464,7 @@ class LLMS_Helper
 		// only run post install on our plugins
 		if( $this->in_helper_plugins_array( $hook_extra['plugin'] ) ) {
 
-			$p = new LLMS_Helper_Updater( $hook_extra['plugin'] );
+			$p = new LLMS_Helper_Plugin_Updater( $hook_extra['plugin'] );
 			$result = $p->post_install( $result );
 
 		}

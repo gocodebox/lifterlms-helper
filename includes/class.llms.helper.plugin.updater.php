@@ -1,5 +1,5 @@
 <?php
-class LLMS_Helper_Updater
+class LLMS_Helper_Plugin_Updater
 {
 
 	/**
