@@ -35,6 +35,11 @@ abstract class LLMS_Helper_Updater {
 	 */
 	abstract public function get_transient_data( $version );
 
+	/**
+	 * Post Install actions run after downloading the package
+	 * @param  array $data   array of install data
+	 */
+	abstract public function post_install( $data );
 
 	/**
 	 * Retrive the latest version from the LLMS Api

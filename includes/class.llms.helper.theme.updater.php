@@ -76,8 +76,6 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	}
 
 
-
-
 	/**
 	 * Call the parent version data method with params
 	 * @return mixed     string or false
@@ -127,19 +125,22 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 
 
 	/**
-	 * Handle moving the plugin to it's intended directory after plugin installation
+	 * Handle moving the theme to it's intended directory after theme installation
 	 * @param  array $install_result   install data array
 	 * @return array
 	 */
 	public function post_install( $install_result ) {
 
+		// get the current theme
+		$theme = wp_get_theme();
+
 		// is the plugin currently active? we'll re-activate later if it is
-		$active = is_plugin_active( $this->plugin_slug );
+		$active = ( $this->theme_stylesheet === $theme->get_stylesheet() ) ? true : false;
 
 		global $wp_filesystem;
 
 		// where we want the plugin
-		$dir = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . dirname( $this->plugin_slug );
+		$dir = $install_result['local_destination'] . $this->theme_stylesheet;
 
 		// move it
 		$wp_filesystem->move( $install_result['destination'], $dir );
@@ -150,7 +151,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 		// reactivate the plugin if it was active previously
 		if( $active ) {
 
-			activate_plugin( $this->slug );
+			switch_theme( $this->theme_stylesheet );
 
 		}
 

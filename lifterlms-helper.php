@@ -196,10 +196,18 @@ class LLMS_Helper
 						&& is_array( $products['themes'] )
 					) {
 
-						foreach ($products['plugins'] as $key => $plugin) {
-							if(!file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin )) {
-								unset($products['plugins'][$key]);
+						foreach ( $products['plugins'] as $key => $plugin ) {
+							if ( ! file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+								unset( $products['plugins'][ $key ] );
 							}
+						}
+
+						foreach( $products['themes'] as $key => $theme ) {
+
+							if ( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
+								unset( $products['themes'][ $key ] );
+							}
+
 						}
 
 						set_transient( 'lifterlms-helper-products', $products, HOUR_IN_SECONDS * 12 );
@@ -244,17 +252,24 @@ class LLMS_Helper
 
 
 	/**
-	 * Determine if a plugin is in our array of plugins
-	 * @param  string $plugin Plugin slug, plugin __FILE__, or plugin basename
+	 * Determine if a package is in our array of themes or plugin
+	 * @param  string $package slug, __FILE__, or basename of package
 	 * @return bool / string
+	 * @since 1.1.0
 	 */
-	function in_helper_plugins_array( $plugin )
-	{
-		$plugin .= '.php';
-		foreach( $this->plugins as $p )
-		{
+	function in_helper_array( $package, $type ) {
 
-			if( strpos( $p, $plugin ) !== false ) {
+		if ( 'plugin' === $type ) {
+
+			$package .= '.php';
+
+		}
+
+		$type .= 's';
+
+		foreach( $this->$type as $p ) {
+
+			if( strpos( $p, $package ) !== false ) {
 
 				return $p;
 
@@ -273,6 +288,8 @@ class LLMS_Helper
 	 * @param  string $action api call action
 	 * @param  obj    $args   object of arguments
 	 * @return obj
+	 *
+	 * @updated 1.1.0
 	 */
 	public function handle_lightbox( $result, $action, $args )
 	{
@@ -282,7 +299,7 @@ class LLMS_Helper
 			return $result;
 		}
 
-		$slug = $this->in_helper_plugins_array( $args->slug );
+		$slug = $this->in_helper_array( $args->slug, 'plugin' );
 		if( $slug ) {
 
 			$p = new LLMS_Helper_Plugin_Updater( $slug );
@@ -313,10 +330,8 @@ class LLMS_Helper
 
 			foreach ( $this->themes as $theme ) {
 
-				$path = WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme;
-
 				// only check for installed plugins
-				if( ! file_exists( $path ) ) {
+				if( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
 					continue;
 				}
 
@@ -472,10 +487,18 @@ class LLMS_Helper
 		llms_log( $result );
 		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end upgrader post install -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
 
-		// only run post install on our plugins
-		if( $this->in_helper_plugins_array( $hook_extra['plugin'] ) ) {
+		if( isset( $hook_extra['type'] ) ) {
 
-			$p = new LLMS_Helper_Plugin_Updater( $hook_extra['plugin'] );
+			$type = $hook_extra['type'];
+
+		}
+
+		$class = 'LLMS_Helper_' . ucwords( $type ) . '_Updater';
+
+		// only run post install on our packages
+		if( $this->in_helper_array( $hook_extra[ $type ], $type ) ) {
+
+			$p = new $class( $hook_extra[ $type ] );
 			$result = $p->post_install( $result );
 
 		}
