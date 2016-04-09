@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+v2.0.0 - 2016-04-08
+-------------------
+
++ Includes theme-related APIs for serving updates for themes
++ Better error reporting and handling
++ A few very exciting performance enhancements
+
+
 v1.0.2 - 2016-03-07
 -------------------
 

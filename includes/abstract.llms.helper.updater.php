@@ -2,7 +2,11 @@
 /**
  * Abstract Updater class extended by theme and plugin updater classes
  *
- * @since  1.1.0
+ * @package 	LifterLMS Helper
+ * @category 	Core
+ * @author 		codeBOX
+ *
+ * @since  2.0.0
  */
 
 // Restrict direct access
@@ -16,7 +20,15 @@ abstract class LLMS_Helper_Updater {
 	 *
 	 * @since  1.1.0
 	 */
-	protected $api_url = 'https://lifterlms.com.dev/llms-api';
+	protected $api_url = 'https://lifterlms.com/llms-api';
+
+	/**
+	 * Update Key
+	 * @var string
+	 *
+	 * @since  1.1.0
+	 */
+	protected $update_key;
 
 	/**
 	 * Constructor

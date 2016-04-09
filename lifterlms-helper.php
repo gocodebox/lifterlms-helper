@@ -3,12 +3,11 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 1.1.0
+* Version: 2.0.0
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
-*
-* @package 		LifterLMS
+* @package 		LifterLMS Helper
 * @category 	Core
 * @author 		codeBOX
 */
@@ -24,12 +23,16 @@ class LLMS_Helper
 	/**
 	 * Array of plugins to update via the helper
 	 * @var array
+	 *
+	 * @since 1.0.0
 	 */
 	private $plugins = array();
 
 	/**
 	 * Array of themes to update via the helper
 	 * @var array
+	 *
+	 * @since 1.0.0
 	 */
 	private $themes = array();
 
@@ -37,9 +40,10 @@ class LLMS_Helper
 	 * Constructor, get things started!
 	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 
 		// Define class constants
 		$this->define_constants();
@@ -51,13 +55,12 @@ class LLMS_Helper
 
 	/**
 	 * Inititalize the Plugin
+	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function init()
-	{
-
-		// remove transient on load for testing purposes
-		delete_site_transient( 'update_themes' );
+	public function init() {
 
 		// only load plugin if LifterLMS class exists.
 		if ( class_exists( 'LifterLMS') ) {
@@ -86,7 +89,7 @@ class LLMS_Helper
 			add_filter( 'upgrader_package_options', array( $this, 'upgrader_package_authorization' ), 10, 1 );
 
 			// return a WP error if previous filter returns an error
-			add_filter( 'upgrader_pre_download', array( $this, 'upgrader_pre_download' ), 7, 2 );
+			add_filter( 'upgrader_pre_download', array( $this, 'upgrader_pre_download' ), 7, 3 );
 
 			// move & rename dir after installation
 			add_filter( 'upgrader_post_install', array( $this, 'upgrader_post_install' ), 10, 3 );
@@ -106,10 +109,12 @@ class LLMS_Helper
 
 	/**
 	 * Enqueue Scripts & Styles
+	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function admin_enqueue_scripts()
-	{
+	public function admin_enqueue_scripts() {
 
 		wp_enqueue_script( 'llms-helper-admin', plugin_dir_url( __FILE__ ) . '/assets/admin/js/llms-helper.js', array( 'jquery' ), NULL, true );
 
@@ -121,9 +126,10 @@ class LLMS_Helper
 	 * Deactivate the plugin (if user has sufficient privileges)
 	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function deactivate()
-	{
+	public function deactivate() {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 
@@ -134,9 +140,10 @@ class LLMS_Helper
 	 * Notify admins that they can't activate without LifterLMS
 	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function deactivate_notice()
-	{
+	public function deactivate_notice() {
 
 		echo '<div class="error"><p><strong>LifterLMS Helper</strong> cannot function without <strong>LifterLMS</strong>! LifterLMS Helper has been deactivated. Please activate LifterLMS and try again.</p></div>';
 
@@ -152,9 +159,10 @@ class LLMS_Helper
 	 * Define constants for plugin
 	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	private function define_constants()
-	{
+	private function define_constants() {
 
 		// LLMS ConvertKit Plugin File
 		if ( ! defined( 'LLMS_HELPER_PLUGIN_FILE' ) ) {
@@ -171,10 +179,12 @@ class LLMS_Helper
 
 	/**
 	 * Setup plugins and themes that can be updated by this plugin
+	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	public function get_products()
-	{
+	public function get_products() {
 
 		$products = get_transient( 'lifterlms-helper-products' );
 
@@ -230,10 +240,12 @@ class LLMS_Helper
 
 	/**
 	 * Include all clasess required by the plugin
+	 *
 	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
-	private function includes()
-	{
+	private function includes() {
 
 		if( is_admin() ) {
 
@@ -253,17 +265,13 @@ class LLMS_Helper
 
 	/**
 	 * Determine if a package is in our array of themes or plugin
+	 *
 	 * @param  string $package slug, __FILE__, or basename of package
 	 * @return bool / string
-	 * @since 1.1.0
+	 *
+	 * @since 2.0.0
 	 */
 	function in_helper_array( $package, $type ) {
-
-		if ( 'plugin' === $type ) {
-
-			$package .= '.php';
-
-		}
 
 		$type .= 's';
 
@@ -284,15 +292,15 @@ class LLMS_Helper
 
 	/**
 	 * Output lightbox information for our custom plugins & themes
+	 *
 	 * @param  mixed  $result response object
 	 * @param  string $action api call action
 	 * @param  obj    $args   object of arguments
 	 * @return obj
 	 *
-	 * @updated 1.1.0
+	 * @since  1.0.0
 	 */
-	public function handle_lightbox( $result, $action, $args )
-	{
+	public function handle_lightbox( $result, $action, $args ) {
 
 		// skip other actions
 		if( $action != 'plugin_information' ) {
@@ -315,70 +323,88 @@ class LLMS_Helper
 
 	/**
 	 * Determine if there's an update available for our plugins
+	 *
 	 * @param  obj $transient  transient object
 	 * @return obj
+	 *
+	 * @since  1.0.0
 	 */
-	public function pre_set_transient( $transient )
-	{
+	public function pre_set_transient( $transient ) {
 
-		// prevent the double checking that's happening for some reason
-		if( isset( $transient->llms_helper_checked ) && $transient->llms_helper_checked ) {
-			return $transient;
-		}
+		// store our results in a transient so we don't make multiple API calls
+		// during the many times this thing can get updated during an update check
+		$llms_transient = str_replace( 'pre_set_site_transient', 'llms_helper', current_filter() ); // llms_helper_update_themes OR llms_helper_update_plugins
+		$response = get_site_transient( $llms_transient );
 
-		if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
+		// no transient, check our themes or plugins
+		if ( ! $response ) {
 
-			foreach ( $this->themes as $theme ) {
+			$response = array();
 
-				// only check for installed plugins
-				if( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
-					continue;
+			if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
+
+
+				foreach ( $this->themes as $theme ) {
+					// only check for installed plugins
+					if( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
+						continue;
+					}
+
+					$t = new LLMS_Helper_Theme_Updater( $theme );
+					$latest = $t->get_latest_version_data();
+
+					// if latest is greater than current, we want to update
+					$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $t->theme_data['Version'], '>' ) : false;
+
+					// if we need an update, load the data into the transient object
+					if( $update ) {
+
+						$response[$t->theme_slug] = $t->get_transient_data( $latest['version'] );
+
+					}
+
 				}
 
-				$t = new LLMS_Helper_Theme_Updater( $theme );
-				$latest = $t->get_latest_version_data();
+			} elseif ( 'pre_set_site_transient_update_plugins' === current_filter() ) {
 
-				// if latest is greater than current, we want to update
-				$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $t->theme_data['Version'], '>' ) : false;
+				// start updater for all plugins that need updates
+				foreach ( $this->plugins as $plugin ) {
 
-				// if we need an update, load the data into the transient object
-				if( $update ) {
+					// only check for installed plugins
+					if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+						continue;
+					}
 
-					$transient->response[$t->theme_slug] = $t->get_transient_data( $latest['version'] );
+					$p = new LLMS_Helper_Plugin_Updater( $plugin );
+					$latest = $p->get_latest_version_data();
+
+					// if latest is greater than current, we want to update
+					$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
+
+					// if we need an update, load the data into the transient object
+					if( $update ) {
+
+						$response[$p->plugin_slug] = $p->get_transient_data( $latest['version'] );
+
+					}
 
 				}
 
 			}
 
-		} elseif ( 'pre_set_site_transient_update_plugins' === current_filter() ) {
-
-			// start updater for all plugins that need updates
-			foreach ( $this->plugins as $plugin ) {
-
-				// only check for installed plugins
-				if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
-					continue;
-				}
-
-				$p = new LLMS_Helper_Plugin_Updater( $plugin );
-				$latest = $p->get_latest_version_data();
-
-				// if latest is greater than current, we want to update
-				$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
-
-				// if we need an update, load the data into the transient object
-				if( $update ) {
-
-					$transient->response[$p->plugin_slug] = $p->get_transient_object( $latest['version'] );
-
-				}
-
-			}
+			// save the transient so we don't check again for at least 5 mins
+			set_site_transient( $llms_transient, $response, MINUTE_IN_SECONDS * 5 );
 
 		}
 
-		$transient->llms_helper_checked = true;
+		// add our response to the transient
+		if ( isset( $transient->response ) ) {
 
+			$transient->response = array_merge( $transient->response, $response );
+
+		}
+
+		// return
 		return $transient;
 
 	}
@@ -386,13 +412,12 @@ class LLMS_Helper
 
 	/**
 	 * Check License key before serving an update and set the real download URL for the package
+	 *
 	 * @return array
+	 *
+	 * @since  1.0.0
 	 */
-	public function upgrader_package_authorization( $options )
-	{
-
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start package auth -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
-		llms_log( $options );
+	public function upgrader_package_authorization( $options ) {
 
 		// only check auth on lifterlms plugins
 		if( strpos( $options['package'], '//lifterlms.com' )  ) {
@@ -416,19 +441,21 @@ class LLMS_Helper
 				// error of some kind
 				else {
 
+					$error = true;
+
 					$options['package'] = array(
 						'LLMS-ERROR' => true,
 						'data' => $r,
 					);
 
-					if( isset( $body['message'] ) ) {
+					if ( ! isset( $body['message'] ) ) {
 
-						$options['package']['code'] = 'LLMS-PU-001';
+						$options['package']['code'] = 'LLMS-PU-002';
 						$options['package']['message'] = 'An unkown error occurred during license key validation, please try again. If this problem persists, please contact LifterLMS Support at https://lifterlms.com/';
 
 					} else {
 
-						$options['package']['code'] = 'LLMS-PU-002';
+						$options['package']['code'] = 'LLMS-PU-001';
 						$options['package']['message'] = $body['message'];
 
 					}
@@ -439,6 +466,8 @@ class LLMS_Helper
 
 			// response code was not 200
 			else {
+
+				$error = true;
 
 				$options['package'] = array(
 					'LLMS-ERROR' => true,
@@ -461,10 +490,7 @@ class LLMS_Helper
 
 			}
 
-		}
-
-		llms_log( $options );
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end package auth -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+ 		}
 
 		return $options;
 
@@ -478,25 +504,28 @@ class LLMS_Helper
 	 * @param bool  $response   Install response.
 	 * @param array $hook_extra Extra arguments passed to hooked filters.
 	 * @param array $result     Installation result data.
+	 * @return  void
+	 *
+	 * @since  1.0.0
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
-
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start upgrader post install -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
-		llms_log( $response );
-		llms_log( $hook_extra );
-		llms_log( $result );
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end upgrader post install -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
 
 		if( isset( $hook_extra['type'] ) ) {
 
 			$type = $hook_extra['type'];
+			$package = $hook_extra[ $type ];
+
+		} elseif ( isset( $hook_extra['plugin'] ) ) {
+
+			$type = 'plugin';
+			$package = $hook_extra['plugin'];
 
 		}
 
 		$class = 'LLMS_Helper_' . ucwords( $type ) . '_Updater';
 
 		// only run post install on our packages
-		if( $this->in_helper_array( $hook_extra[ $type ], $type ) ) {
+		if( $this->in_helper_array( $package, $type ) ) {
 
 			$p = new $class( $hook_extra[ $type ] );
 			$result = $p->post_install( $result );
@@ -515,18 +544,37 @@ class LLMS_Helper
 	 *
 	 * @param  bool   $response true
 	 * @param  string $url      package download url
+	 *
 	 * @return mixed            true or WP error if we've encountered an auth error
+	 *
+	 * @since  1.0.0
 	 */
-	public function upgrader_pre_download( $response, $url )
-	{
-
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- start pre download -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
-		llms_log( $response );
-		llms_log( $url );
-		llms_log( '=-=-=-=-=-=-=-=-=-=-=-=-=-=- end pre download -=-=-=-=-=-=-=-=-=-=-=-=-=-=');
+	public function upgrader_pre_download( $response, $url, $upgrader ) {
 
 		// $url will be an error with an "LLMS-ERROR" key if we're hijacking this to pass key errors
 		if( is_array( $url ) && isset( $url['LLMS-ERROR'] ) ) {
+
+			/**
+			 * Show the error message during ajax plugin update attempts
+			 * This isn't lovely
+			 * @shame http://i.giphy.com/c2YyNySJ1CbFC.gif
+			 */
+			global $llms_helper_error;
+			$llms_helper_error = $url;
+
+			add_filter( 'gettext', function( $translated, $domain, $text ) {
+
+				if( 'Plugin update failed.' === $translated ) {
+
+					global $llms_helper_error;
+
+					$translated .= ' ' . $llms_helper_error['message'] . ' ' . __( 'Reference Code:', 'lifterlms-helper' ) . ' ' . $llms_helper_error['code'];
+
+				}
+
+				return $translated;
+
+			}, 20, 3 );
 
 			return new WP_Error( $url['code'], $url['message'], $url );
 

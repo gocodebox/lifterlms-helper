@@ -1,5 +1,18 @@
 <?php
-class LLMS_Helper_Plugin_Updater
+/**
+ * Plugin Updating Related functions
+ *
+ * @package 	LifterLMS Helper
+ * @category 	Core
+ * @author 		codeBOX
+ *
+ * @since  2.0.0
+ */
+
+// Restrict direct access
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 {
 
 	/**
@@ -29,19 +42,6 @@ class LLMS_Helper_Plugin_Updater
 	 * @var string
 	 */
 	private $plugin_file;
-
-	/**
-	 * Update Key
-	 * @var string
-	 */
-	private $update_key;
-
-
-	/**
-	 * URL to query for release info
-	 * @var string
-	 */
-	private $api_url = 'https://lifterlms.com/llms-api';
 
 
 	/**
@@ -80,30 +80,12 @@ class LLMS_Helper_Plugin_Updater
 	 * Retrive the latest version from the LLMS Api
 	 * @return mixed     string or false
 	 */
-	public function get_latest_version_data()
+	public function get_latest_version_data( $slug = null )
 	{
 
-		$result = wp_remote_post( $this->api_url . '/get_release_info', array(
-			'body' => array(
-				'slug'    => $this->plugin_basename,
-			),
-			'sslverify' => false,
-		) );
+		$slug = ( $slug ) ? $slug : $this->plugin_basename;
 
-		if( !is_wp_error( $result ) )
-		{
-
-			$r = json_decode( $result['body'], true );
-
-			if( !empty( $r['success'] ) && isset( $r['version'] ) ) {
-
-				return $r;
-
-			}
-
-		}
-
-		return false;
+		return parent::get_latest_version_data( $slug );
 
 	}
 
@@ -146,7 +128,7 @@ class LLMS_Helper_Plugin_Updater
 	 * @param  string $version new version number
 	 * @return object
 	 */
-	public function get_transient_object( $version )
+	public function get_transient_data( $version )
 	{
 
 		$package = $this->api_url . '/download';

@@ -1,8 +1,12 @@
 <?php
 /**
- * Updater functions for Themes
+ * Theme update related functions
  *
- * @since  1.1.0
+ * @package 	LifterLMS Helper
+ * @category 	Core
+ * @author 		codeBOX
+ *
+ * @since  2.0.0
  */
 
 // Restrict direct access
@@ -16,7 +20,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * Array of theme data from WordPress wp_get_theme() function
 	 * @var array
 	 *
-	 * @since  1.1.0
+	 * @since  2.0.0
 	 */
 	public $theme_data;
 
@@ -25,7 +29,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * The theme "stylesheet" directory, eg "lifterlms-{theme name}/"
 	 * @var  string
 	 *
-	 * @since  1.1.0
+	 * @since  2.0.0
 	 */
 	public $theme_stylesheet;
 
@@ -34,24 +38,16 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * Theme slug
 	 * @var string
 	 *
-	 * @since  1.1.0
+	 * @since  2.0.0
 	 */
 	public $theme_slug;
-
-	/**
-	 * Update Key
-	 * @var string
-	 *
-	 * @since  1.1.0
-	 */
-	private $update_key;
 
 
 	/**
 	 * Constructor
 	 * @param string   $theme   path from the WP_PLUGIN_DIR
 	 *
-	 * @since  1.1.0
+	 * @since  2.0.0
 	 */
 	function __construct( $theme ) {
 
@@ -65,7 +61,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * Get basic information about the theme
 	 * @return null
 	 *
-	 * @since  1.1.0
+	 * @since  2.0.0
 	 */
 	private function get_theme_data() {
 
@@ -140,7 +136,7 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 		global $wp_filesystem;
 
 		// where we want the plugin
-		$dir = $install_result['local_destination'] . $this->theme_stylesheet;
+		$dir = $install_result['local_destination'] . DIRECTORY_SEPARATOR . $this->theme_stylesheet;
 
 		// move it
 		$wp_filesystem->move( $install_result['destination'], $dir );

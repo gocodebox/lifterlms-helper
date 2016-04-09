@@ -1,4 +1,8 @@
 <?php
+
+// Restrict direct access
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
 /**
  * Get an extension "slug" from it's __FILE__
  * @param  string  $extension_file  plugin's __FILE__

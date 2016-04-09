@@ -1,4 +1,16 @@
 <?php
+/**
+ * Filters for LifterLMS & LaunchPad admin options for license key saving & validation
+ *
+ * @package 	LifterLMS Helper
+ * @category 	Core
+ * @author 		codeBOX
+ *
+ * @since  1.0.0
+ */
+
+// Restrict direct access
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class LLMS_Helper_Admin_Settings
 {
 
