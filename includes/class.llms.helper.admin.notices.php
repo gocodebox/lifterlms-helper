@@ -84,6 +84,17 @@ class LLMS_Helper_Admin_Notices
 			// get data
 			$data = get_plugin_data( $extension_file );
 
+			if ( ! empty( $data['Name'] ) ) {
+
+				$name = $data['Name'];
+
+			} else {
+
+				$data = wp_get_theme( $extension_file );
+				$name = $data->get( 'Name' );
+
+			}
+
 			// // setup vars for success
 			if( $notice['success'] ) {
 
@@ -126,7 +137,7 @@ class LLMS_Helper_Admin_Notices
 
 
 			echo '<div class="' . $class . '"><p>';
-			echo '<strong>' . $data['Name'] . '' . $type . ': </strong>';
+			echo '<strong>' . $name . '' . $type . ': </strong>';
 			echo $notice['message'];
 			echo $dismiss;
 			echo '</p></div>';

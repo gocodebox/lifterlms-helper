@@ -22,9 +22,14 @@ class LLMS_Helper_Admin_Settings
 	public function __construct()
 	{
 
-		add_action( 'lifterlms_admin_field_llms_license_key', array( $this, 'output_field' ), 10, 5 );
-		add_action( 'lifterlms_update_option_llms_license_key', array( $this, 'save_field' ), 777, 5 );
+		// output field for LLMS Plugins
+		add_action( 'lifterlms_admin_field_llms_license_key', array( $this, 'extensions_output_field' ), 10, 5 );
 
+		// output field for LaunchPad theme(s)
+		add_action( 'launchpad_output_field_llms_license_key', array( $this, 'launchpad_output_field' ), 10, 5 );
+
+		add_action( 'lifterlms_update_option_llms_license_key', array( $this, 'save_field' ), 777, 5 );
+		add_action( 'launchpad_save_field_llms_license_key', array( $this, 'save_field' ), 777, 5 );
 	}
 
 
@@ -80,7 +85,7 @@ class LLMS_Helper_Admin_Settings
 	 * @param  array  $custom_attributes array of custom attributes formatted as HTML strings
 	 * @return void
 	 */
-	public function output_field( $field = array(), $value = '', $description = '', $tooltip = '', $custom_attributes = array() )
+	public function extensions_output_field( $field = array(), $value = '', $description = '', $tooltip = '', $custom_attributes = array() )
 	{
 
 		?><tr valign="top">
@@ -98,11 +103,11 @@ class LLMS_Helper_Admin_Settings
 		    		class="<?php echo esc_attr( $field['class'] ); ?>"
 		    		<?php echo implode( ' ', $custom_attributes ); ?>
 		    		/>
-		    		<?php if( get_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', 'no' ) == 'yes' ): ?>
-		    			<span class="llms-helper-activation-status"><span class="dashicons dashicons-yes"></span> <em>Activated</em></span>
-		    		<?php else: ?>
-		    			<span class="llms-helper-activation-status"><span class="dashicons dashicons-warning"></span> <em>Not activated</em></span>
-		    		<?php endif; ?>
+					<?php if( get_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', 'no' ) == 'yes' ): ?>
+						<span class="llms-helper-activation-status"><span class="dashicons dashicons-yes"></span> <em>Activated</em></span>
+					<?php else: ?>
+						<span class="llms-helper-activation-status"><span class="dashicons dashicons-warning"></span> <em>Not activated</em></span>
+					<?php endif; ?>
 		    		<?php echo $description; ?>
 		    </td>
 		</tr><?php
@@ -110,11 +115,44 @@ class LLMS_Helper_Admin_Settings
 	}
 
 
+	public function launchpad_output_field( $field ) {
+
+		// $value = ( isset( $_POST[ $field['id'] ] ) ) ? sanitize_text_field( $_POST[ $field['id'] ] ) : '';
+
+		$value = get_option( $field['id'],  $field['default'] );
+
+		?>
+		<tr valign="top">
+		    <th>
+		        <label for="<?php echo esc_attr($field['id']); ?>"><?php echo esc_html($field['title']); ?></label>
+		        <?php //echo $tooltip; ?>
+		    </th>
+		    <td class="forminp forminp-<?php echo sanitize_title($field['type']) ?>">
+		        <input
+		            name="<?php echo esc_attr($field['id']); ?>"
+		            id="<?php echo esc_attr($field['id']); ?>"
+		            type="text"
+		            value="<?php echo esc_attr($value); ?>"
+		            class="launchpad-field"
+		            />
+					<?php if( get_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', 'no' ) == 'yes' ): ?>
+						<span class="llms-helper-activation-status"><span class="dashicons dashicons-yes"></span> <em>Activated</em></span>
+					<?php else: ?>
+						<span class="llms-helper-activation-status"><span class="dashicons dashicons-warning"></span> <em>Not activated</em></span>
+					<?php endif; ?>
+					<span class="launchpad-field-desc"><?php echo $field['desc']; ?></span>
+		    </td>
+		</tr>
+		<?php
+	}
+
+
 	public function save_field( $field )
 	{
 
 		$value = isset( $_POST[ $field['id'] ] ) ?  llms_clean( stripslashes( $_POST[ $field['id'] ] ) ) : $field['default'];
-		$saved_value = LLMS_Admin_Settings::get_option( $field['id'],  $field['default'] );
+
+		$saved_value = get_option( $field['id'],  $field['default'] );
 
 		$activated = get_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', 'no' );
 
