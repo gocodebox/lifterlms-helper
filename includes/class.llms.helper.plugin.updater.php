@@ -96,9 +96,16 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 	 * @todo  add banners
 	 * @todo  figure out why the "Plugin Name" isn't displaying
 	 * @return obj
+	 * @version  2.1.0
 	 */
 	public function get_lightbox_data( )
 	{
+
+		if ( ! class_exists( 'Parsedown' ) ) {
+			require LLMS_HELPER_PLUGIN_DIR . 'includes/lib/parsedown.php';
+		}
+
+		$Parsedown = new Parsedown();
 
 		$data = $this->get_latest_version_data();
 
@@ -114,9 +121,8 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 		// Create tabs in the lightbox
 		$r->sections = array(
 			'description' => $this->plugin_data['Description'],
-			'changelog' => $data['notes'],
+			'changelog' => $Parsedown->text( $data['notes'] ),
 		);
-
 
 		return $r;
 
