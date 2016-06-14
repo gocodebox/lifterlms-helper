@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.0.0
+* Version: 2.1.0
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
@@ -247,7 +247,7 @@ class LLMS_Helper
 	 */
 	private function includes() {
 
-		if( is_admin() ) {
+		if ( is_admin() ) {
 
 			require_once 'includes/llms.helper.functions.php';
 
@@ -270,20 +270,27 @@ class LLMS_Helper
 	 * @return bool / string
 	 *
 	 * @since 2.0.0
+	 * @version  2.1.0
 	 */
 	function in_helper_array( $package, $type ) {
 
 		$type .= 's';
 
-		foreach( $this->$type as $p ) {
+		// ensure we allow lifterlms itself to run through .org
+		if ( 'lifterlms' !== $package ) {
 
-			if( strpos( $p, $package ) !== false ) {
+			foreach( $this->$type as $p ) {
 
-				return $p;
+				if( strpos( $p, $package ) !== false ) {
+
+					return $p;
+
+				}
 
 			}
 
 		}
+
 
 		return false;
 
