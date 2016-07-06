@@ -189,7 +189,7 @@ class LLMS_Helper
 		$products = get_transient( 'lifterlms-helper-products' );
 
 		// nothing saved, retrieve them from the remote list
-		if( !$products ) {
+		if ( ! $products ) {
 
 			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.min.json' );
 
@@ -536,6 +536,9 @@ class LLMS_Helper
 
 			$p = new $class( $hook_extra[ $type ] );
 			$result = $p->post_install( $result );
+
+			// clear the cached data so that the update appears to have taken
+			llms_helper_clear_transiets();
 
 		}
 
