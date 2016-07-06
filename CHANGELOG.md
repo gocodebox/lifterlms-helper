@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+v2.2.0 - 2016-07-06
+-------------------
+
++ After updates, clear cached update data so the upgrade doesn't still appear as pending
++ After changing license keys, clear cahced data so the next upgrade attempt will not fail again (unless it's still supposed to fail)
++ After updating the currently active theme, correctly reactivate the theme
+
+
 v2.1.0 - 2016-06-14
 -------------------
 
