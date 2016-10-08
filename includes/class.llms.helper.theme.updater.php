@@ -7,6 +7,7 @@
  * @author 		codeBOX
  *
  * @since  2.0.0
+ * @version  2.2.0
  */
 
 // Restrict direct access
@@ -124,6 +125,8 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * Handle moving the theme to it's intended directory after theme installation
 	 * @param  array $install_result   install data array
 	 * @return array
+	 * @since  2.0.0
+	 * @version  2.2.0
 	 */
 	public function post_install( $install_result ) {
 
@@ -133,27 +136,55 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 		// is the plugin currently active? we'll re-activate later if it is
 		$active = ( $this->theme_stylesheet === $theme->get_stylesheet() ) ? true : false;
 
+		// var_dump( $this, $install_result, $theme, $theme->get_stylesheet() );
+
 		global $wp_filesystem;
 
 		// where we want the plugin
 		$dir = $install_result['local_destination'] . DIRECTORY_SEPARATOR . $this->theme_stylesheet;
+
+		// var_dump( $dir );
 
 		// move it
 		$wp_filesystem->move( $install_result['destination'], $dir );
 
 		// update the install_result array
 		$install_result['destination'] = $dir;
+		$install_result['destination_name'] = $this->theme_stylesheet;
 
 		// reactivate the plugin if it was active previously
-		if( $active ) {
+		if ( $active ) {
 
-			switch_theme( $this->theme_stylesheet );
+			add_action( 'switch_theme', array( $this, 'switch_theme' ), 10, 3 );
 
 		}
 
 		// return the update data
 		return $install_result;
 
+	}
+
+	/**
+	 * If the theme was active it'll be automatically switched back to the theme
+	 * but it'll have the wrong name because our directory information out of GH is messed up
+	 * catch the error here and run switch_theme() with the correct information, hopefully
+	 *
+	 * @param    string     $new_name   name of the theme
+	 * @param    obj        $new_theme  instance of WP_Theme for the new theme (the one that doesn't actually exist...)
+	 * @param    obj        $old_theme  instance of WP_Theme for the old theme (the one that should stay active)
+	 * @return   void
+	 * @since    2.2.0
+	 * @version  2.2.0
+	 */
+	public function switch_theme( $new_name, $new_theme, $old_theme ) {
+
+		$err = $new_theme->errors();
+
+		if ( $err && 'theme_not_found' === $err->get_error_code() ) {
+
+			switch_theme( $this->theme_stylesheet );
+
+		}
 	}
 
 }

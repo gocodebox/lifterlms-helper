@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.1.0
+* Version: 2.2.0
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
@@ -199,7 +199,7 @@ class LLMS_Helper
 		$products = get_transient( 'lifterlms-helper-products' );
 
 		// nothing saved, retrieve them from the remote list
-		if( !$products ) {
+		if ( ! $products ) {
 
 			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.min.json' );
 
@@ -583,6 +583,7 @@ class LLMS_Helper
 	 * @return  void
 	 *
 	 * @since  1.0.0
+	 * @version  2.2.0
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
 
@@ -605,6 +606,9 @@ class LLMS_Helper
 
 			$p = new $class( $hook_extra[ $type ] );
 			$result = $p->post_install( $result );
+
+			// clear the cached data so that the update appears to have taken
+			llms_helper_clear_transiets();
 
 		}
 

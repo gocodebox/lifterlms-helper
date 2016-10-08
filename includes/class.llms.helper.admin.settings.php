@@ -149,7 +149,6 @@ class LLMS_Helper_Admin_Settings
 		<?php
 	}
 
-
 	public function save_field( $field )
 	{
 
@@ -209,6 +208,9 @@ class LLMS_Helper_Admin_Settings
 				update_option( llms_helper_get_extension_slug( $field['extension'] ) . '_is_activated', '' );
 
 			}
+
+			// if the key has changed, clear cached transients so the key will be included in the next update request
+			llms_helper_clear_transiets();
 
 		}
 
