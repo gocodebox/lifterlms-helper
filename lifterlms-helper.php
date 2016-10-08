@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.2.0
+* Version: 2.3.0
 * Author: codeBOX
 * Author URI: http://gocodebox.com
 *
@@ -41,7 +41,7 @@ class LLMS_Helper
 	 * URL to query for release info
 	 * @var string
 	 *
-	 * @since  1.1.0
+	 * @since  2.3.0
 	 */
 	protected $api_url = 'https://lifterlms.com/llms-api';
 	// private $api_url = 'https://lifterlms.com.dev/llms-api';
@@ -345,6 +345,7 @@ class LLMS_Helper
 	 * @return obj
 	 *
 	 * @since  1.0.0
+	 * @version 2.3.0
 	 */
 	public function pre_set_transient( $transient ) {
 
