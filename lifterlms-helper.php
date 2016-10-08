@@ -36,6 +36,16 @@ class LLMS_Helper
 	 */
 	private $themes = array();
 
+
+	/**
+	 * URL to query for release info
+	 * @var string
+	 *
+	 * @since  1.1.0
+	 */
+	protected $api_url = 'https://lifterlms.com/llms-api';
+	// private $api_url = 'https://lifterlms.com.dev/llms-api';
+
 	/**
 	 * Constructor, get things started!
 	 *
@@ -347,26 +357,55 @@ class LLMS_Helper
 		if ( ! $response ) {
 
 			$response = array();
+			$slugs = array();
 
 			if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
-
 
 				foreach ( $this->themes as $theme ) {
 					// only check for installed plugins
 					if( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
+						unset( $this->themes[ $theme ] );
 						continue;
 					}
 
-					$t = new LLMS_Helper_Theme_Updater( $theme );
-					$latest = $t->get_latest_version_data();
+					$slugs[] = llms_helper_get_extension_slug( $theme );
 
-					// if latest is greater than current, we want to update
-					$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $t->theme_data['Version'], '>' ) : false;
+				}
 
-					// if we need an update, load the data into the transient object
-					if( $update ) {
+				if ( $slugs ) {
 
-						$response[$t->theme_slug] = $t->get_transient_data( $latest['version'] );
+					$result = wp_remote_post( $this->api_url . '/get_release_info', array(
+						'body' => array(
+							'slug' => $slugs,
+						),
+						'sslverify' => false,
+					) );
+
+					$r = json_decode( $result['body'], true );
+
+					if ( ! empty ( $r['success'] ) && ! empty ( $r['packages'] ) ) {
+
+						foreach ( $this->themes as $theme ) {
+
+							if ( isset( $r['packages'][ llms_helper_get_extension_slug( $theme ) ] ) ) {
+
+								$t = new LLMS_Helper_Theme_Updater( $theme );
+								$latest = $r['packages'][ llms_helper_get_extension_slug( $theme ) ];
+
+								// if latest is greater than current, we want to update
+								$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $t->theme_data['Version'], '>' ) : false;
+
+								// if we need an update, load the data into the transient object
+								if( $update ) {
+
+									$response[$t->theme_slug] = $t->get_transient_data( $latest['version'] );
+
+								}
+
+							}
+
+
+						}
 
 					}
 
@@ -378,26 +417,56 @@ class LLMS_Helper
 				foreach ( $this->plugins as $plugin ) {
 
 					// only check for installed plugins
-					if( !file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+					if( ! file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+						unset( $this->plugins[ $plugin ] );
 						continue;
 					}
 
-					$p = new LLMS_Helper_Plugin_Updater( $plugin );
-					$latest = $p->get_latest_version_data();
+					$slugs[] = llms_helper_get_extension_slug( $plugin );
 
-					// if latest is greater than current, we want to update
-					$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
+				}
 
-					// if we need an update, load the data into the transient object
-					if( $update ) {
+				if ( $slugs ) {
 
-						$response[$p->plugin_slug] = $p->get_transient_data( $latest['version'] );
+					$result = wp_remote_post( $this->api_url . '/get_release_info', array(
+						'body' => array(
+							'slug' => $slugs,
+						),
+						'sslverify' => false,
+					) );
+
+					$r = json_decode( $result['body'], true );
+
+					if ( ! empty ( $r['success'] ) && ! empty ( $r['packages'] ) ) {
+
+						foreach ( $this->plugins as $plugin ) {
+
+							if ( isset( $r['packages'][ llms_helper_get_extension_slug( $plugin ) ] ) ) {
+
+								$p = new LLMS_Helper_Plugin_Updater( $plugin );
+								$latest = $r['packages'][ llms_helper_get_extension_slug( $plugin ) ];
+
+								// if latest is greater than current, we want to update
+								$update = ( isset( $latest['version'] ) ) ? version_compare( $latest['version'], $p->plugin_data['Version'], '>' ) : false;
+
+								// if we need an update, load the data into the transient object
+								if( $update ) {
+
+									$response[ $p->plugin_slug ] = $p->get_transient_data( $latest['version'] );
+
+								}
+
+							}
+
+
+						}
 
 					}
 
 				}
 
 			}
+
 
 			// save the transient so we don't check again for at least 5 mins
 			set_site_transient( $llms_transient, $response, MINUTE_IN_SECONDS * 5 );

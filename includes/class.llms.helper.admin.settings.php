@@ -15,6 +15,7 @@ class LLMS_Helper_Admin_Settings
 {
 
 	private $activation_url = 'https://lifterlms.com/llms-api/activate';
+	// private $activation_url = 'https://lifterlms.com.dev/llms-api/activate';
 
 	/**
 	 * Constructor
@@ -36,9 +37,10 @@ class LLMS_Helper_Admin_Settings
 	/**
 	 * Post to LifterLMS API to attempt extension activation
 	 * @param  string $license license key to attempt activation with
+	 * @param  string $product name of the product we're trying to activate
 	 * @return array           associative array containing a message and a success boolean
 	 */
-	private function activate( $license )
+	private function activate( $license, $product )
 	{
 
 		$r = array(
@@ -51,7 +53,8 @@ class LLMS_Helper_Admin_Settings
 			'sslverify' => false, // for local testing only
 			'body' => array(
 				'license' => $license,
-				'url'     => get_site_url()
+				'url'     => get_site_url(),
+				'product' => $product,
 			)
 		) );
 
@@ -107,7 +110,7 @@ class LLMS_Helper_Admin_Settings
 						<span class="llms-helper-activation-status"><span class="dashicons dashicons-yes"></span> <em>Activated</em></span>
 					<?php else: ?>
 						<span class="llms-helper-activation-status"><span class="dashicons dashicons-warning"></span> <em>Not activated</em></span>
-					<?php endif; ?>
+					<?php endif; ?><br>
 		    		<?php echo $description; ?>
 		    </td>
 		</tr><?php
@@ -165,7 +168,7 @@ class LLMS_Helper_Admin_Settings
 			// if the value is not empty, attempt activation
 			if( !empty( $value ) ) {
 
-				$r = $this->activate( $value );
+				$r = $this->activate( $value, basename( $field['extension'], '.php' ) );
 
 				// setup additional options
 				if( $r['success'] && isset( $r['update_key'] ) ) {

@@ -21,6 +21,7 @@ abstract class LLMS_Helper_Updater {
 	 * @since  1.1.0
 	 */
 	protected $api_url = 'https://lifterlms.com/llms-api';
+	// protected $api_url = 'https://lifterlms.com.dev/llms-api';
 
 	/**
 	 * Update Key
