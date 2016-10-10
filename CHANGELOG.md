@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+v2.3.0 - 2016-10-10
+-------------------
+
++ Significantly upgrades the speed of version checks. Previously checked each LifterLMS Add-on separately, now makes one API call to retreive versions of all installed LifterLMS Add-ons.
++ Adds support for the Universe Bundle which is one key associated with multiple products
+
+
 v2.2.0 - 2016-07-06
 -------------------
 
