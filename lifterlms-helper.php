@@ -588,10 +588,10 @@ class LLMS_Helper
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
 
-		if( isset( $hook_extra['type'] ) ) {
+		if( isset( $hook_extra['theme'] ) ) {
 
-			$type = $hook_extra['type'];
-			$package = $hook_extra[ $type ];
+			$type = 'theme';
+			$package = $hook_extra['theme'];
 
 		} elseif ( isset( $hook_extra['plugin'] ) ) {
 

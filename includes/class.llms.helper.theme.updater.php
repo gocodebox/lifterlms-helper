@@ -143,8 +143,6 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 		// where we want the plugin
 		$dir = $install_result['local_destination'] . DIRECTORY_SEPARATOR . $this->theme_stylesheet;
 
-		// var_dump( $dir );
-
 		// move it
 		$wp_filesystem->move( $install_result['destination'], $dir );
 
