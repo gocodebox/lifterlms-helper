@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v2.3.1 - 2016-10-12
+-------------------
+
++ Fixes issue with theme upgrade post install not working resulting in themes existing in the wrong directory after an upgrade
+
+
 v2.3.0 - 2016-10-10
 -------------------
 
