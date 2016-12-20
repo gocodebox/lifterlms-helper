@@ -123,8 +123,8 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 
 		// Create tabs in the lightbox
 		$r->sections = array(
-			'description' => $this->plugin_data['Description'],
 			'changelog' => $Parsedown->text( $data['notes'] ),
+			'description' => $this->plugin_data['Description'],
 		);
 
 		return $r;
@@ -149,7 +149,7 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 
 		// helper will not have an update key
 		// other plugins will fail without an update key when they actually attempt to request an update
-		if( $this->update_key ) {
+		if ( $this->update_key ) {
 
 			$args['update_key'] = $this->update_key;
 
