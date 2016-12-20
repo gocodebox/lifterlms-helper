@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+v2.4.0 - 2016-12-20
+-------------------
+
++ Added a unified Helper sceen accessible via LifterLMS -> Settings -> Helper
++ Activate multiple addons simultaneously via one API call
++ Site deactivation now deactivates from remote activation server in addition to local deactivation
++ Upgraded database key handling prevents accidental duplicate activation attempts
++ Fixed several undefined index warnings
++ Normalized option fields keys
+
+
 v2.3.1 - 2016-10-12
 -------------------
 

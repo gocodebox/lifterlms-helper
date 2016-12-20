@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 
-	// private $api_url = 'https://lifterlms.com/wp-json/llms-api/v2';
-	private $api_url = 'https://lifterlms.com.dev/wp-json/llms-api/v2';
+	private $api_url = 'https://lifterlms.com/wp-json/llms-api/v2';
+	// private $api_url = 'https://lifterlms.com.dev/wp-json/llms-api/v2';
 
 	/**
 	 * Allow settings page to determine if a rewrite flush is required
@@ -56,7 +56,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			'headers' => array(
 				'Content-type' => 'application/json',
 			),
-			'sslverify' => false, // for local testing only
+			// 'sslverify' => false, // for local testing only
 		) );
 
 		if ( is_wp_error( $res ) ) {
@@ -387,7 +387,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			$this->do_activations();
 		}
 
-
+		llms_helper_clear_transiets();
 
 	}
 
