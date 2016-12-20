@@ -15,9 +15,9 @@
 // Restrict direct access
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if( !class_exists( 'LLMS_Helper' ) ):
+if( ! class_exists( 'LLMS_Helper' ) ):
 
-class LLMS_Helper {
+final class LLMS_Helper {
 
 	/**
 	 * Array of plugins to update via the helper
@@ -59,7 +59,6 @@ class LLMS_Helper {
 
 	}
 
-
 	/**
 	 * Inititalize the Plugin
 	 *
@@ -69,15 +68,21 @@ class LLMS_Helper {
 	 */
 	public function init() {
 
+		// migrate pre 2.4 keys to the new structure
+		if ( ! get_option( 'llms_helper_key_migration', '' ) ) {
+			$this->migrate_keys();
+		}
+
 		// only load plugin if LifterLMS class exists.
 		if ( class_exists( 'LifterLMS') ) {
 
 			// include necessary classes
 			$this->includes();
 
+			add_filter( 'lifterlms_get_settings_pages', array( $this, 'add_license_tab' ), 777 );
+
 			// get products that can be updated by this plugin
 			$this->get_products();
-			// add_action( 'admin_init', array( $this, 'get_products' ) );
 
 			// enqueue
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -113,6 +118,11 @@ class LLMS_Helper {
 
 	}
 
+
+	public function add_license_tab( $tabs ) {
+		$tabs[] = include 'includes/class.llms.helper.admin.settings.tab.php';
+		return $tabs;
+	}
 
 	/**
 	 * Enqueue Scripts & Styles
@@ -193,49 +203,9 @@ class LLMS_Helper {
 	 */
 	public function get_products() {
 
-		$products = get_transient( 'lifterlms-helper-products' );
+		$products = llms_helper_get_products();
 
-		// nothing saved, retrieve them from the remote list
-		if ( ! $products ) {
-
-			$r = wp_remote_get( 'http://d34dpc7391qduo.cloudfront.net/helper-products.min.json' );
-
-			if( ! is_wp_error( $r ) ) {
-
-				if( $r['response']['code'] == 200 ) {
-
-					$products = json_decode( $r['body'], true );
-
-					if(
-						isset( $products['plugins'] )
-						&& is_array( $products['plugins'] )
-						&& isset( $products['themes'] )
-						&& is_array( $products['themes'] )
-					) {
-
-						foreach ( $products['plugins'] as $key => $plugin ) {
-							if ( ! file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
-								unset( $products['plugins'][ $key ] );
-							}
-						}
-
-						foreach( $products['themes'] as $key => $theme ) {
-
-							if ( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
-								unset( $products['themes'][ $key ] );
-							}
-
-						}
-
-						set_transient( 'lifterlms-helper-products', $products, HOUR_IN_SECONDS * 12 );
-					}
-
-				}
-			}
-
-		}
-
-		if( $products ) {
+		if ( $products ) {
 
 			$this->themes = $products['themes'];
 			$this->plugins = $products['plugins'];
@@ -254,7 +224,7 @@ class LLMS_Helper {
 	 */
 	private function includes() {
 
-		if ( is_admin() ) {
+		// if ( is_admin() ) {
 
 			require_once 'includes/llms.helper.functions.php';
 
@@ -265,7 +235,7 @@ class LLMS_Helper {
 			require_once 'includes/class.llms.helper.theme.updater.php';
 			require_once 'includes/class.llms.helper.plugin.updater.php';
 
-		}
+		// }
 
 	}
 
@@ -281,23 +251,26 @@ class LLMS_Helper {
 	 */
 	function in_helper_array( $package, $type ) {
 
-		$type .= 's';
-
 		// ensure we allow lifterlms itself to run through .org
 		if ( 'lifterlms' !== $package ) {
 
-			foreach( $this->$type as $p ) {
+			$type .= 's'; // add an s because our arrays our plural
 
-				if( strpos( $p, $package ) !== false ) {
+			if ( isset ( $this->$type ) ) {
 
-					return $p;
+				foreach ( $this->$type as $p ) {
+
+					if ( strpos( $p, $package ) !== false ) {
+
+						return $p;
+
+					}
 
 				}
 
 			}
 
 		}
-
 
 		return false;
 
@@ -334,6 +307,36 @@ class LLMS_Helper {
 
 	}
 
+	/**
+	 * Update activation key options to follow new naming convention
+	 * @return   void
+	 * @since    2.4.0
+	 * @version  2.4.0
+	 */
+	private function migrate_keys() {
+
+		global $wpdb;
+
+		$options = array(
+			'lifterlms_convertkit_activation_key' => 'lifterlms-convertkit_activation_key',
+			'lifterlms_paypal_activation_key' => 'lifterlms-gateway-paypal_activation_key',
+			'lifterlms_gravityforms_activation_key' => 'lifterlms-integration-gravity-forms_activation_key',
+			'lifterlms_woocommerce_activation_key' => 'lifterlms-integration-woocommerce_activation_key',
+			'lifterlms_mailchimp_activation_key' => 'lifterlms-mailchimp_activation_key',
+			'lifterlms_stripe_activation_key' => 'lifterlms-stripe_activation_key',
+			'lifterlms_xapi_activation_key' => 'lifterlms-integration-xapi',
+		);
+
+		foreach( $options as $old => $new ) {
+			$q = $wpdb->update(
+				$wpdb->options,
+				array( 'option_name' => $new ),
+				array( 'option_name' => $old )
+			);
+		}
+
+		update_option( 'llms_helper_key_migration', 'yes' );
+	}
 
 	/**
 	 * Determine if there's an update available for our plugins

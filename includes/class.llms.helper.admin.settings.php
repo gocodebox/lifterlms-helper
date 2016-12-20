@@ -7,6 +7,8 @@
  * @author 		codeBOX
  *
  * @since  1.0.0
+ * @version  2.4.0
+ * @todo  this class should be removed in the future when users are fully transitioned to 3.2.2+
  */
 
 // Restrict direct access
@@ -19,18 +21,24 @@ class LLMS_Helper_Admin_Settings
 
 	/**
 	 * Constructor
+	 * @version  2.4.0
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 
-		// output field for LLMS Plugins
-		add_action( 'lifterlms_admin_field_llms_license_key', array( $this, 'extensions_output_field' ), 10, 5 );
+		// only display these fields for LifterLMS 3.2.1 and lower
+		if ( function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.2.1', '<=' ) ) {
 
-		// output field for LaunchPad theme(s)
-		add_action( 'launchpad_output_field_llms_license_key', array( $this, 'launchpad_output_field' ), 10, 5 );
+			// output field for LLMS Plugins
+			add_action( 'lifterlms_admin_field_llms_license_key', array( $this, 'extensions_output_field' ), 10, 5 );
 
-		add_action( 'lifterlms_update_option_llms_license_key', array( $this, 'save_field' ), 777, 5 );
-		add_action( 'launchpad_save_field_llms_license_key', array( $this, 'save_field' ), 777, 5 );
+			// output field for LaunchPad theme(s)
+			add_action( 'launchpad_output_field_llms_license_key', array( $this, 'launchpad_output_field' ), 10, 5 );
+
+			add_action( 'lifterlms_update_option_llms_license_key', array( $this, 'save_field' ), 777, 5 );
+			add_action( 'launchpad_save_field_llms_license_key', array( $this, 'save_field' ), 777, 5 );
+
+		}
+
 	}
 
 

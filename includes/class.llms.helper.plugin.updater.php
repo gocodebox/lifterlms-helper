@@ -48,13 +48,15 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 	/**
 	 * Constructor
 	 * @param string   $plugin_file   path from the WP_PLUGIN_DIR
+	 * @version  2.4.0
 	 */
-	function __construct( $plugin_file )
-	{
+	function __construct( $plugin_file ) {
 
 		$this->plugin_file = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin_file;
 
 		$this->get_plugin_data();
+
+		$this->activation_key = get_option( $this->plugin_basename . '_activation_key', '' );
 
 	}
 

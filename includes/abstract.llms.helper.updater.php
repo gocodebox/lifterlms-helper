@@ -85,5 +85,4 @@ abstract class LLMS_Helper_Updater {
 
 	}
 
-
 }

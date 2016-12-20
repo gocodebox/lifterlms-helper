@@ -48,12 +48,14 @@ class LLMS_Helper_Theme_Updater extends LLMS_Helper_Updater
 	 * Constructor
 	 * @param string   $theme   path from the WP_PLUGIN_DIR
 	 *
-	 * @since  2.0.0
+	 * @since    2.0.0
+	 * @version  2.4.0
 	 */
 	function __construct( $theme ) {
 
 		$this->theme_stylesheet = $theme;
 		$this->get_theme_data();
+		$this->activation_key = get_option( $this->theme_slug . '_activation_key', '' );
 
 	}
 
