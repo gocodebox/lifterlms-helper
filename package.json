@@ -1,0 +1,22 @@
+{
+  "name": "lifterlms-helper",
+  "version": "2.4.0",
+  "description": "LifterLMS Helper ================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gocodebox/lifterlms-updater.git"
+  },
+  "author": "Thomas Patrick Levy",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/gocodebox/lifterlms-updater/issues"
+  },
+  "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
+  "devDependencies": {
+    "markdown-html": "0.0.8"
+  }
+}
