@@ -26,7 +26,7 @@ class LLMS_Helper_Admin_Settings
 	public function __construct() {
 
 		// only display these fields for LifterLMS 3.2.1 and lower
-		if ( function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.2.1', '<=' ) ) {
+		if ( function_exists( 'LLMS' ) && version_compare( LLMS()->version, '3.2.0', '<' ) ) {
 
 			// output field for LLMS Plugins
 			add_action( 'lifterlms_admin_field_llms_license_key', array( $this, 'extensions_output_field' ), 10, 5 );

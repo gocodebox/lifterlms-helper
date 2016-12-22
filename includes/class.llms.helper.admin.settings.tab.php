@@ -30,8 +30,8 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 */
 	public function __construct() {
 
-		$this->id    = 'helper';
-		$this->label = __( 'Helper', 'lifterlms-helper' );
+		$this->id    = 'licenses';
+		$this->label = __( 'Licenses', 'lifterlms-helper' );
 
 		add_filter( 'lifterlms_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
 		add_action( 'lifterlms_settings_' . $this->id, array( $this, 'output' ) );
@@ -311,7 +311,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 		return '<tr>
 			<th class="llms-helper-name">' . __( 'Add-on', 'lifterlms-helper' ) . '</th>
 			<th class="llms-helper-version">' . __( 'Version', 'lifterlms-helper' ) . '</th>
-			<th class="llms-helper-key">' . __( 'Key', 'lifterlms-helper' ) . '</th>
+			<th class="llms-helper-key">' . __( 'License Key', 'lifterlms-helper' ) . '</th>
 			<th class="llms-helper-actions">' . __( 'Actions', 'lifterlms-helper' ) . '</th>
 		</tr>';
 	}
