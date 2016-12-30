@@ -35,7 +35,7 @@ function llms_helper_get_extension_slug( $extension_file ) {
  * on external api requests
  * @return   array
  * @since    2.4.0
- * @version  2.4.0
+ * @version  2.4.1
  */
 function llms_helper_get_products() {
 
@@ -52,28 +52,7 @@ function llms_helper_get_products() {
 
 				$products = json_decode( $r['body'], true );
 
-				if (
-					isset( $products['plugins'] )
-					&& is_array( $products['plugins'] )
-					&& isset( $products['themes'] )
-					&& is_array( $products['themes'] )
-				) {
-
-					foreach ( $products['plugins'] as $key => $plugin ) {
-						if ( ! file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
-							unset( $products['plugins'][ $key ] );
-						}
-					}
-
-					foreach( $products['themes'] as $key => $theme ) {
-						if ( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
-							unset( $products['themes'][ $key ] );
-						}
-					}
-
-					set_transient( 'lifterlms-helper-products', $products, DAY_IN_SECONDS * 2 );
-
-				}
+				set_transient( 'lifterlms-helper-products', $products, DAY_IN_SECONDS * 2 );
 
 			}
 
@@ -99,6 +78,19 @@ function llms_helper_get_products() {
 			$products['themes'] = array();
 		}
 
+	}
+
+	// filter down the arrays that we work with installed products
+	foreach ( $products['plugins'] as $key => $plugin ) {
+		if ( ! file_exists( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin ) ) {
+			unset( $products['plugins'][ $key ] );
+		}
+	}
+
+	foreach( $products['themes'] as $key => $theme ) {
+		if ( ! file_exists( WP_CONTENT_DIR . get_theme_roots() . DIRECTORY_SEPARATOR . $theme ) ) {
+			unset( $products['themes'][ $key ] );
+		}
 	}
 
 	return $products;
