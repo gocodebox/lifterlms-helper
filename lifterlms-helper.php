@@ -3,8 +3,8 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.4.1
-* Author: codeBOX
+* Version: 2.4.2
+* Author: Thomas Patrick Levy, codeBOX LLC
 * Author URI: http://gocodebox.com
 *
 * @package 		LifterLMS Helper
@@ -341,11 +341,11 @@ final class LLMS_Helper {
 	/**
 	 * Determine if there's an update available for our plugins
 	 *
-	 * @param  obj $transient  transient object
-	 * @return obj
+	 * @param   obj $transient  transient object
+	 * @return  obj
 	 *
-	 * @since  1.0.0
-	 * @version 2.3.0
+	 * @since   1.0.0
+	 * @version 2.4.2
 	 */
 	public function pre_set_transient( $transient ) {
 
@@ -381,6 +381,10 @@ final class LLMS_Helper {
 						),
 						'sslverify' => false,
 					) );
+
+					if ( is_wp_error( $result ) ) {
+						return $transient;
+					}
 
 					$r = json_decode( $result['body'], true );
 
@@ -435,6 +439,10 @@ final class LLMS_Helper {
 						),
 						'sslverify' => false,
 					) );
+
+					if ( is_wp_error( $result ) ) {
+						return $transient;
+					}
 
 					$r = json_decode( $result['body'], true );
 
@@ -492,7 +500,8 @@ final class LLMS_Helper {
 	 *
 	 * @return array
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
+	 * @version  2.4.2
 	 */
 	public function upgrader_package_authorization( $options ) {
 
@@ -500,8 +509,20 @@ final class LLMS_Helper {
 		if( strpos( $options['package'], '//lifterlms.com' )  ) {
 
 			$r = wp_remote_post( $options['package'], array(
-				'sslverify' => false, // dev
+				// 'sslverify' => false, // dev
 			) );
+
+			if ( is_wp_error( $r ) ) {
+
+				$options['package'] = array(
+					'LLMS-ERROR' => true,
+					'data' => $r,
+				);
+
+				$options['package']['code'] = 'LLMS-PU-005';
+				$options['package']['message'] = 'There was an error connecting to the LifterLMS upgrade servers. If this problem persists, please contact LifterLMS Support at https://lifterlms.com/';
+				return $options;
+			}
 
 			$body = json_decode( $r['body'], true );
 
