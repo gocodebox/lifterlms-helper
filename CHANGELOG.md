@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+
+v2.4.3 - 2017-02-09
+-------------------
+
++ Handle undefined errors during post plugin install from zip file
+
 v2.4.2 - 2017-01-20
 -------------------
 

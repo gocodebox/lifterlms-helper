@@ -3,7 +3,7 @@
 * Plugin Name: LifterLMS Helper
 * Plugin URI: https://lifterlms.com/
 * Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.4.2
+* Version: 2.4.3
 * Author: Thomas Patrick Levy, codeBOX LLC
 * Author URI: http://gocodebox.com
 *
@@ -605,9 +605,12 @@ final class LLMS_Helper {
 	 * @return  void
 	 *
 	 * @since  1.0.0
-	 * @version  2.3.1
+	 * @version  2.4.3
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
+
+		$type = '';
+		$package = '';
 
 		if( isset( $hook_extra['theme'] ) ) {
 
