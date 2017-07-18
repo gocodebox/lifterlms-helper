@@ -1,5 +1,17 @@
 (function( $ ){
 
+	$( '.llms-helper-bulk-cb-all' ).on( 'change', function() {
+
+		$cbs = $( '.llms-helper-bulk-cb, .llms-helper-bulk-cb-all' );
+
+		if ( 'checked' === $( this ).attr( 'checked' ) ) {
+			$cbs.attr( 'checked', 'checked' );
+		} else {
+			$cbs.removeAttr( 'checked' );
+		}
+
+	} );
+
 	$( '#lifterlms-helper-dismiss-notice' ).on( 'click', function() {
 
 		var $top = $( this );
