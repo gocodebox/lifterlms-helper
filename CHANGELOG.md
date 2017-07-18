@@ -1,5 +1,15 @@
-CHANGELOG
-=========
+LifterLMS Helper Changelog
+==========================
+
+v2.5.0 - 2017-07-18
+-------------------
+
++ Allow add-ons to be bulk deactivated
++ Integrates with LifterLMS site clone detection in order to automatically activate plugins on your new URL when cloning to staging / production.
++ Following clone detection if activation fails the plugin will no longer show the add-ons as activated (since they're not activated on the new URL)
++ Minor admin-panel performance improvements
++ Now uses minified JS and CSS assets
++ Now fully translateable!
 
 
 v2.4.3 - 2017-02-09

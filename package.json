@@ -1,11 +1,7 @@
 {
   "name": "lifterlms-helper",
-  "version": "2.4.0",
-  "description": "LifterLMS Helper ================",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "2.5.0",
+  "description": "Assists premium LifterLMS theme and plugin updates",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gocodebox/lifterlms-updater.git"
@@ -17,6 +13,7 @@
   },
   "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
   "devDependencies": {
-    "markdown-html": "0.0.8"
+    "gulp": "^3.9.1",
+    "lifterlms-lib-tasks": "^1.5.0"
   }
 }
