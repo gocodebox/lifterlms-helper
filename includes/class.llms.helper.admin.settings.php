@@ -6,15 +6,15 @@
  * @category 	Core
  * @author 		codeBOX
  *
- * @since  1.0.0
- * @version  2.4.0
+ * @since    1.0.0
+ * @version  [version]
  * @todo  this class should be removed in the future when users are fully transitioned to 3.2.2+
  */
 
 // Restrict direct access
 if ( ! defined( 'ABSPATH' ) ) { exit; }
-class LLMS_Helper_Admin_Settings
-{
+
+class LLMS_Helper_Admin_Settings {
 
 	private $activation_url = 'https://lifterlms.com/llms-api/activate';
 	// private $activation_url = 'https://lifterlms.com.dev/llms-api/activate';
@@ -52,7 +52,7 @@ class LLMS_Helper_Admin_Settings
 	{
 
 		$r = array(
-			'message' => __( 'An unknown error occurred during activation. Please try again.', 'lifterlms' ),
+			'message' => __( 'An unknown error occurred during activation. Please try again.', 'lifterlms-helper' ),
 			'success' => false
 		);
 

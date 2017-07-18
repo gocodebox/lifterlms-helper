@@ -1,23 +1,18 @@
 <?php
 /**
  * Output Admin Notices
- *
- * @package 	LifterLMS Helper
- * @category 	Core
- * @author 		codeBOX
- *
- * @since  1.0.0
+ * @since     1.0.0
+ * @version  [version]
  */
 
 // Restrict direct access
 if ( ! defined( 'ABSPATH' ) ) { exit; }
-class LLMS_Helper_Admin_Notices
-{
+
+class LLMS_Helper_Admin_Notices {
 
 	public static $option_name = 'lifterlms_helper_admin_notices';
 
-	public function __construct()
-	{
+	public function __construct() {
 
 		// don't output messages when saving options
 		if( $_SERVER['REQUEST_METHOD'] == 'POST' ) return;
@@ -102,7 +97,7 @@ class LLMS_Helper_Admin_Notices
 				$type = '';
 				$dismiss = '';
 
-				$notice['message'] .= __( 'activation successful!', 'lifterlms' );
+				$notice['message'] .= __( 'activation successful!', 'lifterlms-helper' );
 
 				// immediately success notices after displaying them
 				self::remove_notice( $extension_file );
@@ -112,7 +107,7 @@ class LLMS_Helper_Admin_Notices
 			else {
 
 				$class = 'error';
-				$type = ' ' . __( 'Error', 'lifterlms' );
+				$type = ' ' . __( 'Error', 'lifterlms-helper' );
 				$dismiss = '<a class="llms-helper-dismiss" data-nonce="' . LLMS_HELPER_NONCE . '" data-slug="' . $extension_file . '" href="#" id="lifterlms-helper-dismiss-notice"><span class="dashicons dashicons-no"></span></a>';
 
 				if( isset( $notice['reference_code'] ) ) {
@@ -121,7 +116,7 @@ class LLMS_Helper_Admin_Notices
 
 						// add a link to the integrations page
 						case 'LLMS-SA-001':
-							$notice['message'] .= ' ' . __( 'Visit <a href="' . admin_url( 'admin.php?page=llms-settings&tab=integrations' ) . '">LifterLMS Integrations</a> to try again.', 'lifterlms' );
+							$notice['message'] .= ' ' . __( 'Visit <a href="' . admin_url( 'admin.php?page=llms-settings&tab=integrations' ) . '">LifterLMS Integrations</a> to try again.', 'lifterlms-helper' );
 						break;
 
 						// do nothing
@@ -147,5 +142,5 @@ class LLMS_Helper_Admin_Notices
 	}
 
 }
+
 return new LLMS_Helper_Admin_Notices();
-?>

@@ -1,0 +1,88 @@
+# Copyright (C) 2017 lifterlms-helper
+# This file is distributed under the same license as the lifterlms-helper package.
+msgid ""
+msgstr ""
+"Project-Id-Version: lifterlms-helper\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LifterLMS <help@lifterlms.com>\n"
+"Last-Translator: Thomas Patrick Levy <thomas@lifterlms.com>\n"
+"Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lifterlms-helper.php:708
+msgid "Reference Code:"
+msgstr ""
+
+#: includes/class.llms.helper.admin.notices.php:100
+msgid "activation successful!"
+msgstr ""
+
+#: includes/class.llms.helper.admin.notices.php:110
+msgid "Error"
+msgstr ""
+
+#: includes/class.llms.helper.admin.notices.php:119
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.php:55
+msgid "An unknown error occurred during activation. Please try again."
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:27
+msgid "Licenses"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:117
+msgid "LifterLMS Helper"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:124
+msgid "Activate your LifterLMS Add-ons for automatic updates. Login to your %1$sLifterLMS.com Account%2$s to locate your keys and manage your activations from the cloud."
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:128
+msgid "Add-on Activation"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:156
+msgid "Bulk Actions"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:157, includes/class.llms.helper.admin.settings.tab.php:296
+msgid "Deactivate"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:159
+msgid "Submit"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:244
+msgid "Add-on"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:245
+msgid "Version"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:246
+msgid "License Key"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:247
+msgid "Actions"
+msgstr ""
+
+#: includes/class.llms.helper.admin.settings.tab.php:337
+msgid "Activate Add-Ons"
+msgstr ""
+
+#: includes/class.llms.helper.api.php:182
+msgid "An unknown error occurred, please try again."
+msgstr ""

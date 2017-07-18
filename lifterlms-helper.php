@@ -1,16 +1,17 @@
 <?php
 /**
-* Plugin Name: LifterLMS Helper
-* Plugin URI: https://lifterlms.com/
-* Description: Assists premium LifterLMS theme and plugin updates
-* Version: 2.4.3
-* Author: Thomas Patrick Levy, codeBOX LLC
-* Author URI: http://gocodebox.com
-*
-* @package 		LifterLMS Helper
-* @category 	Core
-* @author 		codeBOX
-*/
+ * Plugin Name: LifterLMS Helper
+ * Plugin URI: https://lifterlms.com/
+ * Description: Assists premium LifterLMS theme and plugin updates
+ * Version: 2.5.0
+ * Author: Thomas Patrick Levy, codeBOX LLC
+ * Author URI: http://gocodebox.com
+ * Text Domain: lifterlms-helper
+ * Domain Path: /i18n
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * LifterLMS Minimum Version: 3.0.0
+ */
 
 // Restrict direct access
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -18,6 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 if( ! class_exists( 'LLMS_Helper' ) ):
 
 final class LLMS_Helper {
+
+	/**
+	 * Current Plugin Version
+	 * @var  string
+	 */
+	public $version = '2.5.0';
 
 	/**
 	 * Array of plugins to update via the helper
@@ -54,6 +61,8 @@ final class LLMS_Helper {
 
 		// Define class constants
 		$this->define_constants();
+
+		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
 
 		add_action( 'plugins_loaded', array( $this, 'init') );
 
@@ -126,16 +135,15 @@ final class LLMS_Helper {
 
 	/**
 	 * Enqueue Scripts & Styles
-	 *
 	 * @return void
-	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
+	 * @version  [version]
 	 */
 	public function admin_enqueue_scripts() {
 
-		wp_enqueue_script( 'llms-helper-admin', plugin_dir_url( __FILE__ ) . '/assets/admin/js/llms-helper.js', array( 'jquery' ), NULL, true );
-
-		wp_enqueue_style( 'llms-helper-admin', plugin_dir_url( __FILE__ ) . 'assets/admin/css/llms-helper.css' );
+		$min = ( ! defined( 'WP_DEBUG' ) || WP_DEBUG == false ) ? '.min' : '';
+		wp_enqueue_script( 'llms-helper-admin', plugin_dir_url( __FILE__ ) . '/assets/js/admin/llms-helper' . $min . '.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_style( 'llms-helper-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin/llms-helper' . $min . '.css', array(), $this->version );
 
 	}
 
@@ -217,25 +225,23 @@ final class LLMS_Helper {
 
 	/**
 	 * Include all clasess required by the plugin
-	 *
 	 * @return void
-	 *
-	 * @since 1.0.0
+	 * @since    1.0.0
+	 * @version  [version]
 	 */
 	private function includes() {
 
-		// if ( is_admin() ) {
+		require_once 'includes/llms.helper.functions.php';
 
-			require_once 'includes/llms.helper.functions.php';
+		require_once 'includes/class.llms.helper.api.php';
 
-			require_once 'includes/class.llms.helper.admin.settings.php';
-			require_once 'includes/class.llms.helper.admin.notices.php';
-			require_once 'includes/class.llms.helper.admin.ajax.php';
-			require_once 'includes/abstract.llms.helper.updater.php';
-			require_once 'includes/class.llms.helper.theme.updater.php';
-			require_once 'includes/class.llms.helper.plugin.updater.php';
-
-		// }
+		require_once 'includes/class.llms.helper.cloned.php';
+		require_once 'includes/class.llms.helper.admin.settings.php';
+		require_once 'includes/class.llms.helper.admin.notices.php';
+		require_once 'includes/class.llms.helper.admin.ajax.php';
+		require_once 'includes/abstract.llms.helper.updater.php';
+		require_once 'includes/class.llms.helper.theme.updater.php';
+		require_once 'includes/class.llms.helper.plugin.updater.php';
 
 	}
 
@@ -304,6 +310,32 @@ final class LLMS_Helper {
 		}
 
 		return $result;
+
+	}
+
+	/**
+	 * Load l10n files
+	 * The first loaded file takes priority
+	 *
+	 * Files can be found in the following order:
+	 * 		WP_LANG_DIR/lifterlms/lifterlms-helper-LOCALE.mo (safe directory will never be automatically overwritten)
+	 * 		WP_LANG_DIR/plugins/lifterlms-helper-LOCALE.mo (unsafe directory, may be automatically updated)
+	 * 		wp-content/plugins/lifterlms-helper/i18n/lifterlms-helper-LOCALE.mo (unsafe directory, will be automatically overwritten)
+	 *
+	 * @return   void
+	 * @since    2.5.0
+	 * @version  2.5.0
+	 */
+	public function load_textdomain() {
+
+		// load locale
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'lifterlms-helper' );
+
+		// load a lifterlms specific locale file if one exists
+		load_textdomain( 'lifterlms-helper', WP_LANG_DIR . '/lifterlms/lifterlms-helper-' . $locale . '.mo' );
+
+		// load localization files
+		load_plugin_textdomain( 'lifterlms-helper', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
 
 	}
 
