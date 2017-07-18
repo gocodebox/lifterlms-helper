@@ -19,6 +19,21 @@ function llms_helper_clear_transiets() {
 }
 
 /**
+ * Clear the options related to a product's activation
+ * @param    string     $product  product name (eg lifterlms-stripe, lifterlms-gateway-paypal, etc...)
+ * @return   void
+ * @since    [version]
+ * @version  [version]
+ */
+function llms_helper_clear_product_activation_data( $product ) {
+
+	update_option( $product . '_activation_key', '' );
+	update_option( $product . '_update_key', '' );
+	update_option( $product . '_is_activated', 'no' );
+
+}
+
+/**
  * Get an extension "slug" from it's __FILE__
  * @param  string  $extension_file  plugin's __FILE__
  * @return string                   plugin slug
