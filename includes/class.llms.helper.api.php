@@ -1,8 +1,8 @@
 <?php
 /**
  * Simple API calls to LifterLMS.com activation server
- * @since    [version]
- * @version  [version]
+ * @since    2.5.0
+ * @version  2.5.0
  */
 
 // Restrict direct access
@@ -15,8 +15,8 @@ class LLMS_Helper_API {
 
 	/**
 	 * Constructor
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	public function __construct() {}
 
@@ -24,8 +24,8 @@ class LLMS_Helper_API {
 	 * Activate Product(s)
 	 * @param    array     $products  associative array of product => key
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	public function activate( $products ) {
 
@@ -92,8 +92,8 @@ class LLMS_Helper_API {
 	 * Deactivate product(s)
 	 * @param    array     $products  indexed array of product slugs
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	public function deactivate( $products ) {
 
@@ -152,8 +152,8 @@ class LLMS_Helper_API {
 	 * @param    string     $method  api method to call
 	 * @param    array      $data    array of data to send to the api
 	 * @return   false|array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	private function call( $method, $data = array() ) {
 

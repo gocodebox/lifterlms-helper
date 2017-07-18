@@ -3,7 +3,7 @@
  * Filters for LifterLMS & LaunchPad admin options for license key saving & validation
  *
  * @since    2.4.0
- * @version  [version]
+ * @version  2.5.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -40,7 +40,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Compile, validate, sanitize posted data and send to activation api
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function do_activations() {
 
@@ -65,7 +65,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Deactivate a single product via API
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function do_deactivation() {
 
@@ -146,8 +146,8 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	/**
 	 * Get the HTML for the bulk actions selector/submitter
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	private function get_bulk_actions_html() {
 
@@ -165,7 +165,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Get the full HTML for the table
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function get_table_html() {
 
@@ -236,7 +236,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Get header row html
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function get_table_header_row_html() {
 		return '<tr>
@@ -253,7 +253,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * @param    array     $data  array of product data
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function get_table_row_html( $data ) {
 
@@ -310,7 +310,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Routes to actual functions depending on submit button used
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	public function save() {
 

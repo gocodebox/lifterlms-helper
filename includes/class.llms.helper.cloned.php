@@ -2,8 +2,8 @@
 /**
  * Automatically attempt to activate already activated add-ons
  * during clones
- * @since    [version]
- * @version  [version]
+ * @since    2.5.0
+ * @version  2.5.0
  */
 
 // Restrict direct access
@@ -13,8 +13,8 @@ class LLMS_Helper_Cloned {
 
 	/**
 	 * Constructor
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	public function __construct() {
 
@@ -27,8 +27,8 @@ class LLMS_Helper_Cloned {
 	 * If the key cannot be activated all activation related data will be removed
 	 * Called when LifterLMS core detects a cloned site
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    2.5.0
+	 * @version  2.5.0
 	 */
 	public function handle_clone() {
 

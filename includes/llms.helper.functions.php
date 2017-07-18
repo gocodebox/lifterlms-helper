@@ -22,8 +22,8 @@ function llms_helper_clear_transiets() {
  * Clear the options related to a product's activation
  * @param    string     $product  product name (eg lifterlms-stripe, lifterlms-gateway-paypal, etc...)
  * @return   void
- * @since    [version]
- * @version  [version]
+ * @since    2.5.0
+ * @version  2.5.0
  */
 function llms_helper_clear_product_activation_data( $product ) {
 

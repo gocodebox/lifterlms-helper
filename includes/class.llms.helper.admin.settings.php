@@ -7,7 +7,7 @@
  * @author 		codeBOX
  *
  * @since    1.0.0
- * @version  [version]
+ * @version  2.5.0
  * @todo  this class should be removed in the future when users are fully transitioned to 3.2.2+
  */
 

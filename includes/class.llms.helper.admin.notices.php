@@ -2,7 +2,7 @@
 /**
  * Output Admin Notices
  * @since     1.0.0
- * @version  [version]
+ * @version   2.5.0
  */
 
 // Restrict direct access
