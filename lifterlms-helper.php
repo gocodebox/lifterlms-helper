@@ -137,7 +137,7 @@ final class LLMS_Helper {
 	 * Enqueue Scripts & Styles
 	 * @return void
 	 * @since    1.0.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	public function admin_enqueue_scripts() {
 
@@ -227,7 +227,7 @@ final class LLMS_Helper {
 	 * Include all clasess required by the plugin
 	 * @return void
 	 * @since    1.0.0
-	 * @version  [version]
+	 * @version  2.5.0
 	 */
 	private function includes() {
 
