@@ -2,19 +2,14 @@
 /**
  * Plugin Updating Related functions
  *
- * @package 	LifterLMS Helper
- * @category 	Core
- * @author 		codeBOX
- *
- * @since  2.0.0
- * @version  2.1.0
+ * @since    2.0.0
+ * @version  2.5.0
  */
 
 // Restrict direct access
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
-{
+class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater {
 
 	/**
 	 * Plugin Data
@@ -173,11 +168,12 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 
 	/**
 	 * Handle moving the plugin to it's intended directory after plugin installation
-	 * @param  array $install_result   install data array
-	 * @return array
+	 * @param    array $install_result   install data array
+	 * @return   array
+	 * @since    1.0.0
+	 * @version  2.5.0
 	 */
-	public function post_install( $install_result )
-	{
+	public function post_install( $install_result ) {
 
 		// is the plugin currently active? we'll re-activate later if it is
 		$active = is_plugin_active( $this->plugin_slug );
@@ -196,7 +192,7 @@ class LLMS_Helper_Plugin_Updater extends LLMS_Helper_Updater
 		// reactivate the plugin if it was active previously
 		if( $active ) {
 
-			activate_plugin( $this->slug );
+			activate_plugin( $this->plugin_slug );
 
 		}
 
