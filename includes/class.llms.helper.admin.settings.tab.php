@@ -2,20 +2,13 @@
 /**
  * Filters for LifterLMS & LaunchPad admin options for license key saving & validation
  *
- * @package 	LifterLMS Helper
- * @category 	Core
- * @author 		codeBOX
- *
  * @since    2.4.0
- * @version  2.4.0
+ * @version  [version]
  */
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
-
-	private $api_url = 'https://lifterlms.com/wp-json/llms-api/v2';
-	// private $api_url = 'https://lifterlms.com.dev/wp-json/llms-api/v2';
 
 	/**
 	 * Allow settings page to determine if a rewrite flush is required
@@ -37,61 +30,19 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 		add_action( 'lifterlms_settings_' . $this->id, array( $this, 'output' ) );
 		add_action( 'lifterlms_settings_save_' . $this->id, array( $this, 'save' ) );
 
-	}
-
-	/**
-	 * Simple api wrapper
-	 * Responds with false if there was an error or the parsed success body as an array
-	 * @param    string     $method  api method to call
-	 * @param    array      $data    array of data to send to the api
-	 * @return   false|array
-	 * @since    2.4.0
-	 * @version  2.4.0
-	 */
-	private function call( $method, $data = array() ) {
-
-		// attempt to activate
-		$res = wp_remote_post( $this->api_url . '/' . $method, array(
-			'body' => json_encode( $data ),
-			'headers' => array(
-				'Content-type' => 'application/json',
-			),
-			// 'sslverify' => false, // for local testing only
-		) );
-
-		if ( is_wp_error( $res ) ) {
-
-			LLMS_Admin_Settings::set_error( $res->get_error_message() );
-			return false;
-
-		} else {
-
-			if ( $res['response']['code'] === 200 ) {
-
-				return json_decode( $res['body'], true );
-
-			} else {
-
-				LLMS_Admin_Settings::set_error( __( 'An unknown error occurred, please try again.', 'lifterlms-helper' ) );
-				return false;
-
-			}
-
-		}
+		add_filter( 'llms_admin_settings_submit_button_text', array( $this, 'submit_button_text'), 10, 2 );
 
 	}
+
+
 
 	/**
 	 * Compile, validate, sanitize posted data and send to activation api
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	private function do_activations() {
-
-		$data = array(
-			'activations' => array(),
-		);
 
 		// setup one array of themes and plugins
 		$submitted = array();
@@ -102,58 +53,11 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			$submitted = array_merge( $submitted, $_POST['llms_keys']['themes'] );
 		}
 
-		foreach ( $submitted as $slug => $key ) {
+		$api = new LLMS_Helper_API();
+		$res = $api->activate( $submitted );
 
-			// don't attempt to activate if no key submitted
-			if ( empty( $key ) ) {
-				continue;
-			}
-
-			$key = sanitize_text_field( $key );
-
-			$product = llms_helper_get_extension_slug( $slug );
-
-			$data['activations'][] = array(
-				'key' => $key,
-				'product' => $product,
-				'url' => get_site_url(),
-			);
-
-			// store the submitted key
-			update_option( $product . '_activation_key', $key );
-
-		}
-
-		$res = $this->call( 'activate', $data );
-
-		if ( ! $res ) {
-			return;
-		}
-
-		// store response, show html functions can access and display\ response message
+		// store response, show html functions can access and display response message
 		$this->activations = $res['activations'];
-
-		// loop through results and store keys for each depending on the status
-		foreach( $res['activations'] as $slug => $a ) {
-
-			if ( 'success' === $a['status'] && $a['update_key'] ) {
-
-				$ukey = sanitize_text_field( $a['update_key'] );
-				$active = 'yes';
-
-			} else {
-
-				$ukey = '';
-				$active = 'no';
-
-			}
-
-			// save update key
-			update_option( $slug . '_update_key', $ukey );
-			// mark the add-on as active
-			update_option( $slug . '_is_activated', $active );
-
-		}
 
 	}
 
@@ -161,34 +65,35 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Deactivate a single product via API
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	private function do_deactivation() {
 
-		$product = sanitize_text_field( $_POST['llms_deactivate'] );
+		$products = array();
 
-		// get data to pass to API
-		$license_key = get_option( $product . '_activation_key', '' );
-		$update_key  = get_option( $product . '_update_key', '' );
+		if ( isset( $_POST['llms_deactivate'] ) ) {
 
-		// clear all saved data
-		update_option( $product . '_activation_key', '' );
-		update_option( $product . '_update_key', '' );
-		update_option( $product . '_is_activated', 'no' );
+			$products[] = sanitize_text_field( $_POST['llms_deactivate'] );
 
-		// call the api
-		$res = $this->call( 'deactivate', array(
-			'license_key' => $license_key,
-			'update_key' => $update_key,
-			'product' => $product,
-			'url' => get_site_url(),
-		) );
+		} elseif ( isset( $_POST['llms_bulk'] ) ) {
+
+			// setup one array of themes and plugins
+			if ( isset( $_POST['llms_bulk']['plugins'] ) ) {
+				$products = array_merge( $products, array_keys( $_POST['llms_bulk']['plugins'] ) );
+			}
+			if ( isset( $_POST['llms_bulk']['themes'] ) ) {
+				$products = array_merge( $products, array_keys( $_POST['llms_bulk']['themes'] ) );
+			}
+		}
+
+		$api = new LLMS_Helper_API();
+		$res = $api->deactivate( $products );
 
 		if ( ! $res ) {
 			return;
 		}
 
-		$this->deactivation = $res;
+		$this->deactivations = $res['deactivations'];
 
 	}
 
@@ -215,7 +120,11 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 		);
 
 		$fields[] = array(
-			'desc' => __( 'Activate your LifterLMS Add-ons with lifterlms.com so you can update them automatically.', 'lifterlms-helper' ),
+			'desc' => sprintf(
+						__( 'Activate your LifterLMS Add-ons for automatic updates. Login to your %1$sLifterLMS.com Account%2$s to locate your keys and manage your activations from the cloud.', 'lifterlms-helper' ),
+						'<a href="https://lifterlms.com/my-account/" target="_blank">',
+						'</a>'
+					),
 			'title' => __( 'Add-on Activation', 'lifterlms-helper' ),
 			'type' => 'subtitle',
 		);
@@ -235,10 +144,28 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	}
 
 	/**
+	 * Get the HTML for the bulk actions selector/submitter
+	 * @return   string
+	 * @since    [version]
+	 * @version  [version]
+	 */
+	private function get_bulk_actions_html() {
+
+		return '<div class="llms-helper-bulk-actions">
+			<select name="llms_bulk_action" id="llms-helper-bulk-actions-select" style="width:auto;">
+				<option value="">' . esc_html__( 'Bulk Actions', 'lifterlms-helper' ) . '</option>
+				<option value="deactivate">' . esc_html__( 'Deactivate', 'lifterlms-helper' ) . '</option>
+			</select>
+			<button class="llms-button-secondary small" name="llms_bulk_action_submit" type="submit">' . esc_html__( 'Submit', 'lifterlms-helper' ) . '</button>
+		</div>';
+
+	}
+
+	/**
 	 * Get the full HTML for the table
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	private function get_table_html() {
 
@@ -264,6 +191,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 				'stripe' => ( 1 === $i % 2 ) ? ' stripe' : '',
 				'id' => $plugin,
 				'field_name' => 'llms_keys[plugins][' . $plugin . ']',
+				'field_name_cb' => 'llms_bulk[plugins][' . $plugin . ']',
 				'key' => $p->activation_key,
 				'name' => $data['Name'],
 				'url' => $data['PluginURI'],
@@ -281,6 +209,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 				'stripe' => ( 1 === $i % 2 ) ? ' stripe' : '',
 				'id' => $theme,
 				'field_name' => 'llms_keys[themes][' . $theme . ']',
+				'field_name_cb' => 'llms_bulk[themes][' . $theme . ']',
 				'key' => $t->activation_key,
 				'name' => $data->get( 'Name' ),
 				'url' => $data->get( 'ThemeURI' ),
@@ -297,6 +226,8 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			</table>
 		';
 
+		$html .= $this->get_bulk_actions_html();
+
 		return $html;
 
 	}
@@ -305,10 +236,11 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Get header row html
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	private function get_table_header_row_html() {
 		return '<tr>
+			<th class="llms-helper-bulk"><input class="llms-helper-bulk-cb-all" type="checkbox"></th>
 			<th class="llms-helper-name">' . __( 'Add-on', 'lifterlms-helper' ) . '</th>
 			<th class="llms-helper-version">' . __( 'Version', 'lifterlms-helper' ) . '</th>
 			<th class="llms-helper-key">' . __( 'License Key', 'lifterlms-helper' ) . '</th>
@@ -321,7 +253,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * @param    array     $data  array of product data
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	private function get_table_row_html( $data ) {
 
@@ -336,10 +268,10 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 				$msg = preg_replace( $url, '<a href="$0" target="_blank">$0</a>', $msg );
 				$type = $this->activations[ $id ]['status'];
 			}
-		} elseif ( isset( $this->deactivation ) ) {
-			if ( isset( $this->deactivation['product'] ) && $id === $this->deactivation['product'] ) {
-				$msg = $this->deactivation['message'];
-				$type = $this->deactivation['status'];
+		} elseif ( isset( $this->deactivations ) ) {
+			if ( isset( $this->deactivations[ $id ] ) ) {
+				$msg = $this->deactivations[ $id ]['message'];
+				$type = $this->deactivations[ $id ]['status'];
 			}
 		}
 
@@ -347,6 +279,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 
 		$html = '<tr class="type-' . $type . $data['stripe'] . '">';
 
+			$html .= '<td class="llms-helper-bulk"><input class="llms-helper-bulk-cb" name="' . $data['field_name_cb'] . '" type="checkbox" value="yes"></td>';
 			$html .= '<td class="llms-helper-name"><a href="' . esc_url( $data['url'] ) . '" target="_blank">' . $data['name'] . '</a></td>';
 			$html .= '<td class="llms-helper-version">' . $data['version'] . '</td>';
 			$html .= '<td class="llms-helper-key">';
@@ -365,7 +298,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			$html .= '</td>';
 
 			if ( $msg ) {
-				$html .= '<tr class="message' . $data['stripe'] . '"><td colspan="4"><div class="notice inline notice-' . $type .' notice-alt"><p>' . $msg . '</p></td></tr>';
+				$html .= '<tr class="message' . $data['stripe'] . '"><td colspan="5"><div class="notice inline notice-' . $type .' notice-alt"><p>' . $msg . '</p></td></tr>';
 			}
 
 		$html .= '</tr>';
@@ -377,17 +310,35 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * Routes to actual functions depending on submit button used
 	 * @return   void
 	 * @since    2.4.0
-	 * @version  2.4.0
+	 * @version  [version]
 	 */
 	public function save() {
 
 		if ( ! empty( $_POST['llms_deactivate'] ) ) {
 			$this->do_deactivation();
+		} elseif ( isset( $_POST['llms_bulk_action_submit'] ) ) {
+			if ( ! empty( $_POST['llms_bulk_action'] ) ) {
+				if ( 'deactivate' === $_POST['llms_bulk_action'] ) {
+					$this->do_deactivation();
+				}
+			}
 		} elseif ( ! empty( $_POST['llms_keys'] ) && is_array( $_POST['llms_keys'] ) ) {
 			$this->do_activations();
 		}
 
 		llms_helper_clear_transiets();
+
+	}
+
+	public function submit_button_text( $text, $tab ) {
+
+		if ( 'licenses' === $tab ) {
+
+			$text = __( 'Activate Add-Ons', 'lifterlms-helper' );
+
+		}
+
+		return $text;
 
 	}
 
