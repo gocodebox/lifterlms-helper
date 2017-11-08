@@ -1,6 +1,12 @@
 LifterLMS Helper Changelog
 ==========================
 
+v2.5.1 - 2017-11-08
+-------------------
+
++ Fix issue causing false activations which cannot be deactivated due to blank activation keys
+
+
 v2.5.0 - 2017-07-18
 -------------------
 

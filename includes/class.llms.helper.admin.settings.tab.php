@@ -3,7 +3,7 @@
  * Filters for LifterLMS & LaunchPad admin options for license key saving & validation
  *
  * @since    2.4.0
- * @version  2.5.0
+ * @version  2.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -253,7 +253,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 	 * @param    array     $data  array of product data
 	 * @return   string
 	 * @since    2.4.0
-	 * @version  2.5.0
+	 * @version  2.5.1
 	 */
 	private function get_table_row_html( $data ) {
 
@@ -283,7 +283,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 			$html .= '<td class="llms-helper-name"><a href="' . esc_url( $data['url'] ) . '" target="_blank">' . $data['name'] . '</a></td>';
 			$html .= '<td class="llms-helper-version">' . $data['version'] . '</td>';
 			$html .= '<td class="llms-helper-key">';
-				if ( 'yes' === $activated ) {
+				if ( 'yes' === $activated && $data['key'] ) {
 					$html .= '<pre>' . $data['key'] . '</pre>';
 					$html .= '<span class="llms-helper-activation-status"><span class="dashicons dashicons-yes"></span></span>';
 				} else {
@@ -292,7 +292,7 @@ class LLMS_Helper_Admin_Settings_Tab extends LLMS_Settings_Page {
 
 			$html .'</td>';
 			$html .= '<td class="llms-helper-actions">';
-				if ( 'yes' === $activated ) {
+				if ( 'yes' === $activated && $data['key'] ) {
 					$html .= '<button class="llms-button-danger small" name="llms_deactivate" type="submit" value="' . $id . '">' . __( 'Deactivate', 'lifterlms-helper' ) . '</button>';
 				}
 			$html .= '</td>';
