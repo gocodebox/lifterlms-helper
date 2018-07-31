@@ -1,5 +1,15 @@
 {
 	"pot": {
-		"domain": "lifterlms-helper"
+		"domain": "lifterlms-helper",
+		"js": false
+	},
+	"publish": {
+		"title": "LifterLMS Helper",
+		"lifterlms": {
+			"make": {
+				"tags": [ 22 ]
+			}
+		},
+		"svn": false
 	}
 }
