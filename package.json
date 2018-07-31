@@ -14,6 +14,6 @@
   "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "lifterlms-lib-tasks": "^1.5.0"
+    "lifterlms-lib-tasks": "^2.1.3"
   }
 }
