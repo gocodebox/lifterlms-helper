@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
  * Automatically attempt to activate already activated add-ons
  * during clones
  * @since    2.5.0
- * @version  [version]
+ * @version  3.0.0
  */
 class LLMS_Helper_Cloned {
 
@@ -27,7 +27,7 @@ class LLMS_Helper_Cloned {
 	 * Called when LifterLMS core detects a cloned site
 	 * @return   void
 	 * @since    2.5.0
-	 * @version  [version]
+	 * @version  3.0.0
 	 */
 	public function handle_clone() {
 

@@ -12,6 +12,8 @@ v3.0.0-beta.1 - 2018-07-31
 + You can now install add-ons through the this plugin without having to download and install them manually. Enter your license key(s) and select the add-ons you wish to install to have them installed automatically. You can bulk install as well.
 + You can now subscribe to beta channels of LifterLMS and any LifterLMS add-ons. Visit the LifterLMS -> Status -> Betas screen to subscribe to betas. Always use betas at your own risk, by nature they're unstable!
 + Uses the LifterLMS.com v3 REST api for all API calls
++ Added RTL language support
++ Added i18n support
 + Fixes many bugs and certainly introduces some new ones we haven't found
 
 

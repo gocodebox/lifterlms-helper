@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Upgrader {
 
@@ -14,8 +14,8 @@ class LLMS_Helper_Upgrader {
 	 * Main Instance of LLMS_Helper_Upgrader
 	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
 	 * @return   LLMS_Helper_Upgrader - Main instanceg
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -26,8 +26,8 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Constructor
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function __construct() {
 
@@ -58,8 +58,8 @@ class LLMS_Helper_Upgrader {
 	 * Install an add-on from LifterLMS.com
 	 * @param    string|obj     $addon_or_id   ID for the add-on or an instance of the LLMS_Add_On
 	 * @return   WP_Error|true
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function install_addon( $addon_or_id, $action = 'install' ) {
 
@@ -138,8 +138,8 @@ class LLMS_Helper_Upgrader {
 	 * @param    array     $plugin_data  array of plugin data
 	 * @param    array     $res          response data
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function in_plugin_update_message( $plugin_data, $res ) {
 
@@ -171,8 +171,8 @@ class LLMS_Helper_Upgrader {
 	 * @param    string     $action    name of the API action
 	 * @param    obj        $args      additional API call args
 	 * @return   false|obj
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function plugins_api( $response, $action = '', $args = null ) {
 
@@ -210,8 +210,8 @@ class LLMS_Helper_Upgrader {
 	 * Handle setting the site transient for plugin updates
 	 * @param    obj     $value  transient value
 	 * @return   obj
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function pre_set_site_transient_update_things( $value ) {
 
@@ -287,8 +287,8 @@ class LLMS_Helper_Upgrader {
 	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
 	 * @param    string     $id  addon id
 	 * @return   object
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function set_plugins_api( $id, $include_sections = true ) {
 
@@ -352,8 +352,8 @@ class LLMS_Helper_Upgrader {
 	 * Retrieve the changelog for an addon
 	 * @param    obj     $addon  LLMS_Add_On
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function get_changelog_for_api( $addon ) {
 
@@ -369,8 +369,8 @@ class LLMS_Helper_Upgrader {
 	 * This is called immediately prior to package upgrades
 	 * @param    [type]     $options  [description]
 	 * @return   [type]
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function upgrader_package_options( $options ) {
 

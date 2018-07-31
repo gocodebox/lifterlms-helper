@@ -3,7 +3,7 @@
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Assists premium LifterLMS theme and plugin updates
- * Version: 2.5.1
+ * Version: 3.0.0
  * Author: Thomas Patrick Levy, codeBOX LLC
  * Author URI: http://gocodebox.com
  * Text Domain: lifterlms-helper
@@ -21,7 +21,7 @@ final class LifterLMS_Helper {
 	 * Current Plugin Version
 	 * @var  string
 	 */
-	public $version = '2.5.1';
+	public $version = '3.0.0';
 
 	/**
 	 * Singleton instance reference
@@ -40,8 +40,8 @@ final class LifterLMS_Helper {
 	 * Main Instance of LifterLMS_Helper
 	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
 	 * @return   LLMS_AddOn_Upgrader - Main instanceg
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -90,8 +90,8 @@ final class LifterLMS_Helper {
 	/**
 	 * Schedule and handle cron functions
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function crons() {
 
@@ -132,7 +132,7 @@ final class LifterLMS_Helper {
 	 * Include all clasess required by the plugin
 	 * @return void
 	 * @since    1.0.0
-	 * @version  [version]
+	 * @version  3.0.0
 	 */
 	private function includes() {
 
@@ -179,8 +179,8 @@ final class LifterLMS_Helper {
 	/**
 	 * Return the singleton instance of the LLMS_Helper_Upgader
 	 * @return   obj
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function upgrader() {
 		return $this->upgrader;

@@ -3,16 +3,16 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Enqueue Scripts & Styles
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Assets {
 
 	/**
 	 * Constructor
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function __construct() {
 
@@ -23,8 +23,8 @@ class LLMS_Helper_Assets {
 	/**
 	 * Register, enqueue, & localize
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function enqueue() {
 

@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Modify the admin add-ons page
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Admin_Add_Ons {
 
@@ -17,8 +17,8 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Constructor
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function __construct() {
 
@@ -52,8 +52,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * But only if license keys have been saved
 	 * @param    string     $section  section slug
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function filter_get_current_section( $section ) {
 
@@ -70,8 +70,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @param    array      $content  default items to display
 	 * @param    string     $section  current tab slug
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function filter_get_current_section_content( $content, $section ) {
 
@@ -95,8 +95,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Exclude IDs for all add-ons that are currently available on the site
 	 * @param    array     $ids  existing product ids to exclude
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function filter_feature_exclude_ids( $ids ) {
 		return array_unique( array_merge( $ids, llms_helper_get_available_add_ons( false ) ) );
@@ -106,8 +106,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Add installatino & update actions to the list of available management actions
 	 * @param    array     $actions  list of available actions, the action should correspond to a method in the LLMS_Helper_Add_On class
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function filter_manage_actions( $actions ) {
 		return array_merge( array( 'install', 'update' ), $actions );
@@ -116,8 +116,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Handle form submission actions
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function handle_actions() {
 
@@ -145,8 +145,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Activate license keys with LifterLMS.com api
 	 * Output errors / successes & saves successful keys to the db
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function handle_activations() {
 
@@ -167,7 +167,7 @@ class LLMS_Helper_Admin_Add_Ons {
 		if ( isset( $data['activations'] ) ) {
 			foreach ( $data['activations'] as $activation ) {
 				LLMS_Helper_Keys::add_license_key( $activation );
-				LLMS_Admin_Notices::flash_notice( sprintf( __( '"%s" has been saved!', 'lifterlms' ), $activation['license_key'] ), 'success' );
+				LLMS_Admin_Notices::flash_notice( sprintf( __( '"%s" has been saved!', 'lifterlms-helper' ), $activation['license_key'] ), 'success' );
 			}
 		}
 
@@ -177,8 +177,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Deactivate license keys with LifterLMS.com api
 	 * Output errors / successes & removes keys from the db
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function handle_deactivations() {
 
@@ -206,8 +206,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Determine if the current site has active license keys
 	 * @return   bool
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function has_keys() {
 
@@ -222,8 +222,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Output the HTML for the license manager area
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function output_license_manager() {
 
@@ -277,8 +277,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @param    obj     $addon     LLMS_Add_On instance
 	 * @param    string  $curr_tab  slug of the current tab being viewed
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function output_single_install_action( $addon, $curr_tab ) {
 
@@ -308,8 +308,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @param    obj     $addon     LLMS_Add_On instance
 	 * @param    string  $curr_tab  slug of the current tab being viewed
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function output_single_update_action( $addon, $curr_tab ) {
 
@@ -337,8 +337,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output additional navigation items
 	 * @param    string     $current_section  current section slug
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function output_navigation_items( $current_section ) {
 

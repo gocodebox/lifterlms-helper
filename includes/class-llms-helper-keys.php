@@ -7,8 +7,8 @@ class LLMS_Helper_Keys {
 	 * Activate LifterLMS License Keys with the remote server
 	 * @param    mixed     $keys  array white-space separated list of API keys
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function activate_keys( $keys ) {
 
@@ -37,8 +37,8 @@ class LLMS_Helper_Keys {
 	 * Add a single license key
 	 * @param    string    $activation_data   array of activation details from api call
 	 * @return   boolean                      True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function add_license_key( $activation_data ) {
 
@@ -62,8 +62,8 @@ class LLMS_Helper_Keys {
 	 * only make api calls to check once / week
 	 * @param    bool       $force  ignore the once/week setting and force a check
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function check_keys( $force = false ) {
 
@@ -142,8 +142,8 @@ class LLMS_Helper_Keys {
 	 * Deactivate LifterLMS API keys with remote server
 	 * @param    array     $keys  array of keys
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function deactivate_keys( $keys ) {
 
@@ -171,8 +171,8 @@ class LLMS_Helper_Keys {
 	 * Remove a single license key
 	 * @param    string     $key  license key
 	 * @return   boolean          True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function remove_license_key( $key ) {
 		$keys = llms_helper_options()->get_license_keys();

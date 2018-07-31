@@ -2,15 +2,15 @@
 /**
  * Helper functions
  * @since    2.2.0
- * @version  [version]
+ * @version  3.0.0
  */
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Retrieve the LLMS_Helper_Options singleton
  * @return   obj
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 function llms_helper_options() {
 	return LLMS_Helper_Options::instance();
@@ -21,8 +21,8 @@ function llms_helper_options() {
  * @param    bool     $installable_only   if true, only includes installable addons
  *                                        if false, includes non-installable addons (like bundles)
  * @return   array
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 function llms_helper_get_available_add_ons( $installable_only = true ) {
 

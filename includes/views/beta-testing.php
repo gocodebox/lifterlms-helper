@@ -1,8 +1,8 @@
 <?php
 /**
  * View for displaying the Beta Testing tab on the "Status" screen
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 defined( 'ABSPATH' ) || exit;
 ?>

@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Plugin installation
- * @since   [version]
- * @version [version]
+ * @since   3.0.0
+ * @version 3.0.0
  */
 class LLMS_Helper_Install {
 
@@ -12,8 +12,8 @@ class LLMS_Helper_Install {
 	 * Initialize the install class
 	 * Hooks all actions
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
@@ -22,8 +22,8 @@ class LLMS_Helper_Install {
 	/**
 	 * Checks the current LLMS version and runs installer if required
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function check_version() {
 		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'llms_helper_version' ) !== LLMS_Helper()->version ) {
@@ -35,8 +35,8 @@ class LLMS_Helper_Install {
 	/**
 	 * Core install function
 	 * @return  void
-	 * @since   [version]
-	 * @version [version]
+	 * @since   3.0.0
+	 * @version 3.0.0
 	 */
 	public static function install() {
 
@@ -61,8 +61,8 @@ class LLMS_Helper_Install {
 	 * Update the LifterLMS version record to the latest version
 	 * @param  string $version version number
 	 * @return void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function update_version( $version = null ) {
 		delete_option( 'llms_helper_version' );
@@ -72,14 +72,14 @@ class LLMS_Helper_Install {
 	/**
 	 * Migrate to version 3.0.0
 	 * @return   [type]
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private static function _migrate_300() {
 
-		$text = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms' ) . '</strong></p>';
-		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms' ) . '</p>';
-		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
+		$text = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms-helper' ) . '</strong></p>';
+		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms-helper' ) . '</p>';
+		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms-helper' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
 
 		$keys = array();
 		foreach ( llms_helper_get_available_add_ons() as $id ) {
@@ -105,7 +105,7 @@ class LLMS_Helper_Install {
 			$data = $res['data'];
 			if ( isset( $data['activations'] ) ) {
 
-				$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms' ), count( $data['activations'] ) ) . ':</p>';
+				$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms-helper' ), count( $data['activations'] ) ) . ':</p>';
 
 				foreach ( $data['activations'] as $activation ) {
 					LLMS_Helper_Keys::add_license_key( $activation );

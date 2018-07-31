@@ -3,16 +3,16 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Handle status beta tab
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Betas {
 
 	/**
 	 * Constructor
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function __construct() {
 
@@ -28,8 +28,8 @@ class LLMS_Helper_Betas {
 	 * Add the tab to the nav
 	 * @param    array     $tabs  existing tabs
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function add_tab( $tabs ) {
 		return llms_assoc_array_insert( $tabs, 'tools', 'betas', __( 'Beta Testing', 'lifterlms-helper' ) );
@@ -38,8 +38,8 @@ class LLMS_Helper_Betas {
 	/**
 	 * Handle channel subscription saves
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function handle_form_submit() {
 
@@ -59,8 +59,8 @@ class LLMS_Helper_Betas {
 	/**
 	 * Output content for the beta testing screen
 	 * @return   void
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function output_tab( $curr_tab ) {
 

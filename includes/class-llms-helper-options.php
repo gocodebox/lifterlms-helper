@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Get & Set Helper options
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Options {
 
@@ -18,8 +18,8 @@ class LLMS_Helper_Options {
 	 * Main Instance of LifterLMS
 	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
 	 * @return   LLMS_Helper_Options - Main instance
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -47,8 +47,8 @@ class LLMS_Helper_Options {
 	 * @param    string     $key      option name
 	 * @param    mixed      $default  default option value if option isn't already set
 	 * @return   mixed
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function get_option( $key, $default = '' ) {
 
@@ -65,8 +65,8 @@ class LLMS_Helper_Options {
 	/**
 	 * Retrieve all upgrader options array
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function get_options() {
 		return get_option( 'llms_helper_options', array() );
@@ -77,8 +77,8 @@ class LLMS_Helper_Options {
 	 * @param    string     $key  option name
 	 * @param    mixed      $val  option value
 	 * @return   boolean          True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	private function set_option( $key, $val ) {
 
@@ -105,8 +105,8 @@ class LLMS_Helper_Options {
 	/**
 	 * Get info about addon channel subscriptions
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_channels() {
 		return $this->get_option( 'channels', array() );
@@ -116,8 +116,8 @@ class LLMS_Helper_Options {
 	 * Set info about addon channel subscriptions
 	 * @param    array     $channels  array of channel information
 	 * @return   boolean              True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function set_channels( $channels ) {
 		return $this->set_option( 'channels', $channels );
@@ -126,8 +126,8 @@ class LLMS_Helper_Options {
 	/**
 	 * Retrieve a timestamp for the last time the keys check cron was run
 	 * @return   int
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_last_keys_cron_check() {
 		return $this->get_option( 'last_keys_cron_check', 0 );
@@ -137,8 +137,8 @@ class LLMS_Helper_Options {
 	 * Set the last cron check time
 	 * @param    int     $time  timestamp
 	 * @return   boolean        True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function set_last_keys_cron_check( $time ) {
 		return $this->set_option( 'last_keys_cron_check', $time );
@@ -147,8 +147,8 @@ class LLMS_Helper_Options {
 	/**
 	 * Retrieve saved license key data
 	 * @return   array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_license_keys() {
 		return $this->get_option( 'license_keys', array() );
@@ -158,8 +158,8 @@ class LLMS_Helper_Options {
 	 * Update saved license key data
 	 * @param    array     $keys  key data to save
 	 * @return   boolean          True if option value has changed, false if not or if update failed.
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function set_license_keys( $keys ) {
 		return $this->set_option( 'license_keys', $keys );

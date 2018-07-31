@@ -3,16 +3,16 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Extends core class to allow interaction with the .com api
- * @since    [version]
- * @version  [version]
+ * @since    3.0.0
+ * @version  3.0.0
  */
 class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 	/**
 	 * Find a license key for the add-on
 	 * @return   string|false
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function find_license() {
 
@@ -31,8 +31,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Retrieve the update channel for the addon
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_channel_subscription() {
 		$channels = llms_helper_options()->get_channels();
@@ -42,8 +42,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Retrieve download information for a licensed add-on
 	 * @return   WP_Error|array
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_download_info() {
 
@@ -74,8 +74,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Translate strings
 	 * @param    string     $status  untranslated string / key
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_l10n( $string ) {
 
@@ -106,8 +106,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Determine the status of an addon's license
 	 * @param    bool       $translate   if true, returns the translated string for on-screen display
 	 * @return   string
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function get_license_status( $translate = false ) {
 
@@ -124,8 +124,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Install the add-on via LifterLMS.com
 	 * @return   string|WP_Error
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function install() {
 
@@ -150,8 +150,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Determines if the add-on is licensed
 	 * @return   bool
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function is_licensed() {
 		return ( false !== $this->find_license() );
@@ -161,8 +161,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Update the addons update channel subscription
 	 * @param    string     $channel  channel name [stable|beta]
 	 * @return   boolean
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function subscribe_to_channel( $channel = 'stable' ) {
 
@@ -175,8 +175,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Install the add-on via LifterLMS.com
 	 * @return   string|WP_Error
-	 * @since    [version]
-	 * @version  [version]
+	 * @since    3.0.0
+	 * @version  3.0.0
 	 */
 	public function update() {
 

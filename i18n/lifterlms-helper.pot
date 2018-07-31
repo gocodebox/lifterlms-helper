@@ -16,52 +16,56 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: includes/class-llms-helper-admin-add-ons.php:170
+msgid "\"%s\" has been saved!"
+msgstr ""
+
 #. translators: %s = License Key
-#: includes/class-llms-helper-admin-add-ons.php:182
+#: includes/class-llms-helper-admin-add-ons.php:195
 msgid "License key \"%s\" was removed from this site."
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:227
+#: includes/class-llms-helper-admin-add-ons.php:240
 msgid "My License Keys"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:234
+#: includes/class-llms-helper-admin-add-ons.php:247
 msgid "Manage Saved License Keys"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:246
+#: includes/class-llms-helper-admin-add-ons.php:259
 msgid "Remove Selected"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:250
+#: includes/class-llms-helper-admin-add-ons.php:263
 msgid "Add New License Keys"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:251
+#: includes/class-llms-helper-admin-add-ons.php:264
 msgid "Enter each license on a new line"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:253
+#: includes/class-llms-helper-admin-add-ons.php:266
 msgid "Add New"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:282, includes/model-llms-helper-add-on.php:92
+#: includes/class-llms-helper-admin-add-ons.php:295, includes/model-llms-helper-add-on.php:92
 msgid "Install"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:284
+#: includes/class-llms-helper-admin-add-ons.php:297
 msgid "View add-on details"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:313
+#: includes/class-llms-helper-admin-add-ons.php:326
 msgid "Update"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:315
+#: includes/class-llms-helper-admin-add-ons.php:328
 msgid "View update details"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:338
+#: includes/class-llms-helper-admin-add-ons.php:351
 msgid "My Add-Ons"
 msgstr ""
 
@@ -69,8 +73,26 @@ msgstr ""
 msgid "Beta Testing"
 msgstr ""
 
+#: includes/class-llms-helper-install.php:80
+msgid "Welcome to the LifterLMS Helper"
+msgstr ""
+
+#: includes/class-llms-helper-install.php:81
+msgid "This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date."
+msgstr ""
+
+#: includes/class-llms-helper-install.php:82
+msgid "You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen."
+msgstr ""
+
+#: includes/class-llms-helper-install.php:108
+msgid "%d license has been automatically migrated from the previous version of the LifterLMS Helper"
+msgid_plural "%d licenses have been automatically migrated from the previous version of the LifterLMS Helper."
+msgstr[0] ""
+msgstr[1] ""
+
 #. translators: %s = License Key
-#: includes/class-llms-helper-keys.php:102
+#: includes/class-llms-helper-keys.php:108
 msgid "The license \"%s\" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information."
 msgstr ""
 
@@ -86,6 +108,7 @@ msgstr ""
 msgid "Add-on cannot be installable."
 msgstr ""
 
+#. translators: %s = Add-on name
 #: includes/class-llms-helper-upgrader.php:83
 msgid "%s is already installed"
 msgstr ""
@@ -161,6 +184,7 @@ msgstr ""
 msgid "%s was successfully installed."
 msgstr ""
 
+#. translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:146
 msgid "Could not install %s."
 msgstr ""
@@ -170,6 +194,7 @@ msgstr ""
 msgid "%s was successfully updated."
 msgstr ""
 
+#. translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:197
 msgid "Could not update %s."
 msgstr ""
