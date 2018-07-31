@@ -1,6 +1,6 @@
 {
   "name": "lifterlms-helper",
-  "version": "3.0.0",
+  "version": "3.0.0-beta.1",
   "description": "Assists premium LifterLMS theme and plugin updates",
   "repository": {
     "type": "git",
