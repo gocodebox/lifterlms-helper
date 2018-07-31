@@ -1,6 +1,20 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.0.0-beta.1 - 2018-07-31
+--------------------------
+
++ **This is nearly a complete rewrite of the codebase. Things have moved but no features have been removed.**
++ Requires LifterLMS version 3.22.0 or later
++ License key activation is now on a per-site basis as opposed to a per product basis. This means that if you have a license key for a bundle you don't have to enter the key for each add-on, you enter the key only once and it will activate ALL the add-ons.
++ The "Licenses" tab has been removed and your add-ons and licenses are now managed via LifterLMS -> Add-ons & More
++ A migration script exists to move license keys from previous versions of the helper to this version. After upgrading check LifterLMS -> Add-ons & More to ensure your keys were successfully migrated.
++ You can now install add-ons through the this plugin without having to download and install them manually. Enter your license key(s) and select the add-ons you wish to install to have them installed automatically. You can bulk install as well.
++ You can now subscribe to beta channels of LifterLMS and any LifterLMS add-ons. Visit the LifterLMS -> Status -> Betas screen to subscribe to betas. Always use betas at your own risk, by nature they're unstable!
++ Uses the LifterLMS.com v3 REST api for all API calls
++ Fixes many bugs and certainly introduces some new ones we haven't found
+
+
 v2.5.1 - 2017-11-08
 -------------------
 
