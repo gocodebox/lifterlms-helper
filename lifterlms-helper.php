@@ -2,10 +2,10 @@
 /**
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
- * Description: Assists premium LifterLMS theme and plugin updates
+ * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
  * Version: 3.0.0-beta.1
  * Author: Thomas Patrick Levy, codeBOX LLC
- * Author URI: http://gocodebox.com
+ * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper
  * Domain Path: /i18n
  * License: GPLv3
