@@ -16,9 +16,18 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 */
 	public function find_license() {
 
+		// if the addon doesn't require a license return the first found license
+		// this will ensure that the core can be updated via a license when subscribed to a beta channel
+		// and that the helper can always be upgraded
+		$requires_license  = llms_parse_bool( $this->get( 'has_license' ) );
+
+		$id = $this->get( 'id' );
 		foreach ( llms_helper_options()->get_license_keys() as $data ) {
 
-			$id = $this->get( 'id' );
+			if ( ! $requires_license ) {
+				return $data;
+			}
+
 			if ( $id === $data['product_id'] || in_array( $id, $data['addons'] ) ) {
 				return $data;
 			}
