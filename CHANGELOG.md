@@ -1,8 +1,8 @@
 LifterLMS Helper Changelog
 ==========================
 
-v3.0.0-beta.1 - 2018-07-31
---------------------------
+v3.0.0 - 2018-08-01
+-------------------
 
 + **This is nearly a complete rewrite of the codebase. Things have moved but no features have been removed.**
 + Requires LifterLMS version 3.22.0 or later
@@ -14,7 +14,8 @@ v3.0.0-beta.1 - 2018-07-31
 + Uses the LifterLMS.com v3 REST api for all API calls
 + Added RTL language support
 + Added i18n support
-+ Fixes many bugs and certainly introduces some new ones we haven't found
++ Removed and replaced various functions
++ Fixes many bugs and almost certainly introduces some new ones
 
 
 v2.5.1 - 2017-11-08
