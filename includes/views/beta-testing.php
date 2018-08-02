@@ -18,14 +18,15 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php _e( 'When no beta versions are available, automatic updates will be to the latest stable version of the plugin or theme.', 'lifterlms-helper' ); ?></p>
 
 		<h3><?php _e( 'Rolling back and restoring data', 'lifterlms-helper' ); ?></h3>
-		<p><?php _e( 'You can switch back to the latest stable version by unsubscribing from the <em>beta channel</em>. <strong>Doing so will not restore your database</strong>. If you require a database restoration you must do so manually after the stable codebase is reinstalled.', 'lifterlms-helper' ); ?>
+		<p><strong><?php _e( 'This plugin does not provide you with the ability to rollback from a beta version.', 'lifterlms-helper' ); ?></strong></p>
+		<p><?php _e( 'To rollback you should subscribe to the stable channel, delete the beta version of the plugin, and then re-install the latest version. If a database migration was run you should also restore your database from a backup.', 'lifterlms-helper' ); ?></p>
 
 		<h3><?php _e( 'Reporting bugs and contributing', 'lifterlms-helper' ); ?></h3>
 		<p><?php printf( __( 'We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started.', 'lifterlms-helper' ), '<a href="https://github.com/gocodebox/lifterlms/blob/master/.github/CONTRIBUTING.md">', '</a>' ); ?></p>
 		<p><?php printf( __( 'If you encounter a bug while beta testing, please report it at %s.', 'lifterlms-helper' ), make_clickable( 'https://github.com/gocodebox/lifterlms/issues' ) ); ?></p>
 
 		<h3><?php _e( 'Still have questions?', 'lifterlms-helper' ); ?></h3>
-		<p><?php printf( __( "Check out our Guide to Beta Testing at %s.", 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/beta-testing' ) ); ?></p>
+		<p><?php printf( __( "Check out our Guide to Beta Testing at %s.", 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/beta-testing/' ) ); ?></p>
 
 	</aside>
 
