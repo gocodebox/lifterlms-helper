@@ -70,11 +70,12 @@ final class LifterLMS_Helper {
 	 * Inititalize the Plugin
 	 * @return    void
 	 * @since     1.0.0
-	 * @version   1.0.0
+	 * @version   3.0.0
 	 */
 	public function init() {
 
-		if ( class_exists( 'LifterLMS' ) ) {
+		// only load if we have the minimum LifterLMS version installed & activated
+		if ( function_exists( 'LLMS' ) && version_compare( '3.22.0', LLMS()->version, '<=' ) ) {
 
 			$this->includes();
 			$this->crons();
