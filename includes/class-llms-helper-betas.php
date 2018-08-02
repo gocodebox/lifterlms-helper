@@ -50,7 +50,9 @@ class LLMS_Helper_Betas {
 		foreach ( $_POST['llms_channel_subscriptions'] as $id => $channel ) {
 
 			$addon = llms_get_add_on( $id );
-			$addon->subscribe_to_channel( sanitize_text_field( $channel ) );
+			if ( 'channel' !== $addon->get_channel_subscription() ) {
+				$addon->subscribe_to_channel( sanitize_text_field( $channel ) );
+			}
 
 		}
 
