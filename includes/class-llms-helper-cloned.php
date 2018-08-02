@@ -17,7 +17,6 @@ class LLMS_Helper_Cloned {
 	public function __construct() {
 
 		add_action( 'llms_site_clone_detected', array( $this, 'handle_clone' ) );
-		add_action( 'admin_init', array( $this, 'handle_clone' ) );
 
 	}
 
