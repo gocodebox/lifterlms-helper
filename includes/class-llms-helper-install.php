@@ -71,7 +71,7 @@ class LLMS_Helper_Install {
 
 	/**
 	 * Migrate to version 3.0.0
-	 * @return   [type]
+	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
 	 */
@@ -82,9 +82,14 @@ class LLMS_Helper_Install {
 		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms-helper' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
 
 		$keys = array();
-		foreach ( llms_helper_get_available_add_ons() as $id ) {
+		$addons = llms_get_add_ons();
+		foreach ( $addons['items'] as $addon ) {
 
-			$addon = llms_get_add_on( $id );
+			$addon = llms_get_add_on( $addon );
+
+			if ( ! $addon->is_installable() ) {
+				continue;
+			}
 
 			$option_name = sprintf( '%s_activation_key', $addon->get( 'slug' ) );
 
