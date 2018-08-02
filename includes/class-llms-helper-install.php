@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Plugin installation
  * @since   3.0.0
- * @version 3.0.0
+ * @version [version]
  */
 class LLMS_Helper_Install {
 
@@ -13,10 +13,10 @@ class LLMS_Helper_Install {
 	 * Hooks all actions
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public static function init() {
-		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 5 );
 	}
 
 	/**
@@ -73,7 +73,7 @@ class LLMS_Helper_Install {
 	 * Migrate to version 3.0.0
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	private static function _migrate_300() {
 
@@ -103,23 +103,28 @@ class LLMS_Helper_Install {
 
 		}
 
-		$res = LLMS_Helper_Keys::activate_keys( $keys );
+		if ( $keys ) {
 
-		if ( ! is_wp_error( $res ) ) {
+			$res = LLMS_Helper_Keys::activate_keys( $keys );
 
-			$data = $res['data'];
-			if ( isset( $data['activations'] ) ) {
+			if ( ! is_wp_error( $res ) ) {
 
-				$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms-helper' ), count( $data['activations'] ) ) . ':</p>';
+				$data = $res['data'];
+				if ( isset( $data['activations'] ) ) {
 
-				foreach ( $data['activations'] as $activation ) {
-					LLMS_Helper_Keys::add_license_key( $activation );
-					$text .= '<p><em>' . $activation['license_key'] . '</em></p>';
+					$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms-helper' ), count( $data['activations'] ) ) . ':</p>';
+
+					foreach ( $data['activations'] as $activation ) {
+						LLMS_Helper_Keys::add_license_key( $activation );
+						$text .= '<p><em>' . $activation['license_key'] . '</em></p>';
+					}
+
 				}
 
 			}
 
 		}
+
 
 		LLMS_Admin_Notices::flash_notice( $text, 'info' );
 
