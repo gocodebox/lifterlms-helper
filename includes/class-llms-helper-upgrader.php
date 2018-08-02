@@ -31,9 +31,6 @@ class LLMS_Helper_Upgrader {
 	 */
 	private function __construct() {
 
-		// cron to check status of license keys
-		add_action( 'llms_check_license_keys', array( $this, 'check_keys' ) );
-
 		// setup a llms add-on plugin info
 		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
@@ -57,6 +54,7 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Install an add-on from LifterLMS.com
 	 * @param    string|obj     $addon_or_id   ID for the add-on or an instance of the LLMS_Add_On
+	 * @param    string         $action        installation type [install|update]
 	 * @return   WP_Error|true
 	 * @since    3.0.0
 	 * @version  3.0.0
