@@ -69,7 +69,7 @@ class LLMS_Helper_Betas {
 		}
 
 		$addons = llms_helper_get_available_add_ons();
-		array_unshift( $addons, 'lifterlms-com-lifterlms' );
+		array_unshift( $addons, 'lifterlms-com-lifterlms', 'lifterlms-com-lifterlms-helper' );
 		include 'views/beta-testing.php';
 
 	}
