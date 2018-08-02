@@ -49,7 +49,7 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:295, includes/model-llms-helper-add-on.php:92
+#: includes/class-llms-helper-admin-add-ons.php:295, includes/model-llms-helper-add-on.php:101
 msgid "Install"
 msgstr ""
 
@@ -85,7 +85,7 @@ msgstr ""
 msgid "You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen."
 msgstr ""
 
-#: includes/class-llms-helper-install.php:108
+#: includes/class-llms-helper-install.php:113
 msgid "%d license has been automatically migrated from the previous version of the LifterLMS Helper"
 msgid_plural "%d licenses have been automatically migrated from the previous version of the LifterLMS Helper."
 msgstr[0] ""
@@ -96,106 +96,106 @@ msgstr[1] ""
 msgid "The license \"%s\" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:69
+#: includes/class-llms-helper-upgrader.php:67
 msgid "Invalid add-on ID."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:73
+#: includes/class-llms-helper-upgrader.php:71
 msgid "Invalid action."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:77
+#: includes/class-llms-helper-upgrader.php:75
 msgid "Add-on cannot be installable."
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/class-llms-helper-upgrader.php:83
+#: includes/class-llms-helper-upgrader.php:81
 msgid "%s is already installed"
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:92
+#: includes/class-llms-helper-upgrader.php:90
 msgid "An error occured while attempting to retrieve add-on download information. Please try again."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:111
+#: includes/class-llms-helper-upgrader.php:109
 msgid "The requested action is not possible."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:128
+#: includes/class-llms-helper-upgrader.php:126
 msgid "Unable to connect to the filesystem. Please confirm your credentials."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:151
+#: includes/class-llms-helper-upgrader.php:149
 msgid "Your LifterLMS add-on is currently unlicensed and cannot be updated!"
 msgstr ""
 
 #. translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag
-#: includes/class-llms-helper-upgrader.php:156
+#: includes/class-llms-helper-upgrader.php:154
 msgid "If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s."
 msgstr ""
 
 #. translators: %s = URI to licensing FAQ
-#: includes/class-llms-helper-upgrader.php:161
+#: includes/class-llms-helper-upgrader.php:159
 msgid "Learn more about LifterLMS add-on licensing at %s."
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:53
+#: includes/model-llms-helper-add-on.php:62
 msgid "Unable to locate a license key for the selected add-on."
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:84
+#: includes/model-llms-helper-add-on.php:93
 msgid "Active"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:85
+#: includes/model-llms-helper-add-on.php:94
 msgid "Inactive"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:87
+#: includes/model-llms-helper-add-on.php:96
 msgid "Installed"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:88
+#: includes/model-llms-helper-add-on.php:97
 msgid "Not Installed"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:90
+#: includes/model-llms-helper-add-on.php:99
 msgid "Activate"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:91
+#: includes/model-llms-helper-add-on.php:100
 msgid "Deactivate"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:94, includes/views/beta-testing.php:53
+#: includes/model-llms-helper-add-on.php:103, includes/views/beta-testing.php:54
 msgid "N/A"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:96
+#: includes/model-llms-helper-add-on.php:105
 msgid "Licensed"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:97
+#: includes/model-llms-helper-add-on.php:106
 msgid "Unlicensed"
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/model-llms-helper-add-on.php:137
+#: includes/model-llms-helper-add-on.php:146
 msgid "%s was successfully installed."
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/model-llms-helper-add-on.php:146
+#: includes/model-llms-helper-add-on.php:155
 msgid "Could not install %s."
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/model-llms-helper-add-on.php:188
+#: includes/model-llms-helper-add-on.php:197
 msgid "%s was successfully updated."
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/model-llms-helper-add-on.php:197
+#: includes/model-llms-helper-add-on.php:206
 msgid "Could not update %s."
 msgstr ""
 
@@ -224,57 +224,61 @@ msgid "Rolling back and restoring data"
 msgstr ""
 
 #: includes/views/beta-testing.php:21
-msgid "You can switch back to the latest stable version by unsubscribing from the <em>beta channel</em>. <strong>Doing so will not restore your database</strong>. If you require a database restoration you must do so manually after the stable codebase is reinstalled."
+msgid "This plugin does not provide you with the ability to rollback from a beta version."
 msgstr ""
 
-#: includes/views/beta-testing.php:23
-msgid "Reporting bugs and contributing"
+#: includes/views/beta-testing.php:22
+msgid "To rollback you should subscribe to the stable channel, delete the beta version of the plugin, and then re-install the latest version. If a database migration was run you should also restore your database from a backup."
 msgstr ""
 
 #: includes/views/beta-testing.php:24
-msgid "We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started."
+msgid "Reporting bugs and contributing"
 msgstr ""
 
 #: includes/views/beta-testing.php:25
+msgid "We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started."
+msgstr ""
+
+#: includes/views/beta-testing.php:26
 msgid "If you encounter a bug while beta testing, please report it at %s."
 msgstr ""
 
-#: includes/views/beta-testing.php:27
+#: includes/views/beta-testing.php:28
 msgid "Still have questions?"
 msgstr ""
 
-#: includes/views/beta-testing.php:28
+#: includes/views/beta-testing.php:29
 msgid "Check out our Guide to Beta Testing at %s."
 msgstr ""
 
-#: includes/views/beta-testing.php:35
+#: includes/views/beta-testing.php:36
 msgid "Name"
 msgstr ""
 
-#: includes/views/beta-testing.php:36
+#: includes/views/beta-testing.php:37
 msgid "Channel"
 msgstr ""
 
-#: includes/views/beta-testing.php:37
+#: includes/views/beta-testing.php:38
 msgid "Installed Version"
 msgstr ""
 
-#: includes/views/beta-testing.php:38
+#: includes/views/beta-testing.php:39
 msgid "Beta Version"
 msgstr ""
 
-#: includes/views/beta-testing.php:48
+#: includes/views/beta-testing.php:49
 msgid "Stable"
 msgstr ""
 
-#: includes/views/beta-testing.php:49
+#: includes/views/beta-testing.php:50
 msgid "Beta"
 msgstr ""
 
-#: includes/views/beta-testing.php:59
+#: includes/views/beta-testing.php:60
 msgid "Save & Update"
 msgstr ""
 
-#: includes/views/beta-testing.php:66
+#: includes/views/beta-testing.php:67
 msgid "Are you sure you want to enable or disable beta testing for these plugins and themes?"
 msgstr ""
