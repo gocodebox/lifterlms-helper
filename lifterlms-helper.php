@@ -3,7 +3,7 @@
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
- * Version: 3.0.0-beta.1
+ * Version: 3.0.1
  * Author: Thomas Patrick Levy, codeBOX LLC
  * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper
@@ -21,7 +21,7 @@ final class LifterLMS_Helper {
 	 * Current Plugin Version
 	 * @var  string
 	 */
-	public $version = '3.0.0-beta.1';
+	public $version = '3.0.1';
 
 	/**
 	 * Singleton instance reference

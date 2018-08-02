@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * License Key functions
  * @since    3.0.0
- * @version  [version]
+ * @version  3.0.1
  */
 class LLMS_Helper_Keys {
 
@@ -13,7 +13,7 @@ class LLMS_Helper_Keys {
 	 * @param    mixed     $keys  array white-space separated list of API keys
 	 * @return   array
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.1
 	 */
 	public static function activate_keys( $keys ) {
 

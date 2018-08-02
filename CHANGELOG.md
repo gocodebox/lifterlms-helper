@@ -1,6 +1,15 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.0.1 - 2018-08-02
+-------------------
+
++ Fixed an issue causing key migration to run on the frontend resulting in a fatal error related to missing admin-only functions
++ Fixed an issue causing multiple submitted keys to not work properly on certain environments
++ Fixed issue causing installation script to make an activation API call even when no keys exist
++ Improved installation script message to only display a migration message when keys are actually migrated
+
+
 v3.0.0 - 2018-08-01
 -------------------
 

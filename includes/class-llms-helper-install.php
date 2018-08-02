@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Plugin installation
  * @since   3.0.0
- * @version [version]
+ * @version 3.0.1
  */
 class LLMS_Helper_Install {
 
@@ -13,7 +13,7 @@ class LLMS_Helper_Install {
 	 * Hooks all actions
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.1
 	 */
 	public static function init() {
 		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 5 );
@@ -73,7 +73,7 @@ class LLMS_Helper_Install {
 	 * Migrate to version 3.0.0
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.1
 	 */
 	private static function _migrate_300() {
 
