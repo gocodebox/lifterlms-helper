@@ -228,8 +228,6 @@ class LLMS_Helper_Upgrader {
 
 		$all_products = llms_get_add_ons( false );
 
-		// llms_log( $all_products );
-
 		foreach ( $all_products['items'] as $addon_data ) {
 
 			$addon = llms_get_add_on( $addon_data );
