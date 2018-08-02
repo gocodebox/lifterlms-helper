@@ -46,9 +46,6 @@ class LLMS_Helper_Assets {
 		wp_style_add_data( 'llms-sl', 'rtl', 'replace' );
 		wp_style_add_data( 'llms-sl', 'suffix', LLMS_ASSETS_SUFFIX );
 
-		// wp_register_script( 'llms-sl-profile', LLMS_HELPER_PLUGIN_URL . 'assets/js/llms-sl-profile' . LLMS_ASSETS_SUFFIX . '.js', array( 'jquery' ), LLMS_HELPER_VERSION, true );
-		// wp_enqueue_script( 'llms-sl-profile' );
-
 	}
 
 }
