@@ -1,6 +1,11 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * License Key functions
+ * @since    3.0.0
+ * @version  [version]
+ */
 class LLMS_Helper_Keys {
 
 	/**
@@ -8,15 +13,13 @@ class LLMS_Helper_Keys {
 	 * @param    mixed     $keys  array white-space separated list of API keys
 	 * @return   array
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public static function activate_keys( $keys ) {
 
 		// sanitize before sending
 		if ( ! is_array( $keys ) ) {
-
-			$keys = explode( ' ', $keys );
-
+			$keys = explode( PHP_EOL, $keys );
 		}
 
 		$keys = array_map( 'sanitize_text_field', $keys );
