@@ -139,7 +139,7 @@ class LLMS_Helper_Upgrader {
 	 * @param    array     $res          response data
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public function in_plugin_update_message( $plugin_data, $res ) {
 
@@ -158,7 +158,7 @@ class LLMS_Helper_Upgrader {
 
 			echo '<p class="llms-msg">';
 			/* Translators: %s = URI to licensing FAQ */
-			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/#' ) );
+			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) );
 			echo '</p><p style="display:none;">';
 
 		}
