@@ -1,6 +1,11 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.0.2 - 2018-08-29
+-------------------
+
++ Fix fatal errors encountered as a result of failed API calls
+
 v3.0.1 - 2018-08-02
 -------------------
 

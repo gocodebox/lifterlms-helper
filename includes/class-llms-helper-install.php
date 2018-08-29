@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Plugin installation
  * @since   3.0.0
- * @version 3.0.1
+ * @version [version]
  */
 class LLMS_Helper_Install {
 
@@ -73,7 +73,7 @@ class LLMS_Helper_Install {
 	 * Migrate to version 3.0.0
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  3.0.1
+	 * @version  [version]
 	 */
 	private static function _migrate_300() {
 
@@ -83,24 +83,26 @@ class LLMS_Helper_Install {
 
 		$keys = array();
 		$addons = llms_get_add_ons();
-		foreach ( $addons['items'] as $addon ) {
+		if ( ! is_wp_error( $addons ) && isset( $addons['items'] ) ) {
+			foreach ( $addons['items'] as $addon ) {
 
-			$addon = llms_get_add_on( $addon );
+				$addon = llms_get_add_on( $addon );
 
-			if ( ! $addon->is_installable() ) {
-				continue;
+				if ( ! $addon->is_installable() ) {
+					continue;
+				}
+
+				$option_name = sprintf( '%s_activation_key', $addon->get( 'slug' ) );
+
+				$key = get_option( $option_name );
+				if ( $key ) {
+					$keys[] = get_option( $option_name );
+				}
+
+				delete_option( $option_name );
+				delete_option( sprintf( '%s_update_key', $addon->get( 'slug' ) ) );
+
 			}
-
-			$option_name = sprintf( '%s_activation_key', $addon->get( 'slug' ) );
-
-			$key = get_option( $option_name );
-			if ( $key ) {
-				$keys[] = get_option( $option_name );
-			}
-
-			delete_option( $option_name );
-			delete_option( sprintf( '%s_update_key', $addon->get( 'slug' ) ) );
-
 		}
 
 		if ( $keys ) {

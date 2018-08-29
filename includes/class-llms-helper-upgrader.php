@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
  * @since    3.0.0
- * @version  3.0.0
+ * @version  [version]
  */
 class LLMS_Helper_Upgrader {
 
@@ -27,7 +27,7 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Constructor
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	private function __construct() {
 
@@ -42,10 +42,12 @@ class LLMS_Helper_Upgrader {
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_things' ) );
 
 		$products = llms_get_add_ons();
-		foreach ( (array) $products['items'] as $product ) {
+		if ( ! is_wp_error( $products ) && isset( $products['items'] ) ) {
+			foreach ( (array) $products['items'] as $product ) {
 
-			if ( 'plugin' === $product['type'] && $product['update_file'] ) {
-				add_action( "in_plugin_update_message-{$product['update_file']}", array( $this, 'in_plugin_update_message' ), 10, 2 );
+				if ( 'plugin' === $product['type'] && $product['update_file'] ) {
+					add_action( "in_plugin_update_message-{$product['update_file']}", array( $this, 'in_plugin_update_message' ), 10, 2 );
+				}
 			}
 		}
 
@@ -151,7 +153,7 @@ class LLMS_Helper_Upgrader {
 
 			echo '<p class="llms-msg">';
 			/* Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag */
-			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms-helper' ), '<a href="#">', '</a>' );
+			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms-helper' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
 			echo '</p>';
 
 			echo '<p class="llms-msg">';
@@ -209,7 +211,7 @@ class LLMS_Helper_Upgrader {
 	 * @param    obj     $value  transient value
 	 * @return   obj
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public function pre_set_site_transient_update_things( $value ) {
 
@@ -227,6 +229,9 @@ class LLMS_Helper_Upgrader {
 		}
 
 		$all_products = llms_get_add_ons( false );
+		if ( is_wp_error( $all_products ) || ! isset( $all_products['items'] ) ) {
+			return $value;
+		}
 
 		foreach ( $all_products['items'] as $addon_data ) {
 

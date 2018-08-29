@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Modify the admin add-ons page
  * @since    3.0.0
- * @version  3.0.0
+ * @version  [version]
  */
 class LLMS_Helper_Admin_Add_Ons {
 
@@ -71,14 +71,14 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @param    string     $section  current tab slug
 	 * @return   array
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public function filter_get_current_section_content( $content, $section ) {
 
 		if ( 'mine' === $section ) {
 			$mine = llms_helper_get_available_add_ons();
 			$addons = llms_get_add_ons();
-			if ( isset( $addons['items'] ) ) {
+			if ( ! is_wp_error( $addons ) && isset( $addons['items'] ) ) {
 				foreach ( $addons['items'] as $item ) {
 					if ( in_array( $item['id'], $mine ) ) {
 						$content[] = $item;
