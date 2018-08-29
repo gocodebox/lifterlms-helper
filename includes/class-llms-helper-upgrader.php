@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
  * @since    3.0.0
- * @version  [version]
+ * @version  3.0.2
  */
 class LLMS_Helper_Upgrader {
 
@@ -27,7 +27,7 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Constructor
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.2
 	 */
 	private function __construct() {
 
@@ -139,7 +139,7 @@ class LLMS_Helper_Upgrader {
 	 * @param    array     $res          response data
 	 * @return   void
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.2
 	 */
 	public function in_plugin_update_message( $plugin_data, $res ) {
 
@@ -211,7 +211,7 @@ class LLMS_Helper_Upgrader {
 	 * @param    obj     $value  transient value
 	 * @return   obj
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.2
 	 */
 	public function pre_set_site_transient_update_things( $value ) {
 
@@ -371,7 +371,7 @@ class LLMS_Helper_Upgrader {
 	 * @param    array     $options  package option data
 	 * @return   array
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.2
 	 */
 	public function upgrader_package_options( $options ) {
 

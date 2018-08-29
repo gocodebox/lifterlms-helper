@@ -85,57 +85,57 @@ msgstr ""
 msgid "You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen."
 msgstr ""
 
-#: includes/class-llms-helper-install.php:113
+#: includes/class-llms-helper-install.php:117
 msgid "%d license has been automatically migrated from the previous version of the LifterLMS Helper"
 msgid_plural "%d licenses have been automatically migrated from the previous version of the LifterLMS Helper."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s = License Key
-#: includes/class-llms-helper-keys.php:108
+#: includes/class-llms-helper-keys.php:111
 msgid "The license \"%s\" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:67
+#: includes/class-llms-helper-upgrader.php:69
 msgid "Invalid add-on ID."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:71
+#: includes/class-llms-helper-upgrader.php:73
 msgid "Invalid action."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:75
+#: includes/class-llms-helper-upgrader.php:77
 msgid "Add-on cannot be installable."
 msgstr ""
 
 #. translators: %s = Add-on name
-#: includes/class-llms-helper-upgrader.php:81
+#: includes/class-llms-helper-upgrader.php:83
 msgid "%s is already installed"
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:90
+#: includes/class-llms-helper-upgrader.php:92
 msgid "An error occured while attempting to retrieve add-on download information. Please try again."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:109
+#: includes/class-llms-helper-upgrader.php:111
 msgid "The requested action is not possible."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:126
+#: includes/class-llms-helper-upgrader.php:128
 msgid "Unable to connect to the filesystem. Please confirm your credentials."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:149
+#: includes/class-llms-helper-upgrader.php:151
 msgid "Your LifterLMS add-on is currently unlicensed and cannot be updated!"
 msgstr ""
 
 #. translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag
-#: includes/class-llms-helper-upgrader.php:154
+#: includes/class-llms-helper-upgrader.php:156
 msgid "If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s."
 msgstr ""
 
 #. translators: %s = URI to licensing FAQ
-#: includes/class-llms-helper-upgrader.php:159
+#: includes/class-llms-helper-upgrader.php:161
 msgid "Learn more about LifterLMS add-on licensing at %s."
 msgstr ""
 

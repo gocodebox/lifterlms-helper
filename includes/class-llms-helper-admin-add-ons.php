@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Modify the admin add-ons page
  * @since    3.0.0
- * @version  [version]
+ * @version  3.0.2
  */
 class LLMS_Helper_Admin_Add_Ons {
 
@@ -71,7 +71,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @param    string     $section  current tab slug
 	 * @return   array
 	 * @since    3.0.0
-	 * @version  [version]
+	 * @version  3.0.2
 	 */
 	public function filter_get_current_section_content( $content, $section ) {
 
