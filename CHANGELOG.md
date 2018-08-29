@@ -6,6 +6,7 @@ v3.0.2 - 2018-08-29
 
 + Fixed fatal errors encountered as a result of failed API calls
 + Fixed broken links output on the plugins update screen when an add-on is unlicensed and has an update available
++ Fixed issue causing non-beta versions of the LifterLMS core to be served from LifterLMS.com instead of from WordPress.org
 
 
 v3.0.1 - 2018-08-02

@@ -368,10 +368,10 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Get a real package download url for a LifterLMS add-on
 	 * This is called immediately prior to package upgrades
-	 * @param    [type]     $options  [description]
-	 * @return   [type]
+	 * @param    array     $options  package option data
+	 * @return   array
 	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @version  [version]
 	 */
 	public function upgrader_package_options( $options ) {
 
@@ -397,7 +397,9 @@ class LLMS_Helper_Upgrader {
 			return $options;
 		}
 
-		$options['package'] = $info['data']['url'];
+		if ( true === $options['package'] ) {
+			$options['package'] = $info['data']['url'];
+		}
 
 		return $options;
 
