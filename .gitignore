@@ -16,3 +16,5 @@ tmp/*
 # deploy scripts directory
 deploy/
 deploy/*
+
+vendor/
