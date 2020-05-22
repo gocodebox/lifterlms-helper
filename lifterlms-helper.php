@@ -10,7 +10,7 @@
  * Domain Path: /i18n
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * LifterLMS Minimum Version: 3.1.0
+ * Requires LifterLMS: 3.22.0
  */
 defined( 'ABSPATH' ) || exit;
 

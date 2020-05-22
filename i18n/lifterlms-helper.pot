@@ -1,26 +1,44 @@
-# Copyright (C) 2018 lifterlms-helper
-# This file is distributed under the same license as the lifterlms-helper package.
+# Copyright (C) 2015-2020 LifterLMS
+# This file is distributed under the same license as the LifterLMS Helper plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: lifterlms-helper\n"
+"Project-Id-Version: LifterLMS Helper 3.1.0\n"
+"Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
+"Last-Translator: Team LifterLMS <team@lifterlms.com>\n"
+"Language-Team: Team LifterLMS <team@lifterlms.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-Team: LifterLMS <help@lifterlms.com>\n"
-"Last-Translator: Thomas Patrick Levy <thomas@lifterlms.com>\n"
-"Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-05-22T15:53:46-07:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: llms-dev 1.0.0\n"
+"X-Domain: lifterlms-helper\n"
+
+#. Plugin Name of the plugin
+msgid "LifterLMS Helper"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://lifterlms.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Update, install, and beta test LifterLMS and LifterLMS add-ons"
+msgstr ""
+
+#. Author of the plugin
+msgid "LifterLMS"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://lifterlms.com"
+msgstr ""
 
 #: includes/class-llms-helper-admin-add-ons.php:170
 msgid "\"%s\" has been saved!"
 msgstr ""
 
-#. translators: %s = License Key
+#. Translators: %s = License Key
 #: includes/class-llms-helper-admin-add-ons.php:195
 msgid "License key \"%s\" was removed from this site."
 msgstr ""
@@ -49,7 +67,8 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: includes/class-llms-helper-admin-add-ons.php:295, includes/model-llms-helper-add-on.php:101
+#: includes/class-llms-helper-admin-add-ons.php:295
+#: includes/model-llms-helper-add-on.php:101
 msgid "Install"
 msgstr ""
 
@@ -91,51 +110,51 @@ msgid_plural "%d licenses have been automatically migrated from the previous ver
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: %s = License Key
+#. Translators: %s = License Key
 #: includes/class-llms-helper-keys.php:111
 msgid "The license \"%s\" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:69
+#: includes/class-llms-helper-upgrader.php:78
 msgid "Invalid add-on ID."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:73
+#: includes/class-llms-helper-upgrader.php:82
 msgid "Invalid action."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:77
+#: includes/class-llms-helper-upgrader.php:86
 msgid "Add-on cannot be installable."
 msgstr ""
 
-#. translators: %s = Add-on name
-#: includes/class-llms-helper-upgrader.php:83
+#. Translators: %s = Add-on name
+#: includes/class-llms-helper-upgrader.php:92
 msgid "%s is already installed"
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:92
+#: includes/class-llms-helper-upgrader.php:101
 msgid "An error occured while attempting to retrieve add-on download information. Please try again."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:111
+#: includes/class-llms-helper-upgrader.php:120
 msgid "The requested action is not possible."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:128
+#: includes/class-llms-helper-upgrader.php:137
 msgid "Unable to connect to the filesystem. Please confirm your credentials."
 msgstr ""
 
-#: includes/class-llms-helper-upgrader.php:151
+#: includes/class-llms-helper-upgrader.php:160
 msgid "Your LifterLMS add-on is currently unlicensed and cannot be updated!"
 msgstr ""
 
-#. translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag
-#: includes/class-llms-helper-upgrader.php:156
+#. Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag
+#: includes/class-llms-helper-upgrader.php:165
 msgid "If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s."
 msgstr ""
 
-#. translators: %s = URI to licensing FAQ
-#: includes/class-llms-helper-upgrader.php:161
+#. Translators: %s = URI to licensing FAQ
+#: includes/class-llms-helper-upgrader.php:170
 msgid "Learn more about LifterLMS add-on licensing at %s."
 msgstr ""
 
@@ -167,7 +186,8 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/model-llms-helper-add-on.php:103, includes/views/beta-testing.php:54
+#: includes/model-llms-helper-add-on.php:103
+#: includes/views/beta-testing.php:54
 msgid "N/A"
 msgstr ""
 
@@ -179,22 +199,22 @@ msgstr ""
 msgid "Unlicensed"
 msgstr ""
 
-#. translators: %s = Add-on name
+#. Translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:146
 msgid "%s was successfully installed."
 msgstr ""
 
-#. translators: %s = Add-on name
+#. Translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:155
 msgid "Could not install %s."
 msgstr ""
 
-#. translators: %s = Add-on name
+#. Translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:197
 msgid "%s was successfully updated."
 msgstr ""
 
-#. translators: %s = Add-on name
+#. Translators: %s = Add-on name
 #: includes/model-llms-helper-add-on.php:206
 msgid "Could not update %s."
 msgstr ""
