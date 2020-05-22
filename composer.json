@@ -1,0 +1,40 @@
+{
+  "name": "lifterlms/lifterlms-helper",
+  "description": "Update, install, and beta test LifterLMS and LifterLMS add-ons",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Team LifterLMS",
+      "email": "team@lifterlms.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.2"
+  },
+  "archive": {
+    "exclude": [
+      ".*",
+      "*.lock",
+      "*.xml",
+      "*.xml.dist",
+      "*.yml",
+      "*.config.js",
+
+      "composer.json",
+      "package.json",
+      "package-lock.json",
+      "README.md",
+
+      "assets/scss",
+
+      "dist",
+      "gulpfile.js",
+      "node_modules",
+      "tests",
+      "tmp",
+      "vendor"
+    ]
+  }
+}
