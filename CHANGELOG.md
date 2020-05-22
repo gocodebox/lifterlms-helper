@@ -1,6 +1,13 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.1.0 - 2020-05-22
+-------------------
+
++ Load changelogs from the make.lifterlms.com release notes archive in favor of from static html files.
++ Remove reliance on `file_get_contents()` causing errors on servers without access to the function.
+
+
 v3.0.2 - 2018-08-29
 -------------------
 

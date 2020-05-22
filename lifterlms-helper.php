@@ -3,14 +3,14 @@
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
- * Version: 3.0.2
+ * Version: 3.1.0
  * Author: Thomas Patrick Levy, codeBOX LLC
  * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper
  * Domain Path: /i18n
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * LifterLMS Minimum Version: 3.22.0
+ * LifterLMS Minimum Version: 3.1.0
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ final class LifterLMS_Helper {
 	 * Current Plugin Version
 	 * @var  string
 	 */
-	public $version = '3.0.2';
+	public $version = '3.1.0';
 
 	/**
 	 * Singleton instance reference

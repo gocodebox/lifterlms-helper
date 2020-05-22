@@ -3,7 +3,7 @@
  * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 3.0.0
  * @since 3.0.2 Unknown
- * @since [version] Load changelogs from the make blog in favor of static html changelogs.
+ * @since 3.1.0 Load changelogs from the make blog in favor of static html changelogs.
  */
 class LLMS_Helper_Upgrader {
 
@@ -367,7 +367,7 @@ class LLMS_Helper_Upgrader {
 	 * with a link to the release notes category on the make blog.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Retrieve changelog from the make blog in favor of legacy static html changelogs.
+	 * @since 3.1.0 Retrieve changelog from the make blog in favor of legacy static html changelogs.
 	 *
 	 * @param LLMS_Add_On $addon Add-on object.
 	 * @return string
@@ -396,7 +396,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * If an error is encountered, returns an empty string.
 	 *
-	 * @since [version]
+	 * @since 3.1.0
 	 *
 	 * @param string $tag Tag slug for the add-on on the blog.
 	 * @param string $url Full URL to the changelog entries for the add-on.
