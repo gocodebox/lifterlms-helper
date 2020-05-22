@@ -1,10 +1,19 @@
 <?php
+/**
+ * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
+ *
+ * @since 3.0.0
+ * @version [version]
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
- * @since    3.0.0
- * @version  3.0.2
+ * LLMS_Helper_Upgrader
+ *
+ * @since 3.0.0
+ * @since 3.0.2 Unknown
+ * @since [version] Load changelogs from the make blog in favor of static html changelogs.
  */
 class LLMS_Helper_Upgrader {
 
@@ -351,17 +360,77 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Retrieve the changelog for an addon
-	 * @param    obj     $addon  LLMS_Add_On
-	 * @return   string
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * Attempts to retrieve changelog HTML from the make blog.
+	 *
+	 * If the add-on's changelog is empty or a static html file, returns an error
+	 * with a link to the release notes category on the make blog.
+	 *
+	 * @since 3.0.0
+	 * @since [version] Retrieve changelog from the make blog in favor of legacy static html changelogs.
+	 *
+	 * @param LLMS_Add_On $addon Add-on object.
+	 * @return string
 	 */
 	private function get_changelog_for_api( $addon ) {
 
-		$changelog = file_get_contents( $addon->get( 'changelog' ) );
-		preg_match( '#<body[^>]*>(.*?)</body>#si', $changelog, $changelog );
-		// css on h2 is intended for plugin title in header image but causes huge gap on changelog
-		return str_replace( array( '<h2 id="', '</h2>' ), array( '<h3 id="', '</h3>' ), $changelog[1] );
+		$src   = $addon->get( 'changelog' );
+		$split = array_filter( explode( '/', $src ) );
+		$tag   = end( $split );
+
+		$logs = false;
+		if ( ! empty( $tag ) && false === strpos( $tag, '.html' ) ) {
+			$logs = $this->get_changelog_html( $tag, $src );
+		}
+
+		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms' ), 'https://make.lifterlms.com/category/release-notes/' ) );
+
+	}
+
+	/**
+	 * Retrieve changelog information from the make blog
+	 *
+	 * Retrieves the most recent 10 changelog entries for the add-on, formats the returned information
+	 * into a format suitable to display within the thickbox, adds a link to the full changelog,
+	 * and returns the html string.
+	 *
+	 * If an error is encountered, returns an empty string.
+	 *
+	 * @since [version]
+	 *
+	 * @param string $tag Tag slug for the add-on on the blog.
+	 * @param string $url Full URL to the changelog entries for the add-on.
+	 * @return string
+	 */
+	private function get_changelog_html( $tag, $url ) {
+
+		$ret  = '';
+		$req  = wp_remote_get( add_query_arg( 'slug', $tag, 'https://make.lifterlms.com/wp-json/wp/v2/tags' ) );
+		$body = json_decode( wp_remote_retrieve_body( $req ), true );
+
+		if ( ! empty( $body ) && ! empty( $body[0]['_links']['wp:post_type'][0]['href'] ) ) {
+
+			$logs_url = $body[0]['_links']['wp:post_type'][0]['href'];
+			$logs_req = wp_remote_get( $logs_url );
+			$logs     = json_decode( wp_remote_retrieve_body( $logs_req ), true );
+
+			if ( ! empty( $logs ) && is_array( $logs ) ) {
+				foreach ( $logs as $log ) {
+					$ts    = strtotime( $log['date_gmt'] );
+					$date  = function_exists( 'wp_date' ) ? wp_date( 'Y-m-d', $ts ) : gmdate( 'Y-m-d', $ts );
+					$split = array_filter( explode( ' ', $log['title']['rendered'] ) );
+					$ver   = end( $split );
+					$ret  .= '<h4>' . sprintf( __( 'Version %1$s - %2$s', 'lifterlms' ), sanitize_text_field( wp_strip_all_tags( trim( $ver ) ) ), $date ) . '</h4>';
+					$ret  .= strip_tags( $log['content']['rendered'], '<ul><li><p><a><b><strong><em><i>' );
+				}
+			}
+
+			$ret .= '<br>';
+			$ret .= '<p>'. make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms' ), $url ) ) .'</p>';
+
+		}
+
+		return $ret;
 
 	}
 
