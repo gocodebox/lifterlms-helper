@@ -1,1 +1,1 @@
-<?php // shh
+<?php // Shh.

@@ -4,6 +4,9 @@
  *
  * @package LifterLMS_Helper/Main
  *
+ * @since 1.0.0
+ * @version [version]
+ *
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
@@ -16,6 +19,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Requires LifterLMS: 3.22.0
  */
+
 defined( 'ABSPATH' ) || exit;
 
 if ( ! defined( 'LLMS_HELPER_PLUGIN_FILE' ) ) {
@@ -23,7 +27,7 @@ if ( ! defined( 'LLMS_HELPER_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'LLMS_HELPER_PLUGIN_DIR' ) ) {
-	define( 'LLMS_HELPER_PLUGIN_DIR', dirname( __FILE__ ) . '/' ) );
+	define( 'LLMS_HELPER_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 }
 
 if ( ! defined( 'LLMS_HELPER_PLUGIN_URL' ) ) {

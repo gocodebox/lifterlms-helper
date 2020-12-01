@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 1.0.0
  * @since [version] Moved class to its own file from `lifterlms-helper.php`.
+ *              Replaced class variable `$_instance` with `$instance`.
  */
 final class LifterLMS_Helper {
 
@@ -30,41 +31,42 @@ final class LifterLMS_Helper {
 	 *
 	 * @var null
 	 */
-	protected static $_instance = null;
+	protected static $instance = null;
 
 	/**
 	 * Instance of the LLMS_Helper_Upgrader class
-	 * use/retrieve via LLMS_Helper()->upgrader()
 	 *
-	 * @var null
+	 * Use/retrieve via llms_helper()->upgrader().
+	 *
+	 * @var null|LLMS_Helper_Upgrader
 	 */
 	private $upgrader = null;
 
 	/**
-	 * Main Instance of LifterLMS_Helper
-	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
+	 * Retrieve the main Instance of LifterLMS_Helper
 	 *
-	 * @return   LLMS_AddOn_Upgrader - Main instanceg
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 * @since [version] Use `self::$instance` in favor of `self::$_instance`.
+	 *
+	 * @return LifterLMS_Helper
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**
 	 * Constructor, get things started!
 	 *
-	 * @return   void
-	 * @since    1.0.0
-	 * @version  1.0.0
+	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	private function __construct() {
 
-		// Define class constants
+		// Define class constants.
 		$this->define_constants();
 
 		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
@@ -75,14 +77,16 @@ final class LifterLMS_Helper {
 	/**
 	 * Inititalize the Plugin
 	 *
-	 * @return    void
-	 * @since     1.0.0
-	 * @version   3.0.0
+	 * @since 1.0.0
+	 * @since 3.0.0 Unknown.
+	 * @since [version] Use `llms()` in favor of deprecated `LLMS()`.
+	 *
+	 * @return void
 	 */
 	public function init() {
 
-		// only load if we have the minimum LifterLMS version installed & activated
-		if ( function_exists( 'LLMS' ) && version_compare( '3.22.0', LLMS()->version, '<=' ) ) {
+		// Only load if we have the minimum LifterLMS version installed & activated.
+		if ( function_exists( 'llms' ) && version_compare( '3.22.0', llms()->version, '<=' ) ) {
 
 			$this->includes();
 			$this->crons();
@@ -97,9 +101,9 @@ final class LifterLMS_Helper {
 	/**
 	 * Schedule and handle cron functions
 	 *
-	 * @return   void
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @return void
 	 */
 	private function crons() {
 
@@ -114,8 +118,9 @@ final class LifterLMS_Helper {
 	/**
 	 * Define constants for plugin
 	 *
-	 * @return void
 	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	private function define_constants() {
 
@@ -128,9 +133,10 @@ final class LifterLMS_Helper {
 	/**
 	 * Include all clasess required by the plugin
 	 *
+	 * @since 1.0.0
+	 * @since 3.0.0 Include new files.
+	 *
 	 * @return void
-	 * @since    1.0.0
-	 * @version  3.0.0
 	 */
 	private function includes() {
 
@@ -143,33 +149,35 @@ final class LifterLMS_Helper {
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/class-llms-helper-options.php';
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/class-llms-helper-upgrader.php';
 
-		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/functions-llms-helper.php';
+		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/models/class-llms-helper-add-on.php';
 
-		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/model-llms-helper-add-on.php';
+		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/functions-llms-helper.php';
 
 	}
 
 	/**
 	 * Load l10n files
+	 *
 	 * The first loaded file takes priority
 	 *
 	 * Files can be found in the following order:
-	 *      WP_LANG_DIR/lifterlms/lifterlms-helper-LOCALE.mo (safe directory will never be automatically overwritten)
-	 *      WP_LANG_DIR/plugins/lifterlms-helper-LOCALE.mo (unsafe directory, may be automatically updated)
 	 *
-	 * @return   void
-	 * @since    2.5.0
-	 * @version  2.5.0
+	 *      WP_LANG_DIR/lifterlms/lifterlms-helper-LOCALE.mo (safe directory will never be automatically overwritten).
+	 *      WP_LANG_DIR/plugins/lifterlms-helper-LOCALE.mo (unsafe directory, may be automatically updated).
+	 *
+	 * @since 2.5.0
+	 *
+	 * @return void
 	 */
 	public function load_textdomain() {
 
-		// load locale
+		// Load locale.
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'lifterlms-helper' );
 
-		// load a lifterlms specific locale file if one exists
+		// Load a lifterlms specific locale file if one exists.
 		load_textdomain( 'lifterlms-helper', WP_LANG_DIR . '/lifterlms/lifterlms-helper-' . $locale . '.mo' );
 
-		// load localization files
+		// Load localization files.
 		load_plugin_textdomain( 'lifterlms-helper', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
 
 	}
@@ -177,9 +185,9 @@ final class LifterLMS_Helper {
 	/**
 	 * Return the singleton instance of the LLMS_Helper_Upgader
 	 *
-	 * @return   obj
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @return LLMS_Helper_Upgrader
 	 */
 	public function upgrader() {
 		return $this->upgrader;

@@ -2,6 +2,8 @@
 /**
  * Actions and LifterLMS.com API interactions related to plugin and theme updates for LifterLMS premium add-ons
  *
+ * @package LifterLMS_Helper/Classes
+ *
  * @since 3.0.0
  * @version 3.1.0
  */
@@ -12,43 +14,51 @@ defined( 'ABSPATH' ) || exit;
  * LLMS_Helper_Upgrader
  *
  * @since 3.0.0
- * @since 3.0.2 Unknown
+ * @since 3.0.2 Unknown.
  * @since 3.1.0 Load changelogs from the make blog in favor of static html changelogs.
+ * @since version] Use `$instance` in favor of `$_instance`.
  */
 class LLMS_Helper_Upgrader {
 
-	protected static $_instance = null;
+	/**
+	 * Singleton instance
+	 *
+	 * @var null|LLMS_Helper_Upgrader
+	 */
+	protected static $instance = null;
 
 	/**
 	 * Main Instance of LLMS_Helper_Upgrader
-	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
 	 *
-	 * @return   LLMS_Helper_Upgrader - Main instanceg
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 * @since version] Use `self::$instance` in favor of `self::$_instance`.
+	 *
+	 * @return LLMS_Helper_Upgrader
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**
 	 * Constructor
 	 *
-	 * @since    3.0.0
-	 * @version  3.0.2
+	 * @since 3.0.0
+	 * @since 3.0.2 Unknown.
+	 *
+	 * @return void
 	 */
 	private function __construct() {
 
-		// setup a llms add-on plugin info
+		// Setup a llms add-on plugin info.
 		add_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 
-		// authenticate and get a real download link during add-on upgrade attempts
+		// Authenticate and get a real download link during add-on upgrade attempts.
 		add_filter( 'upgrader_package_options', array( $this, 'upgrader_package_options' ) );
 
-		// add llms add-on info to list of available updates
+		// Add llms add-on info to list of available updates.
 		add_filter( 'pre_set_site_transient_update_themes', array( $this, 'pre_set_site_transient_update_things' ) );
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_things' ) );
 
@@ -67,21 +77,22 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Install an add-on from LifterLMS.com
 	 *
-	 * @param    string|obj $addon_or_id   ID for the add-on or an instance of the LLMS_Add_On
-	 * @param    string     $action        installation type [install|update]
-	 * @return   WP_Error|true
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 * @since [version] Use strict comparison for `in_array()`.
+	 *
+	 * @param string|obj $addon_or_id ID for the add-on or an instance of the LLMS_Add_On.
+	 * @param string     $action      Installation type [install|update].
+	 * @return WP_Error|true
 	 */
 	public function install_addon( $addon_or_id, $action = 'install' ) {
 
-		// setup the addon
+		// Setup the addon.
 		$addon = is_a( $addon_or_id, 'LLMS_Add_On' ) ? $addon_or_id : llms_get_add_on( $addon_or_id );
 		if ( ! $addon ) {
 			return new WP_Error( 'invalid_addon', __( 'Invalid add-on ID.', 'lifterlms-helper' ) );
 		}
 
-		if ( ! in_array( $action, array( 'install', 'update' ) ) ) {
+		if ( ! in_array( $action, array( 'install', 'update' ), true ) ) {
 			return new WP_Error( 'invalid_action', __( 'Invalid action.', 'lifterlms-helper' ) );
 		}
 
@@ -89,13 +100,13 @@ class LLMS_Helper_Upgrader {
 			return new WP_Error( 'not_installable', __( 'Add-on cannot be installable.', 'lifterlms-helper' ) );
 		}
 
-		// make sure it's not already installed
+		// Make sure it's not already installed.
 		if ( 'install' === $action && $addon->is_installed() ) {
-			/* Translators: %s = Add-on name */
+			// Translators: %s = Add-on name.
 			return new WP_Error( 'installed', sprintf( __( '%s is already installed', 'lifterlms-helper' ), $addon->get( 'title' ) ) );
 		}
 
-		// get download info via llms.com api
+		// Get download info via llms.com api.
 		$dl_info = $addon->get_download_info();
 		if ( is_wp_error( $dl_info ) ) {
 			return $dl_info;
@@ -145,14 +156,14 @@ class LLMS_Helper_Upgrader {
 	}
 
 	/**
-	 * Output additional information on plugins update screen when updates are available
-	 * for an unlicensed addon
+	 * Output additional information on plugins update screen when updates are available for an unlicensed addon
 	 *
-	 * @param    array $plugin_data  array of plugin data
-	 * @param    array $res          response data
-	 * @return   void
-	 * @since    3.0.0
-	 * @version  3.0.2
+	 * @since 3.0.0
+	 * @since 3.0.2 Unknown.
+	 *
+	 * @param array $plugin_data Array of plugin data.
+	 * @param array $res         Response data.
+	 * @return void
 	 */
 	public function in_plugin_update_message( $plugin_data, $res ) {
 
@@ -165,12 +176,12 @@ class LLMS_Helper_Upgrader {
 			echo '</strong></p>';
 
 			echo '<p class="llms-msg">';
-			/* Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag */
+			// Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag.
 			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms-helper' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
 			echo '</p>';
 
 			echo '<p class="llms-msg">';
-			/* Translators: %s = URI to licensing FAQ */
+			// Translators: %s = URI to licensing FAQ.
 			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) );
 			echo '</p><p style="display:none;">';
 
@@ -181,12 +192,12 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Filter API calls to get plugin information and replace it with data from LifterLMS.com API for our addons
 	 *
-	 * @param    bool   $response  false (denotes API call should be made to wp.org for plugin info)
-	 * @param    string $action    name of the API action
-	 * @param    obj    $args      additional API call args
-	 * @return   false|obj
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @param bool   $response False (denotes API call should be made to wp.org for plugin info).
+	 * @param string $action   Name of the API action.
+	 * @param obj    $args     Additional API call args.
+	 * @return false|obj
 	 */
 	public function plugins_api( $response, $action = '', $args = null ) {
 
@@ -223,10 +234,11 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Handle setting the site transient for plugin updates
 	 *
-	 * @param    obj $value  transient value
-	 * @return   obj
-	 * @since    3.0.0
-	 * @version  3.0.2
+	 * @since 3.0.0
+	 * @since 3.0.2 Unknown.
+	 *
+	 * @param obj $value Transient value.
+	 * @return obj
 	 */
 	public function pre_set_site_transient_update_things( $value ) {
 
@@ -302,10 +314,11 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
 	 *
-	 * @param    string $id  addon id
-	 * @return   object
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @param string $id               Addon id.
+	 * @param bool   $include_sections Whether or not to include additional sections like the description and changelog.
+	 * @return object
 	 */
 	private function set_plugins_api( $id, $include_sections = true ) {
 
@@ -378,6 +391,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.1.0 Retrieve changelog from the make blog in favor of legacy static html changelogs.
+	 * @since [version] Fix usage of incorrect textdomain.
 	 *
 	 * @param LLMS_Add_On $addon Add-on object.
 	 * @return string
@@ -393,7 +407,8 @@ class LLMS_Helper_Upgrader {
 			$logs = $this->get_changelog_html( $tag, $src );
 		}
 
-		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms' ), 'https://make.lifterlms.com/category/release-notes/' ) );
+		// Translators: %s = URL for the changelog website.
+		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms-helper' ), 'https://make.lifterlms.com/category/release-notes/' ) );
 
 	}
 
@@ -407,6 +422,7 @@ class LLMS_Helper_Upgrader {
 	 * If an error is encountered, returns an empty string.
 	 *
 	 * @since 3.1.0
+	 * @since [version] Fix usage of incorrect textdomain.
 	 *
 	 * @param string $tag Tag slug for the add-on on the blog.
 	 * @param string $url Full URL to the changelog entries for the add-on.
@@ -430,13 +446,15 @@ class LLMS_Helper_Upgrader {
 					$date  = function_exists( 'wp_date' ) ? wp_date( 'Y-m-d', $ts ) : gmdate( 'Y-m-d', $ts );
 					$split = array_filter( explode( ' ', $log['title']['rendered'] ) );
 					$ver   = end( $split );
-					$ret  .= '<h4>' . sprintf( __( 'Version %1$s - %2$s', 'lifterlms' ), sanitize_text_field( wp_strip_all_tags( trim( $ver ) ) ), $date ) . '</h4>';
-					$ret  .= strip_tags( $log['content']['rendered'], '<ul><li><p><a><b><strong><em><i>' );
+					// Translators: %1$s - Version number; %2$s - Release date.
+					$ret .= '<h4>' . sprintf( __( 'Version %1$s - %2$s', 'lifterlms-helper' ), sanitize_text_field( wp_strip_all_tags( trim( $ver ) ) ), $date ) . '</h4>';
+					$ret .= strip_tags( $log['content']['rendered'], '<ul><li><p><a><b><strong><em><i>' );
 				}
 			}
 
 			$ret .= '<br>';
-			$ret .= '<p>' . make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms' ), $url ) ) . '</p>';
+			// Translators: %s = URL to the full changelog.
+			$ret .= '<p>' . make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms-helper' ), $url ) ) . '</p>';
 
 		}
 
@@ -446,12 +464,14 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Get a real package download url for a LifterLMS add-on
+	 *
 	 * This is called immediately prior to package upgrades
 	 *
-	 * @param    array $options  package option data
-	 * @return   array
-	 * @since    3.0.0
-	 * @version  3.0.2
+	 * @since 3.0.0
+	 * @since 3.0.2 Unknown.
+	 *
+	 * @param array $options Package option data.
+	 * @return array
 	 */
 	public function upgrader_package_options( $options ) {
 

@@ -1,20 +1,28 @@
 <?php
-defined( 'ABSPATH' ) || exit;
-
 /**
  * Enqueue Scripts & Styles
  *
- * @since    3.0.0
- * @version  3.0.0
+ * @package LifterLMS_Helper/Classes
+ *
+ * @since 3.0.0
+ * @version 3.0.0
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * LLMS_Helper_Assets
+ *
+ * @since 3.0.0
  */
 class LLMS_Helper_Assets {
 
 	/**
 	 * Constructor
 	 *
-	 * @return   void
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 
@@ -25,9 +33,9 @@ class LLMS_Helper_Assets {
 	/**
 	 * Register, enqueue, & localize
 	 *
-	 * @return   void
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * @since 3.0.0
+	 *
+	 * @return void
 	 */
 	public function enqueue() {
 

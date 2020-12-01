@@ -1,20 +1,28 @@
 <?php
+/**
+ * Automatically attempt to activate already activated add-ons during clones
+ *
+ * @package LifterLMS_Helper/Classes
+ *
+ * @since 2.5.0
+ * @version 3.0.0
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Automatically attempt to activate already activated add-ons
- * during clones
+ * LLMS_Helper_Cloned
  *
- * @since    2.5.0
- * @version  3.0.0
+ * @since 2.5.0
  */
 class LLMS_Helper_Cloned {
 
 	/**
 	 * Constructor
 	 *
-	 * @since    2.5.0
-	 * @version  2.5.0
+	 * @since 2.5.0
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 
@@ -24,12 +32,14 @@ class LLMS_Helper_Cloned {
 
 	/**
 	 * Attempt to automatically activate already activated add-ons when cloning
-	 * If the key cannot be activated all activation related data will be removed
-	 * Called when LifterLMS core detects a cloned site
 	 *
-	 * @return   void
-	 * @since    2.5.0
-	 * @version  3.0.0
+	 * If the key cannot be activated all activation related data will be removed
+	 * Called when LifterLMS core detects a cloned site.
+	 *
+	 * @since 2.5.0
+	 * @since 3.0.0 Unknown.
+	 *
+	 * @return void
 	 */
 	public function handle_clone() {
 

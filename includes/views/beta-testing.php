@@ -2,9 +2,12 @@
 /**
  * View for displaying the Beta Testing tab on the "Status" screen
  *
- * @since    3.0.0
- * @version  3.0.0
+ * @package LifterLMS_Helper/Views
+ *
+ * @since 3.0.0
+ * @version 3.0.0
  */
+
 defined( 'ABSPATH' ) || exit;
 ?>
 <form action="" class="llms-beta-main" method="POST">
@@ -23,11 +26,26 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php _e( 'To rollback you should subscribe to the stable channel, delete the beta version of the plugin, and then re-install the latest version. If a database migration was run you should also restore your database from a backup.', 'lifterlms-helper' ); ?></p>
 
 		<h3><?php _e( 'Reporting bugs and contributing', 'lifterlms-helper' ); ?></h3>
-		<p><?php printf( __( 'We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started.', 'lifterlms-helper' ), '<a href="https://github.com/gocodebox/lifterlms/blob/master/.github/CONTRIBUTING.md">', '</a>' ); ?></p>
-		<p><?php printf( __( 'If you encounter a bug while beta testing, please report it at %s.', 'lifterlms-helper' ), make_clickable( 'https://github.com/gocodebox/lifterlms/issues' ) ); ?></p>
+		<p>
+			<?php
+				// Translators: %1$s = Opening anchor link; %2$s = closing anchor link.
+				printf( __( 'We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started.', 'lifterlms-helper' ), '<a href="https://github.com/gocodebox/lifterlms/blob/master/.github/CONTRIBUTING.md">', '</a>' );
+			?>
+		</p>
+		<p>
+			<?php
+				// Translators: %s = Link to bug report.
+				printf( __( 'If you encounter a bug while beta testing, please report it at %s.', 'lifterlms-helper' ), make_clickable( 'https://github.com/gocodebox/lifterlms/issues' ) );
+			?>
+		</p>
 
 		<h3><?php _e( 'Still have questions?', 'lifterlms-helper' ); ?></h3>
-		<p><?php printf( __( 'Check out our Guide to Beta Testing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/beta-testing/' ) ); ?></p>
+		<p>
+			<?php
+				// Translators: %s = Link to guide.
+				printf( __( 'Check out our Guide to Beta Testing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/beta-testing/' ) );
+			?>
+		</p>
 
 	</aside>
 
