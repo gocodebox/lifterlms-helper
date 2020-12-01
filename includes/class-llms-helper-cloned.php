@@ -4,6 +4,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Automatically attempt to activate already activated add-ons
  * during clones
+ *
  * @since    2.5.0
  * @version  3.0.0
  */
@@ -11,6 +12,7 @@ class LLMS_Helper_Cloned {
 
 	/**
 	 * Constructor
+	 *
 	 * @since    2.5.0
 	 * @version  2.5.0
 	 */
@@ -24,6 +26,7 @@ class LLMS_Helper_Cloned {
 	 * Attempt to automatically activate already activated add-ons when cloning
 	 * If the key cannot be activated all activation related data will be removed
 	 * Called when LifterLMS core detects a cloned site
+	 *
 	 * @return   void
 	 * @since    2.5.0
 	 * @version  3.0.0
@@ -46,7 +49,6 @@ class LLMS_Helper_Cloned {
 					LLMS_Helper_Keys::add_license_key( $activation );
 				}
 			}
-
 		}
 
 	}

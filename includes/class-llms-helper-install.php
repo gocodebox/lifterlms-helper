@@ -3,6 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Plugin installation
+ *
  * @since   3.0.0
  * @version 3.0.2
  */
@@ -11,6 +12,7 @@ class LLMS_Helper_Install {
 	/**
 	 * Initialize the install class
 	 * Hooks all actions
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.1
@@ -21,6 +23,7 @@ class LLMS_Helper_Install {
 
 	/**
 	 * Checks the current LLMS version and runs installer if required
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -34,6 +37,7 @@ class LLMS_Helper_Install {
 
 	/**
 	 * Core install function
+	 *
 	 * @return  void
 	 * @since   3.0.0
 	 * @version 3.0.0
@@ -59,6 +63,7 @@ class LLMS_Helper_Install {
 
 	/**
 	 * Update the LifterLMS version record to the latest version
+	 *
 	 * @param  string $version version number
 	 * @return void
 	 * @since    3.0.0
@@ -66,22 +71,23 @@ class LLMS_Helper_Install {
 	 */
 	public static function update_version( $version = null ) {
 		delete_option( 'llms_helper_version' );
-		add_option( 'llms_helper_version', is_null( $version ) ? LLMS_Helper()->version : $version  );
+		add_option( 'llms_helper_version', is_null( $version ) ? LLMS_Helper()->version : $version );
 	}
 
 	/**
 	 * Migrate to version 3.0.0
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.2
 	 */
 	private static function _migrate_300() {
 
-		$text = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms-helper' ) . '</strong></p>';
+		$text  = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms-helper' ) . '</strong></p>';
 		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms-helper' ) . '</p>';
 		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms-helper' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
 
-		$keys = array();
+		$keys   = array();
 		$addons = llms_get_add_ons();
 		if ( ! is_wp_error( $addons ) && isset( $addons['items'] ) ) {
 			foreach ( $addons['items'] as $addon ) {
@@ -120,13 +126,9 @@ class LLMS_Helper_Install {
 						LLMS_Helper_Keys::add_license_key( $activation );
 						$text .= '<p><em>' . $activation['license_key'] . '</em></p>';
 					}
-
 				}
-
 			}
-
 		}
-
 
 		LLMS_Admin_Notices::flash_notice( $text, 'info' );
 

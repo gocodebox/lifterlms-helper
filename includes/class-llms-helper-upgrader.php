@@ -22,6 +22,7 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Main Instance of LLMS_Helper_Upgrader
 	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
+	 *
 	 * @return   LLMS_Helper_Upgrader - Main instanceg
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -35,6 +36,7 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Constructor
+	 *
 	 * @since    3.0.0
 	 * @version  3.0.2
 	 */
@@ -64,8 +66,9 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Install an add-on from LifterLMS.com
-	 * @param    string|obj     $addon_or_id   ID for the add-on or an instance of the LLMS_Add_On
-	 * @param    string         $action        installation type [install|update]
+	 *
+	 * @param    string|obj $addon_or_id   ID for the add-on or an instance of the LLMS_Add_On
+	 * @param    string     $action        installation type [install|update]
 	 * @return   WP_Error|true
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -144,8 +147,9 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Output additional information on plugins update screen when updates are available
 	 * for an unlicensed addon
-	 * @param    array     $plugin_data  array of plugin data
-	 * @param    array     $res          response data
+	 *
+	 * @param    array $plugin_data  array of plugin data
+	 * @param    array $res          response data
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.2
@@ -176,9 +180,10 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Filter API calls to get plugin information and replace it with data from LifterLMS.com API for our addons
-	 * @param    bool       $response  false (denotes API call should be made to wp.org for plugin info)
-	 * @param    string     $action    name of the API action
-	 * @param    obj        $args      additional API call args
+	 *
+	 * @param    bool   $response  false (denotes API call should be made to wp.org for plugin info)
+	 * @param    string $action    name of the API action
+	 * @param    obj    $args      additional API call args
 	 * @return   false|obj
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -198,7 +203,7 @@ class LLMS_Helper_Upgrader {
 		if ( 'lifterlms' === $args->slug ) {
 			remove_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 			$args->slug = 'lifterlms-com-lifterlms';
-			$core = true;
+			$core       = true;
 		}
 
 		if ( 0 !== strpos( $args->slug, 'lifterlms-com-' ) ) {
@@ -217,7 +222,8 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Handle setting the site transient for plugin updates
-	 * @param    obj     $value  transient value
+	 *
+	 * @param    obj $value  transient value
 	 * @return   obj
 	 * @since    3.0.0
 	 * @version  3.0.2
@@ -269,10 +275,10 @@ class LLMS_Helper_Upgrader {
 			} elseif ( 'theme' === $type ) {
 
 				$item = array(
-					'theme' => $file,
+					'theme'       => $file,
 					'new_version' => $addon->get_latest_version(),
-					'url' => $addon->get_permalink(),
-					'package' => true,
+					'url'         => $addon->get_permalink(),
+					'package'     => true,
 				);
 			}
 
@@ -295,7 +301,8 @@ class LLMS_Helper_Upgrader {
 
 	/**
 	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
-	 * @param    string     $id  addon id
+	 *
+	 * @param    string $id  addon id
 	 * @return   object
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -307,16 +314,19 @@ class LLMS_Helper_Upgrader {
 		if ( 'lifterlms-com-lifterlms' === $id && false !== strpos( $addon->get_latest_version(), 'beta' ) ) {
 
 			require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-			$item = plugins_api( 'plugin_information', array(
-				'slug' => 'lifterlms',
-				'fields' => array(
-					'banners' => true,
-					'icons' => true,
-				),
-			) );
-			$item->version = $addon->get_latest_version();
+			$item              = plugins_api(
+				'plugin_information',
+				array(
+					'slug'   => 'lifterlms',
+					'fields' => array(
+						'banners' => true,
+						'icons'   => true,
+					),
+				)
+			);
+			$item->version     = $addon->get_latest_version();
 			$item->new_version = $addon->get_latest_version();
-			$item->package = true;
+			$item->package     = true;
 
 			unset( $item->versions );
 
@@ -327,20 +337,20 @@ class LLMS_Helper_Upgrader {
 		}
 
 		$item = array(
-			'name' => $addon->get( 'title' ),
-			'slug' => $id,
-			'version' => $addon->get_latest_version(),
-			'new_version' => $addon->get_latest_version(),
-			'author' => '<a href="https://lifterlms.com/">' . $addon->get( 'author' )['name'] . '</a>',
+			'name'           => $addon->get( 'title' ),
+			'slug'           => $id,
+			'version'        => $addon->get_latest_version(),
+			'new_version'    => $addon->get_latest_version(),
+			'author'         => '<a href="https://lifterlms.com/">' . $addon->get( 'author' )['name'] . '</a>',
 			'author_profile' => $addon->get( 'author' )['link'],
-			'requires' => $addon->get( 'version_wp' ),
-			'tested' => '',
-			'requires_php' => $addon->get( 'version_php' ),
-			'compatibility' => '',
-			'homepage' => $addon->get( 'permalink' ),
-			'download_link' => '',
-			'package' => $addon->is_licensed() ? true : '',
-			'banners' => array(
+			'requires'       => $addon->get( 'version_wp' ),
+			'tested'         => '',
+			'requires_php'   => $addon->get( 'version_php' ),
+			'compatibility'  => '',
+			'homepage'       => $addon->get( 'permalink' ),
+			'download_link'  => '',
+			'package'        => $addon->is_licensed() ? true : '',
+			'banners'        => array(
 				'low' => $addon->get( 'image' ),
 			),
 		);
@@ -349,7 +359,7 @@ class LLMS_Helper_Upgrader {
 
 			$item['sections'] = array(
 				'description' => $addon->get( 'description' ),
-				'changelog' => $this->get_changelog_for_api( $addon ),
+				'changelog'   => $this->get_changelog_for_api( $addon ),
 			);
 
 		}
@@ -426,7 +436,7 @@ class LLMS_Helper_Upgrader {
 			}
 
 			$ret .= '<br>';
-			$ret .= '<p>'. make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms' ), $url ) ) .'</p>';
+			$ret .= '<p>' . make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms' ), $url ) ) . '</p>';
 
 		}
 
@@ -437,7 +447,8 @@ class LLMS_Helper_Upgrader {
 	/**
 	 * Get a real package download url for a LifterLMS add-on
 	 * This is called immediately prior to package upgrades
-	 * @param    array     $options  package option data
+	 *
+	 * @param    array $options  package option data
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.2

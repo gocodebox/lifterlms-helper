@@ -3,6 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Enqueue Scripts & Styles
+ *
  * @since    3.0.0
  * @version  3.0.0
  */
@@ -10,6 +11,7 @@ class LLMS_Helper_Assets {
 
 	/**
 	 * Constructor
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -22,13 +24,14 @@ class LLMS_Helper_Assets {
 
 	/**
 	 * Register, enqueue, & localize
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
 	 */
 	public function enqueue() {
 
-		$load = false;
+		$load   = false;
 		$screen = get_current_screen();
 		if ( 'lifterlms_page_llms-status' === $screen->id && isset( $_GET['tab'] ) && 'betas' === $_GET['tab'] ) {
 			$load = true;

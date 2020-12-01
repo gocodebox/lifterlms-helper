@@ -3,6 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Handle status beta tab
+ *
  * @since    3.0.0
  * @version  3.0.0
  */
@@ -10,6 +11,7 @@ class LLMS_Helper_Betas {
 
 	/**
 	 * Constructor
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -26,7 +28,8 @@ class LLMS_Helper_Betas {
 
 	/**
 	 * Add the tab to the nav
-	 * @param    array     $tabs  existing tabs
+	 *
+	 * @param    array $tabs  existing tabs
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -37,6 +40,7 @@ class LLMS_Helper_Betas {
 
 	/**
 	 * Handle channel subscription saves
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -53,13 +57,13 @@ class LLMS_Helper_Betas {
 			if ( 'channel' !== $addon->get_channel_subscription() ) {
 				$addon->subscribe_to_channel( sanitize_text_field( $channel ) );
 			}
-
 		}
 
 	}
 
 	/**
 	 * Output content for the beta testing screen
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0

@@ -3,6 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Modify the admin add-ons page
+ *
  * @since    3.0.0
  * @version  3.0.2
  */
@@ -11,12 +12,14 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Caches current state of the sites keys
 	 * Use $this->has_keys() to retrieve the value
+	 *
 	 * @var  bool
 	 */
 	private $has_keys = null;
 
 	/**
 	 * Constructor
+	 *
 	 * @since    3.0.0
 	 * @version  3.0.0
 	 */
@@ -50,7 +53,8 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Change the default section from "All" to "Mine"
 	 * But only if license keys have been saved
-	 * @param    string     $section  section slug
+	 *
+	 * @param    string $section  section slug
 	 * @return   string
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -67,8 +71,9 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Add "mine" tab content
-	 * @param    array      $content  default items to display
-	 * @param    string     $section  current tab slug
+	 *
+	 * @param    array  $content  default items to display
+	 * @param    string $section  current tab slug
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.2
@@ -76,7 +81,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	public function filter_get_current_section_content( $content, $section ) {
 
 		if ( 'mine' === $section ) {
-			$mine = llms_helper_get_available_add_ons();
+			$mine   = llms_helper_get_available_add_ons();
 			$addons = llms_get_add_ons();
 			if ( ! is_wp_error( $addons ) && isset( $addons['items'] ) ) {
 				foreach ( $addons['items'] as $item ) {
@@ -93,7 +98,8 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Exclude IDs for all add-ons that are currently available on the site
-	 * @param    array     $ids  existing product ids to exclude
+	 *
+	 * @param    array $ids  existing product ids to exclude
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -104,7 +110,8 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Add installatino & update actions to the list of available management actions
-	 * @param    array     $actions  list of available actions, the action should correspond to a method in the LLMS_Helper_Add_On class
+	 *
+	 * @param    array $actions  list of available actions, the action should correspond to a method in the LLMS_Helper_Add_On class
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -115,6 +122,7 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Handle form submission actions
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -144,6 +152,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Activate license keys with LifterLMS.com api
 	 * Output errors / successes & saves successful keys to the db
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -176,6 +185,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Deactivate license keys with LifterLMS.com api
 	 * Output errors / successes & removes keys from the db
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -205,6 +215,7 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Determine if the current site has active license keys
+	 *
 	 * @return   bool
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -221,6 +232,7 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Output the HTML for the license manager area
+	 *
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -235,7 +247,7 @@ class LLMS_Helper_Admin_Add_Ons {
 		}
 
 		?>
- 		<section class="llms-licenses">
+		 <section class="llms-licenses">
 			<button class="llms-button-primary" id="llms-active-keys-toggle">
 				<?php _e( 'My License Keys', 'lifterlms-helper' ); ?>
 				<i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -274,8 +286,9 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Output html for installation action
 	 * Does not output for "featured" items on general settings
-	 * @param    obj     $addon     LLMS_Add_On instance
-	 * @param    string  $curr_tab  slug of the current tab being viewed
+	 *
+	 * @param    obj    $addon     LLMS_Add_On instance
+	 * @param    string $curr_tab  slug of the current tab being viewed
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -305,8 +318,9 @@ class LLMS_Helper_Admin_Add_Ons {
 	/**
 	 * Output html for update action
 	 * Does not output for "featured" items on general settings
-	 * @param    obj     $addon     LLMS_Add_On instance
-	 * @param    string  $curr_tab  slug of the current tab being viewed
+	 *
+	 * @param    obj    $addon     LLMS_Add_On instance
+	 * @param    string $curr_tab  slug of the current tab being viewed
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -335,7 +349,8 @@ class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Output additional navigation items
-	 * @param    string     $current_section  current section slug
+	 *
+	 * @param    string $current_section  current section slug
 	 * @return   void
 	 * @since    3.0.0
 	 * @version  3.0.0

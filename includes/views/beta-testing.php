@@ -1,6 +1,7 @@
 <?php
 /**
  * View for displaying the Beta Testing tab on the "Status" screen
+ *
  * @since    3.0.0
  * @version  3.0.0
  */
@@ -26,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 		<p><?php printf( __( 'If you encounter a bug while beta testing, please report it at %s.', 'lifterlms-helper' ), make_clickable( 'https://github.com/gocodebox/lifterlms/issues' ) ); ?></p>
 
 		<h3><?php _e( 'Still have questions?', 'lifterlms-helper' ); ?></h3>
-		<p><?php printf( __( "Check out our Guide to Beta Testing at %s.", 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/beta-testing/' ) ); ?></p>
+		<p><?php printf( __( 'Check out our Guide to Beta Testing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/beta-testing/' ) ); ?></p>
 
 	</aside>
 
@@ -40,8 +41,10 @@ defined( 'ABSPATH' ) || exit;
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ( $addons as $addon ) :
-			$addon = llms_get_add_on( $addon ); ?>
+		<?php
+		foreach ( $addons as $addon ) :
+			$addon = llms_get_add_on( $addon );
+			?>
 			<tr>
 				<td><?php echo $addon->get( 'title' ); ?></td>
 				<td>

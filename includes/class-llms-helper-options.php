@@ -3,6 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Get & Set Helper options
+ *
  * @since    3.0.0
  * @version  3.0.0
  */
@@ -10,6 +11,7 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Singleton instance
+	 *
 	 * @var  null
 	 */
 	protected static $_instance = null;
@@ -17,6 +19,7 @@ class LLMS_Helper_Options {
 	/**
 	 * Main Instance of LifterLMS
 	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
+	 *
 	 * @return   LLMS_Helper_Options - Main instance
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -29,8 +32,8 @@ class LLMS_Helper_Options {
 	}
 
 	/*
-		                     /$$                       /$$
-		                    |__/                      | $$
+							 /$$                       /$$
+							|__/                      | $$
 		  /$$$$$$   /$$$$$$  /$$ /$$    /$$ /$$$$$$  /$$$$$$    /$$$$$$
 		 /$$__  $$ /$$__  $$| $$|  $$  /$$/|____  $$|_  $$_/   /$$__  $$
 		| $$  \ $$| $$  \__/| $$ \  $$/$$/  /$$$$$$$  | $$    | $$$$$$$$
@@ -44,8 +47,9 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrive a single option
-	 * @param    string     $key      option name
-	 * @param    mixed      $default  default option value if option isn't already set
+	 *
+	 * @param    string $key      option name
+	 * @param    mixed  $default  default option value if option isn't already set
 	 * @return   mixed
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -64,6 +68,7 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve all upgrader options array
+	 *
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -74,23 +79,24 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Update the value of an option
-	 * @param    string     $key  option name
-	 * @param    mixed      $val  option value
+	 *
+	 * @param    string $key  option name
+	 * @param    mixed  $val  option value
 	 * @return   boolean          True if option value has changed, false if not or if update failed.
 	 * @since    3.0.0
 	 * @version  3.0.0
 	 */
 	private function set_option( $key, $val ) {
 
-		$options = $this->get_options();
+		$options         = $this->get_options();
 		$options[ $key ] = $val;
 		return update_option( 'llms_helper_options', $options, false );
 
 	}
 
 	/*
-		                     /$$       /$$ /$$
-		                    | $$      | $$|__/
+							 /$$       /$$ /$$
+							| $$      | $$|__/
 		  /$$$$$$  /$$   /$$| $$$$$$$ | $$ /$$  /$$$$$$$
 		 /$$__  $$| $$  | $$| $$__  $$| $$| $$ /$$_____/
 		| $$  \ $$| $$  | $$| $$  \ $$| $$| $$| $$
@@ -104,6 +110,7 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Get info about addon channel subscriptions
+	 *
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -114,7 +121,8 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Set info about addon channel subscriptions
-	 * @param    array     $channels  array of channel information
+	 *
+	 * @param    array $channels  array of channel information
 	 * @return   boolean              True if option value has changed, false if not or if update failed.
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -125,6 +133,7 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve a timestamp for the last time the keys check cron was run
+	 *
 	 * @return   int
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -135,7 +144,8 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Set the last cron check time
-	 * @param    int     $time  timestamp
+	 *
+	 * @param    int $time  timestamp
 	 * @return   boolean        True if option value has changed, false if not or if update failed.
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -146,6 +156,7 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve saved license key data
+	 *
 	 * @return   array
 	 * @since    3.0.0
 	 * @version  3.0.0
@@ -156,7 +167,8 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Update saved license key data
-	 * @param    array     $keys  key data to save
+	 *
+	 * @param    array $keys  key data to save
 	 * @return   boolean          True if option value has changed, false if not or if update failed.
 	 * @since    3.0.0
 	 * @version  3.0.0
