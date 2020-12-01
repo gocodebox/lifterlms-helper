@@ -13,7 +13,10 @@
   },
   "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "lifterlms-lib-tasks": "^2.2.2"
+    "gulp": "^4.0.0",
+    "lifterlms-lib-tasks": "^3.7.0"
+  },
+  "scripts": {
+    "build": "gulp styles && gulp styles-rtl && llms-dev pot"
   }
 }
