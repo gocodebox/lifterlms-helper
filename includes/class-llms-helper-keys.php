@@ -23,7 +23,7 @@ class LLMS_Helper_Keys {
 	 * @since 3.0.0
 	 * @since 3.0.1 Unknown.
 	 *
-	 * @param mixed $keys Array white-space separated list of API keys.
+	 * @param string|array $keys Array or a white-space separated list of API keys.
 	 * @return array
 	 */
 	public static function activate_keys( $keys ) {
@@ -80,7 +80,7 @@ class LLMS_Helper_Keys {
 	 * Only make api calls to check once / week.
 	 *
 	 * @since 3.0.0
-	 * 
+	 *
 	 * @param bool $force Ignore the once/week setting and force a check.
 	 * @return void
 	 */
