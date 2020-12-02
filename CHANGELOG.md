@@ -86,6 +86,7 @@ v2.4.3 - 2017-02-09
 
 + Handle undefined errors during post plugin install from zip file
 
+
 v2.4.2 - 2017-01-20
 -------------------
 
@@ -152,3 +153,15 @@ v1.0.2 - 2016-03-07
 + Resolved an issue that caused the LifterLMS Helper to hijack the "details" and related plugin screens that display inside a lightbox in the plugins admin page.
 + Added a .editorconfig file
 + Added changelog file
+
+
+v1.0.1 - 2016-02-11
+-------------------
+
++ Actual public release
+
+
+v1.0.0 - 2016-02-10
+-------------------
+
++ Initial public release
