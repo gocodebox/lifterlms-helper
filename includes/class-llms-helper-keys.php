@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * LLMS_Helper_Keys
  *
- * @since [version]
+ * @since 3.0.0
  */
 class LLMS_Helper_Keys {
 
@@ -53,7 +53,7 @@ class LLMS_Helper_Keys {
 	 * @since 3.0.0
 	 *
 	 * @param string $activation_data  Array of activation details from api call.
-	 * @return boolean                      True if option value has changed, false if not or if update failed.
+	 * @return boolean True if option value has changed, false if not or if update failed.
 	 */
 	public static function add_license_key( $activation_data ) {
 
@@ -79,8 +79,8 @@ class LLMS_Helper_Keys {
 	 *
 	 * Only make api calls to check once / week.
 	 *
-	 * @since 3.0
-	 * .0
+	 * @since 3.0.0
+	 * 
 	 * @param bool $force Ignore the once/week setting and force a check.
 	 * @return void
 	 */

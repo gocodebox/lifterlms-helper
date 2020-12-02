@@ -40,7 +40,6 @@ class LLMS_Helper_Betas {
 	 * @since 3.0.0
 	 *
 	 * @param array $tabs Existing tabs.
-	 *
 	 * @return array
 	 */
 	public function add_tab( $tabs ) {

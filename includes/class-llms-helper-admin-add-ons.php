@@ -13,16 +13,16 @@ defined( 'ABSPATH' ) || exit;
 /**
  * LLMS_Helper_Admin_Add_Ons
  *
- * @since [version]
+ * @since 3.0.0
  */
 class LLMS_Helper_Admin_Add_Ons {
 
 	/**
 	 * Caches current state of the sites keys
 	 *
-	 * Use $this->has_keys() to retrieve the value
+	 * Use $this->has_keys() to retrieve the value.
 	 *
-	 * @var  bool
+	 * @var bool
 	 */
 	private $has_keys = null;
 

@@ -6,15 +6,15 @@
  *
  * @group main
  *
- * @since [versoin]
- * @version [versoin]
+ * @since [version]
+ * @version [version]
  */
 class LLMS_Helper_Test_Main extends LLMS_Helper_Unit_Test_Case {
 
 	/**
 	 * Test constant definitions.
 	 *
-	 * @since [versoin]
+	 * @since [version]
 	 *
 	 * @return void
 	 */
@@ -31,7 +31,7 @@ class LLMS_Helper_Test_Main extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test main plugin class is included.
 	 *
-	 * @since [versoin]
+	 * @since [version]
 	 *
 	 * @return void
 	 */
@@ -44,7 +44,7 @@ class LLMS_Helper_Test_Main extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test LLMS_Helper() function.
 	 *
-	 * @since [versoin]
+	 * @since [version]
 	 *
 	 * @return void
 	 */

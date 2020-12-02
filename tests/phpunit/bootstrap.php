@@ -2,10 +2,10 @@
 /**
  * Testing Bootstrap
  *
- * @package LifterLMS_Assignments/Tests
+ * @package LifterLMS_Helper/Tests
  *
- * @since 1.1.4
- * @version 1.1.4
+ * @since [version]
+ * @version [version]
  */
 
 require_once './vendor/lifterlms/lifterlms-tests/bootstrap.php';
@@ -15,7 +15,7 @@ class LLMS_Helper_Tests_Bootstrap extends LLMS_Tests_Bootstrap {
 	/**
 	 * __FILE__ reference, should be defined in the extending class
 	 *
-	 * @var [type]
+	 * @var string
 	 */
 	public $file = __FILE__;
 
