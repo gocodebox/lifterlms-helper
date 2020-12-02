@@ -1,6 +1,28 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.2.0 - 2020-12-02
+-------------------
+
+##### Updates
+
++ Moved the class `LifterLMS_Helper` class to its own file from `lifterlms-helper.php`.
++ Use `self::$instance` in favor of `self::$_instance`.
++ Use `llms()` in favor of deprecated `LLMS()`.
++ Use `llms_filter_input()` to access `$_POST` data in various places.
++ Use strict comparison for `in_array()`.
+
+##### Bug fixes
+
++ Fixed usage of incorrect textdomain in various places.
+
+##### Deprecations
+
++ Replaced usage of protected class property `$instance` in favor of `$_instance` in various singleton classes.
++ Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
++ File `includes/model-llms-helper-add-on.php` is deprecated, use `includes/models/class-llms-helper-add-on.php` instead.
+
+
 v3.1.0 - 2020-05-22
 -------------------
 
@@ -63,6 +85,7 @@ v2.4.3 - 2017-02-09
 -------------------
 
 + Handle undefined errors during post plugin install from zip file
+
 
 v2.4.2 - 2017-01-20
 -------------------
@@ -130,3 +153,15 @@ v1.0.2 - 2016-03-07
 + Resolved an issue that caused the LifterLMS Helper to hijack the "details" and related plugin screens that display inside a lightbox in the plugins admin page.
 + Added a .editorconfig file
 + Added changelog file
+
+
+v1.0.1 - 2016-02-11
+-------------------
+
++ Actual public release
+
+
+v1.0.0 - 2016-02-10
+-------------------
+
++ Initial public release

@@ -1,54 +1,53 @@
 <?php
+/**
+ * Get & Set Helper options
+ *
+ * @package LifterLMS_Helper/Classes
+ *
+ * @since 3.0.0
+ * @version 3.2.0
+ */
+
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Get & Set Helper options
- * @since    3.0.0
- * @version  3.0.0
+ * LLMS_Helper_Options
+ *
+ * @since 3.0.0
+ * @since 3.2.0 Use `$instance` in favor of `$_instance`.
  */
 class LLMS_Helper_Options {
 
 	/**
 	 * Singleton instance
-	 * @var  null
+	 *
+	 * @var null|LLMS_Helper_Options
 	 */
-	protected static $_instance = null;
+	protected static $instance = null;
 
 	/**
-	 * Main Instance of LifterLMS
-	 * Ensures only one instance of LifterLMS is loaded or can be loaded.
-	 * @return   LLMS_Helper_Options - Main instance
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 * Main Instance
+	 *
+	 * @since 3.0.0
+	 * @since 3.2.0 Use `self::$instance` in favor of `self::$_instance`.
+	 *
+	 * @return LLMS_Helper_Options
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 	}
-
-	/*
-		                     /$$                       /$$
-		                    |__/                      | $$
-		  /$$$$$$   /$$$$$$  /$$ /$$    /$$ /$$$$$$  /$$$$$$    /$$$$$$
-		 /$$__  $$ /$$__  $$| $$|  $$  /$$/|____  $$|_  $$_/   /$$__  $$
-		| $$  \ $$| $$  \__/| $$ \  $$/$$/  /$$$$$$$  | $$    | $$$$$$$$
-		| $$  | $$| $$      | $$  \  $$$/  /$$__  $$  | $$ /$$| $$_____/
-		| $$$$$$$/| $$      | $$   \  $/  |  $$$$$$$  |  $$$$/|  $$$$$$$
-		| $$____/ |__/      |__/    \_/    \_______/   \___/   \_______/
-		| $$
-		| $$
-		|__/
-	*/
 
 	/**
 	 * Retrive a single option
-	 * @param    string     $key      option name
-	 * @param    mixed      $default  default option value if option isn't already set
-	 * @return   mixed
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param string $key     Option name.
+	 * @param mixed  $default Default option value if option isn't already set.
+	 * @return mixed
 	 */
 	private function get_option( $key, $default = '' ) {
 
@@ -64,9 +63,10 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve all upgrader options array
-	 * @return   array
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @return array
 	 */
 	private function get_options() {
 		return get_option( 'llms_helper_options', array() );
@@ -74,39 +74,27 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Update the value of an option
-	 * @param    string     $key  option name
-	 * @param    mixed      $val  option value
-	 * @return   boolean          True if option value has changed, false if not or if update failed.
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param string $key Option name.
+	 * @param mixed  $val Option value.
+	 * @return boolean True if option value has changed, false if not or if update failed.
 	 */
 	private function set_option( $key, $val ) {
 
-		$options = $this->get_options();
+		$options         = $this->get_options();
 		$options[ $key ] = $val;
 		return update_option( 'llms_helper_options', $options, false );
 
 	}
 
-	/*
-		                     /$$       /$$ /$$
-		                    | $$      | $$|__/
-		  /$$$$$$  /$$   /$$| $$$$$$$ | $$ /$$  /$$$$$$$
-		 /$$__  $$| $$  | $$| $$__  $$| $$| $$ /$$_____/
-		| $$  \ $$| $$  | $$| $$  \ $$| $$| $$| $$
-		| $$  | $$| $$  | $$| $$  | $$| $$| $$| $$
-		| $$$$$$$/|  $$$$$$/| $$$$$$$/| $$| $$|  $$$$$$$
-		| $$____/  \______/ |_______/ |__/|__/ \_______/
-		| $$
-		| $$
-		|__/
-	*/
-
 	/**
 	 * Get info about addon channel subscriptions
-	 * @return   array
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @return array
 	 */
 	public function get_channels() {
 		return $this->get_option( 'channels', array() );
@@ -114,10 +102,11 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Set info about addon channel subscriptions
-	 * @param    array     $channels  array of channel information
-	 * @return   boolean              True if option value has changed, false if not or if update failed.
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param array $channels Array of channel information.
+	 * @return boolean True if option value has changed, false if not or if update failed.
 	 */
 	public function set_channels( $channels ) {
 		return $this->set_option( 'channels', $channels );
@@ -125,9 +114,10 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve a timestamp for the last time the keys check cron was run
-	 * @return   int
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @return int
 	 */
 	public function get_last_keys_cron_check() {
 		return $this->get_option( 'last_keys_cron_check', 0 );
@@ -135,10 +125,11 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Set the last cron check time
-	 * @param    int     $time  timestamp
-	 * @return   boolean        True if option value has changed, false if not or if update failed.
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param int $time Timestamp.
+	 * @return boolean True if option value has changed, false if not or if update failed.
 	 */
 	public function set_last_keys_cron_check( $time ) {
 		return $this->set_option( 'last_keys_cron_check', $time );
@@ -146,9 +137,10 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Retrieve saved license key data
-	 * @return   array
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @return array
 	 */
 	public function get_license_keys() {
 		return $this->get_option( 'license_keys', array() );
@@ -156,10 +148,11 @@ class LLMS_Helper_Options {
 
 	/**
 	 * Update saved license key data
-	 * @param    array     $keys  key data to save
-	 * @return   boolean          True if option value has changed, false if not or if update failed.
-	 * @since    3.0.0
-	 * @version  3.0.0
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param array $keys Key data to save.
+	 * @return boolean True if option value has changed, false if not or if update failed.
 	 */
 	public function set_license_keys( $keys ) {
 		return $this->set_option( 'license_keys', $keys );
