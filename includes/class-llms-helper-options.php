@@ -44,7 +44,7 @@ class LLMS_Helper_Options {
 	 * Retrive a single option
 	 *
 	 * @since 3.0.0
-	 * 
+	 *
 	 * @param string $key     Option name.
 	 * @param mixed  $default Default option value if option isn't already set.
 	 * @return mixed
