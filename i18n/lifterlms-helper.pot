@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the LifterLMS Helper plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: LifterLMS Helper 3.1.0\n"
+"Project-Id-Version: LifterLMS Helper 3.2.0\n"
 "Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
 "Last-Translator: Team LifterLMS <team@lifterlms.com>\n"
 "Language-Team: Team LifterLMS <team@lifterlms.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-12-01T16:21:58-07:00\n"
+"POT-Creation-Date: 2020-12-02T11:32:49-07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: llms-dev 1.0.0\n"
 "X-Domain: lifterlms-helper\n"
@@ -89,7 +89,7 @@ msgstr ""
 msgid "My Add-Ons"
 msgstr ""
 
-#: includes/class-llms-helper-betas.php:47
+#: includes/class-llms-helper-betas.php:46
 msgid "Beta Testing"
 msgstr ""
 
