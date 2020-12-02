@@ -1,6 +1,28 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.2.0 - 2020-12-02
+-------------------
+
+##### Updates
+
++ Moved the class `LifterLMS_Helper` class to its own file from `lifterlms-helper.php`.
++ Use `self::$instance` in favor of `self::$_instance`.
++ Use `llms()` in favor of deprecated `LLMS()`.
++ Use `llms_filter_input()` to access `$_POST` data in various places.
++ Use strict comparison for `in_array()`.
+
+##### Bug fixes
+
++ Fixed usage of incorrect textdomain in various places.
+
+##### Deprecations
+
++ Replaced usage of protected class property `$instance` in favor of `$_instance` in various singleton classes.
++ Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
++ File `includes/model-llms-helper-add-on.php` is deprecated, use `includes/models/class-llms-helper-add-on.php` instead.
+
+
 v3.1.0 - 2020-05-22
 -------------------
 

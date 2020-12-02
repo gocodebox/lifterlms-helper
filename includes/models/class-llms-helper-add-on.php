@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Models
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  * LLMS_Helper_Add_On
  *
  * @since 3.0.0
- * @since [version] Moved from `includes/model-llms-helper-add-on.php`.
+ * @since 3.2.0 Moved from `includes/model-llms-helper-add-on.php`.
  */
 class LLMS_Helper_Add_On extends LLMS_Add_On {
 
@@ -22,7 +22,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Find a license key for the add-on
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use strict comparison for `in_array()`.
+	 * @since 3.2.0 Use strict comparison for `in_array()`.
 	 *
 	 * @return string|false
 	 */

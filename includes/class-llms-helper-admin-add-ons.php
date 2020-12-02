@@ -132,7 +132,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Handle form submission actions
 	 *
 	 * @since 3.0.0
-	 * @since [version] Let the LifterLMS Core output flashed notices
+	 * @since 3.2.0 Let the LifterLMS Core output flashed notices
 	 *
 	 * @return void
 	 */
@@ -163,7 +163,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output errors / successes & saves successful keys to the db.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Don't access $_POST directly.
+	 * @since 3.2.0 Don't access $_POST directly.
 	 *
 	 * @return void
 	 */
@@ -199,7 +199,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output errors / successes & removes keys from the db.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Don't access $_POST directly.
+	 * @since 3.2.0 Don't access $_POST directly.
 	 *
 	 * @return void
 	 */

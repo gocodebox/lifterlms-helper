@@ -6,15 +6,15 @@
  *
  * @group main
  *
- * @since [version]
- * @version [version]
+ * @since 3.2.0
+ * @version 3.2.0
  */
 class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 
 	/**
 	 * Test activate_keys() to sanitize and parse acceptable types of input data.
 	 *
-	 * @since [version]
+	 * @since 3.2.0
 	 *
 	 * @return void
 	 */

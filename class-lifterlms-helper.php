@@ -4,8 +4,8 @@
  *
  * @package LifterLMS_Helper/Main
  *
- * @since [version]
- * @version [version]
+ * @since 3.2.0
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  * LifterLMS_Helper class
  *
  * @since 1.0.0
- * @since [version] Moved class to its own file from `lifterlms-helper.php`.
+ * @since 3.2.0 Moved class to its own file from `lifterlms-helper.php`.
  *              Replaced class variable `$_instance` with `$instance`.
  */
 final class LifterLMS_Helper {
@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.1.0';
+	public $version = '3.2.0';
 
 	/**
 	 * Singleton instance reference
@@ -46,7 +46,7 @@ final class LifterLMS_Helper {
 	 * Retrieve the main Instance of LifterLMS_Helper
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use `self::$instance` in favor of `self::$_instance`.
+	 * @since 3.2.0 Use `self::$instance` in favor of `self::$_instance`.
 	 *
 	 * @return LifterLMS_Helper
 	 */
@@ -79,7 +79,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @since 1.0.0
 	 * @since 3.0.0 Unknown.
-	 * @since [version] Use `llms()` in favor of deprecated `LLMS()`.
+	 * @since 3.2.0 Use `llms()` in favor of deprecated `LLMS()`.
 	 *
 	 * @return void
 	 */

@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -50,7 +50,7 @@ class LLMS_Helper_Betas {
 	 * Handle channel subscription saves
 	 *
 	 * @since 3.0.0
-	 * @since [version] Don't access `$_POST` directly.
+	 * @since 3.2.0 Don't access `$_POST` directly.
 	 *
 	 * @return null|string Returns null when nonce errors or invalid data are submitted, otherwise returns an array of addon subscription data.
 	 */

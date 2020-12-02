@@ -4,8 +4,8 @@
  *
  * @package LifterLMS_Helper/Tests
  *
- * @since [version]
- * @version [version]
+ * @since 3.2.0
+ * @version 3.2.0
  */
 
 require_once './vendor/lifterlms/lifterlms-tests/bootstrap.php';

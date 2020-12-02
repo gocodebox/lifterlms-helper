@@ -4,15 +4,15 @@
  *
  * @package LifterLMS_Helper/Tests
  *
- * @since [version]
- * @version [version]
+ * @since 3.2.0
+ * @version 3.2.0
  */
 class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 
 	/**
 	 * Retrieve license keys to use for testing from environment vars.
 	 *
-	 * @since [version]
+	 * @since 3.2.0
 	 *
 	 * @return void
 	 */

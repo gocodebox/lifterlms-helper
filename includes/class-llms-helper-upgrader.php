@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -78,7 +78,7 @@ class LLMS_Helper_Upgrader {
 	 * Install an add-on from LifterLMS.com
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use strict comparison for `in_array()`.
+	 * @since 3.2.0 Use strict comparison for `in_array()`.
 	 *
 	 * @param string|obj $addon_or_id ID for the add-on or an instance of the LLMS_Add_On.
 	 * @param string     $action      Installation type [install|update].
@@ -391,7 +391,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.1.0 Retrieve changelog from the make blog in favor of legacy static html changelogs.
-	 * @since [version] Fix usage of incorrect textdomain.
+	 * @since 3.2.0 Fix usage of incorrect textdomain.
 	 *
 	 * @param LLMS_Add_On $addon Add-on object.
 	 * @return string
@@ -422,7 +422,7 @@ class LLMS_Helper_Upgrader {
 	 * If an error is encountered, returns an empty string.
 	 *
 	 * @since 3.1.0
-	 * @since [version] Fix usage of incorrect textdomain.
+	 * @since 3.2.0 Fix usage of incorrect textdomain.
 	 *
 	 * @param string $tag Tag slug for the add-on on the blog.
 	 * @param string $url Full URL to the changelog entries for the add-on.

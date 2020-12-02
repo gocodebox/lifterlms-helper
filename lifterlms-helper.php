@@ -5,12 +5,12 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 1.0.0
- * @version [version]
+ * @version 3.2.0
  *
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
- * Version: 3.1.0
+ * Version: 3.2.0
  * Author: LifterLMS
  * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper
@@ -41,14 +41,14 @@ if ( ! class_exists( 'LifterLMS_Helper' ) ) {
 /**
  * Allow usage of the deprecated `LLMS_Helper()` function.
  *
- * @deprecated [version] Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
+ * @deprecated 3.2.0 Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
  */
 use function LLMS_Helper as llms_helper;
 
 /**
  * Returns the main instance of the LifterLMS_Helper class
  *
- * @since [version]
+ * @since 3.2.0
  *
  * @return LifterLMS_Helper
  */

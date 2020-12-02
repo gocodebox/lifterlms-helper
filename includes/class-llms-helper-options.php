@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  * LLMS_Helper_Options
  *
  * @since 3.0.0
- * @since [version] Use `$instance` in favor of `$_instance`.
+ * @since 3.2.0 Use `$instance` in favor of `$_instance`.
  */
 class LLMS_Helper_Options {
 
@@ -29,7 +29,7 @@ class LLMS_Helper_Options {
 	 * Main Instance
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use `self::$instance` in favor of `self::$_instance`.
+	 * @since 3.2.0 Use `self::$instance` in favor of `self::$_instance`.
 	 *
 	 * @return LLMS_Helper_Options
 	 */

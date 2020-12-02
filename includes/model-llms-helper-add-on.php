@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,6 +13,6 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Deprecated file.
  *
- * @deprecated [version] File `includes/model-llms-helper-add-on.php` is deprecated, use `includes/models/class-llms-helper-add-on.php` instead.
+ * @deprecated 3.2.0 File `includes/model-llms-helper-add-on.php` is deprecated, use `includes/models/class-llms-helper-add-on.php` instead.
  */
-_deprecated_file( __FILE__, '[version]', LLMS_HELPER_PLUGIN_DIR . 'includes/models/class-llms-helper-add-on.php' );
+_deprecated_file( __FILE__, '3.2.0', LLMS_HELPER_PLUGIN_DIR . 'includes/models/class-llms-helper-add-on.php' );
