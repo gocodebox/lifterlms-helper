@@ -33,6 +33,23 @@ class LLMS_Helper_Tests_Bootstrap extends LLMS_Tests_Bootstrap {
 	 */
 	public $plugin_main = 'lifterlms-helper.php';
 
+	/**
+	 * Runs immediately after $this->install()
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function install_after() {
+
+		parent::install_after();
+
+		update_option( 'siteurl', 'http://llms-helper-testing.test' );
+
+		require_once LLMS_PLUGIN_DIR . 'includes/admin/llms.functions.admin.php';
+
+	}
+
 }
 
 return new LLMS_Helper_Tests_Bootstrap();
