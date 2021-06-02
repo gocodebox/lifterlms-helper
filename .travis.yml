@@ -1,2 +1,7 @@
 import:
  - gocodebox/lifterlms:.config/travis/add-on.yml
+
+jobs:
+  include:
+  - php: "8.0"
+    env: WP_VERSION=latest LLMS_COM_API_INTEGRATION_TESTS=1
