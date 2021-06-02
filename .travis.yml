@@ -3,5 +3,11 @@ import:
 
 jobs:
   include:
+  # Run API Integration tests on latest WP & PHP Versions.
   - php: "8.0"
     env: WP_VERSION=latest LLMS_COM_API_INTEGRATION_TESTS=1
+
+  exclude:
+  # Excluded because the integration test above covers this build.
+  - php: "8.0"
+    env: WP_VERSION=latest
