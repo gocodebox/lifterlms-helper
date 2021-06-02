@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Models
  *
  * @since 3.0.0
- * @version 3.2.0
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -33,7 +33,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		 * this will ensure that the core can be updated via a license when subscribed to a beta channel
 		 * and that the helper can always be upgraded.
 		 */
-		$requires_license = llms_parse_bool( $this->get( 'has_license' ) );
+		$requires_license = $this->requires_license();
 
 		$id = $this->get( 'id' );
 		foreach ( llms_helper_options()->get_license_keys() as $data ) {
@@ -64,9 +64,10 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	}
 
 	/**
-	 * Retrieve download information for a licensed add-on
+	 * Retrieve download information for an add-on
 	 *
 	 * @since 3.0.0
+	 * @since [version] Allow getting download info for add-on which do not require a license too.
 	 *
 	 * @return WP_Error|array
 	 */
@@ -74,20 +75,33 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 		$key = $this->find_license();
 
-		if ( ! $key ) {
-			return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms-helper' ) );
+		if ( $this->requires_license() ) {
+			if ( ! $key ) {
+				return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms-helper' ) );
+			}
+		}
+
+		$args = array(
+			'url'         => get_site_url(),
+			'add_on_slug' => $this->get( 'slug' ),
+			'channel'     => $this->get_channel_subscription(),
+		);
+
+		if ( $key ) {
+			$args = array_merge(
+				$args,
+				array(
+					'license_key' => $key['license_key'],
+					'update_key'  => $key['update_key'],
+				)
+			);
 		}
 
 		$req  = new LLMS_Dot_Com_API(
 			'/license/download',
-			array(
-				'url'         => get_site_url(),
-				'license_key' => $key['license_key'],
-				'update_key'  => $key['update_key'],
-				'add_on_slug' => $this->get( 'slug' ),
-				'channel'     => $this->get_channel_subscription(),
-			)
+			$args
 		);
+
 		$data = $req->get_result();
 
 		if ( $req->is_error() ) {
@@ -187,6 +201,17 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 */
 	public function is_licensed() {
 		return ( false !== $this->find_license() );
+	}
+
+	/**
+	 * Determines if the add-on requires a license
+	 *
+	 * @since [version]
+	 *
+	 * @return bool
+	 */
+	public function requires_license() {
+		return llms_parse_bool( $this->get( 'has_license' ) );
 	}
 
 	/**
