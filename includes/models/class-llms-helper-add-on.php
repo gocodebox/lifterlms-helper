@@ -23,26 +23,27 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Use strict comparison for `in_array()`.
+	 * @since [version] Use `requires_license()` rather than checking the add-on's `has_license` prop directly.
 	 *
 	 * @return string|false
 	 */
 	public function find_license() {
 
 		/**
-		 * If the addon doesn't require a license return the first found license
-		 * this will ensure that the core can be updated via a license when subscribed to a beta channel
+		 * If the addon doesn't require a license return the first found license to ensure
+		 * that the core can be updated via a license when subscribed to a beta channel
 		 * and that the helper can always be upgraded.
 		 */
 		$requires_license = $this->requires_license();
 
 		$id = $this->get( 'id' );
 		foreach ( llms_helper_options()->get_license_keys() as $data ) {
-
-			if ( ! $requires_license ) {
-				return $data;
-			}
-
-			if ( $id === $data['product_id'] || in_array( $id, $data['addons'], true ) ) {
+			/**
+			 * 1. If license is not required, return the first license found.
+			 * 2. If the addon matches the licensed product
+			 * 3. If the addon is included in the licensed bundle product.
+			 */
+			if ( ! $requires_license || $id === $data['product_id'] || in_array( $id, $data['addons'], true ) ) {
 				return $data;
 			}
 		}
@@ -67,7 +68,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Retrieve download information for an add-on
 	 *
 	 * @since 3.0.0
-	 * @since [version] Allow getting download info for add-on which do not require a license too.
+	 * @since [version] Allow getting download info for add-ons which do not require licenses.
 	 *
 	 * @return WP_Error|array
 	 */
@@ -75,10 +76,8 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 		$key = $this->find_license();
 
-		if ( $this->requires_license() ) {
-			if ( ! $key ) {
-				return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms-helper' ) );
-			}
+		if ( $this->requires_license() && ! $key ) {
+			return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms-helper' ) );
 		}
 
 		$args = array(
@@ -88,16 +87,11 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		);
 
 		if ( $key ) {
-			$args = array_merge(
-				$args,
-				array(
-					'license_key' => $key['license_key'],
-					'update_key'  => $key['update_key'],
-				)
-			);
+			$args['license_key'] = $key['license_key'];
+			$args['update_key']  = $key['update_key'];
 		}
 
-		$req  = new LLMS_Dot_Com_API(
+		$req = new LLMS_Dot_Com_API(
 			'/license/download',
 			$args
 		);
@@ -149,13 +143,14 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Determine the status of an addon's license
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use `requires_license()` instead of checking `has_license` prop directly.
 	 *
 	 * @param bool $translate If true, returns the translated string for on-screen display.
 	 * @return string
 	 */
 	public function get_license_status( $translate = false ) {
 
-		if ( ! llms_parse_bool( $this->get( 'has_license' ) ) ) {
+		if ( ! $this->requires_license() ) {
 			$ret = 'none';
 		} else {
 			$ret = $this->is_licensed() ? 'license_active' : 'license_inactive';
@@ -233,8 +228,9 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Install the add-on via LifterLMS.com
 	 *
-	 * @return string|WP_Error
 	 * @since 3.0.0
+	 *
+	 * @return string|WP_Error
 	 */
 	public function update() {
 
