@@ -5,9 +5,22 @@
  * @package LifterLMS_Helper/Tests
  *
  * @since 3.2.0
- * @version 3.2.0
  */
 class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
+
+	/**
+	 * Teardown the test case
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function tearDown() {
+
+		parent::tearDown();
+		delete_option( 'llms_helper_options' );
+
+	}
 
 	/**
 	 * Retrieve license keys to use for testing from environment vars.
@@ -37,6 +50,34 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 
 		return $keys;
 
+	}
+
+	/**
+	 * Retrieve a single test key by its test ID
+	 *
+	 * @since [version]
+	 *
+	 * @param string $key Test key ID. See `get_test_keys()` for available key ids.
+	 * @return strinng|boolaen The license key or `false`.
+	 */
+	public function get_test_key( $key ) {
+		$keys = $this->get_test_keys();
+		return isset( $keys[ $key ] ) ? $keys[ $key ] : false;
+	}
+
+	/**
+	 * Activate a test key using the test key id
+	 *
+	 * @since [version]
+	 *
+	 * @param string $key Test key ID. See `get_test_keys()` for available key ids.
+	 * @return array
+	 */
+	public function activate_key( $key ) {
+		$key = $this->get_test_key( $key );
+		$api = LLMS_Helper_Keys::activate_keys( $key );
+		LLMS_Helper_Keys::add_license_key( $api['data']['activations'][0] );
+		return llms_helper_options()->get_license_keys()[ $key ];
 	}
 
 }
