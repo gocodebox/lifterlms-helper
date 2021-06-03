@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.0
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -16,7 +16,6 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @since 3.0.2 Unknown.
  * @since 3.1.0 Load changelogs from the make blog in favor of static html changelogs.
- * @since version] Use `$instance` in favor of `$_instance`.
  */
 class LLMS_Helper_Upgrader {
 
@@ -469,6 +468,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since [version] Correctly process addons which do not require a license (e.g. free products).
 	 *
 	 * @param array $options Package option data.
 	 * @return array
@@ -488,7 +488,7 @@ class LLMS_Helper_Upgrader {
 		}
 
 		$addon = llms_get_add_on( $file, 'update_file' );
-		if ( ! $addon || ! $addon->is_installable() || ! $addon->is_licensed() ) {
+		if ( ! $addon || ! $addon->is_installable() || ( $addon->requires_license() && ! $addon->is_licensed() ) ) {
 			return $options;
 		}
 

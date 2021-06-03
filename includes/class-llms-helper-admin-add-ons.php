@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.0.2
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -133,26 +133,33 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Let the LifterLMS Core output flashed notices
+	 * @since [version] Flush cached addon and package update data when adding or removing keys.
 	 *
 	 * @return void
 	 */
 	public function handle_actions() {
 
 		// License key addition & removal.
-		if ( llms_verify_nonce( '_llms_manage_keys_nonce', 'llms_manage_keys' ) ) {
+		if ( ! llms_verify_nonce( '_llms_manage_keys_nonce', 'llms_manage_keys' ) ) {
+			return;
+		}
 
-			if ( isset( $_POST['llms_activate_keys'] ) && ! empty( $_POST['llms_add_keys'] ) ) {
+		$flush = false;
 
-				$this->handle_activations();
+		if ( isset( $_POST['llms_activate_keys'] ) && ! empty( $_POST['llms_add_keys'] ) ) {
 
-			} elseif ( isset( $_POST['llms_deactivate_keys'] ) && ! empty( $_POST['llms_remove_keys'] ) ) {
+			$flush = true;
+			$this->handle_activations();
 
-				$this->handle_deactivations();
+		} elseif ( isset( $_POST['llms_deactivate_keys'] ) && ! empty( $_POST['llms_remove_keys'] ) ) {
 
-			}
+			$flush = true;
+			$this->handle_deactivations();
 
-			delete_site_transient( 'update_plugins' );
+		}
 
+		if ( $flush ) {
+			llms_helper_flush_cache();
 		}
 
 	}
@@ -303,6 +310,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Does not output for "featured" items on general settings.
 	 *
 	 * @since 3.0.0
+	 * @since [version] Output single install action if the addon doesn't require license (e.g. free product).
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -314,7 +322,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			return;
 		}
 
-		if ( $addon->is_installable() && ! $addon->is_installed() && $addon->is_licensed() ) {
+		if ( $addon->is_installable() && ! $addon->is_installed() && ( ! $addon->requires_license() || $addon->is_licensed() ) ) {
 			?>
 			<label class="llms-status-icon status--<?php echo esc_attr( $addon->get_install_status() ); ?>" for="<?php echo esc_attr( sprintf( '%s-install', $addon->get( 'id' ) ) ); ?>">
 				<input class="llms-bulk-check" data-action="install" name="llms_install[]" id="<?php echo esc_attr( sprintf( '%s-install', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
@@ -336,6 +344,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Does not output for "featured" items on general settings.
 	 *
 	 * @since 3.0.0
+	 * @since [version] Output single update action if the addon doesn't require license (e.g. free product).
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -347,7 +356,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			return;
 		}
 
-		if ( $addon->is_installable() && $addon->is_installed() && $addon->is_licensed() && $addon->has_available_update() ) {
+		if ( $addon->is_installable() && $addon->is_installed() && ( ! $addon->requires_license() || $addon->is_licensed() ) && $addon->has_available_update() ) {
 			?>
 			<label class="llms-status-icon status--update-available" for="<?php echo esc_attr( sprintf( '%s-update', $addon->get( 'id' ) ) ); ?>">
 				<input class="llms-bulk-check" data-action="update" name="llms_update[]" id="<?php echo esc_attr( sprintf( '%s-update', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
