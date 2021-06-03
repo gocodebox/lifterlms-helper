@@ -133,26 +133,33 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Let the LifterLMS Core output flashed notices
+	 * @since [version] Flush cached addon and package update data when adding or removing keys.
 	 *
 	 * @return void
 	 */
 	public function handle_actions() {
 
 		// License key addition & removal.
-		if ( llms_verify_nonce( '_llms_manage_keys_nonce', 'llms_manage_keys' ) ) {
+		if ( ! llms_verify_nonce( '_llms_manage_keys_nonce', 'llms_manage_keys' ) ) {
+			return;
+		}
 
-			if ( isset( $_POST['llms_activate_keys'] ) && ! empty( $_POST['llms_add_keys'] ) ) {
+		$flush = false;
 
-				$this->handle_activations();
+		if ( isset( $_POST['llms_activate_keys'] ) && ! empty( $_POST['llms_add_keys'] ) ) {
 
-			} elseif ( isset( $_POST['llms_deactivate_keys'] ) && ! empty( $_POST['llms_remove_keys'] ) ) {
+			$flush = true;
+			$this->handle_activations();
 
-				$this->handle_deactivations();
+		} elseif ( isset( $_POST['llms_deactivate_keys'] ) && ! empty( $_POST['llms_remove_keys'] ) ) {
 
-			}
+			$flush = true;
+			$this->handle_deactivations();
 
-			delete_site_transient( 'update_plugins' );
+		}
 
+		if ( $flush ) {
+			llms_helper_flush_cache();
 		}
 
 	}
