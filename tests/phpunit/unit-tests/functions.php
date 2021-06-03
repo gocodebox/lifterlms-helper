@@ -6,14 +6,14 @@
  *
  * @group functions
  *
- * @since [version]
+ * @since 3.2.1
  */
 class LLMS_Helper_Test_Functions extends LLMS_Helper_Unit_Test_Case {
 
 	/**
 	 * Test llms_helper_options() function
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ class LLMS_Helper_Test_Functions extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test llms_helper_flush_cache()
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */

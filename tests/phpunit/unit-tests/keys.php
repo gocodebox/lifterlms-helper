@@ -13,7 +13,7 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test activate_keys() and deactivate_keys() with real active keys
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -71,7 +71,7 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test activate_keys() and deactivate_keys() with real inactive keys
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -89,7 +89,7 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test activate_keys() and deactivate_keys() with an invalid key
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */

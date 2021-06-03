@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -51,7 +51,7 @@ class LLMS_Helper_Betas {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access `$_POST` directly.
-	 * @since [version] Flush transient caches when a subscription changes.
+	 * @since 3.2.1 Flush transient caches when a subscription changes.
 	 *
 	 * @return null|string Returns null when nonce errors or invalid data are submitted, otherwise returns an array of addon subscription data.
 	 */

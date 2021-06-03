@@ -6,14 +6,14 @@
  *
  * @group add_on
  *
- * @since [version]
+ * @since 3.2.1
  */
 class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 
 	/**
 	 * Test get_channel_subscripiton() and subscribe_to_channel()
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -37,7 +37,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test find_license() and is_licensed() for add-ons that do not require a license.
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -67,7 +67,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test find_license() and is_licensed() for add-ons that require a license
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -115,7 +115,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test get_download_info() error for no license found
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -132,7 +132,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test get_download_info() license errors
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -173,7 +173,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test get_download_info() success for an add-on that requires a license
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -193,7 +193,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test get_download_info() success for an add-on that requires a license with a bundle key
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -213,7 +213,7 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test get_download_info() success for an add-on that does not require a license
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */

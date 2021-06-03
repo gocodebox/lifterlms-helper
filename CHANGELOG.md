@@ -1,6 +1,15 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.2.1 - 2021-06-03
+-------------------
+
+##### Updates
+
++ Flush cached update and add-on data when adding or removing license keys and when changing channel subscription for a package.
++ Enable updating to beta versions of packages that don't require a license when no license is present.
+
+
 v3.2.0 - 2020-12-02
 -------------------
 
