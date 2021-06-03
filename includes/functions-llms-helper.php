@@ -48,7 +48,7 @@ function llms_helper_get_available_add_ons( $installable_only = true ) {
 /**
  * Deletes transient data related to plugin and theme updates
  *
- * @since [version]
+ * @since 3.2.1
  *
  * @return void
  */

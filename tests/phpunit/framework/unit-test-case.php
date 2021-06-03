@@ -11,7 +11,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	/**
 	 * Teardown the test case
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	 * Retrieve license keys to use for testing from environment vars.
 	 *
 	 * @since 3.2.0
-	 * @since [version] Only run api integration tests when explicitly specified through environment vars.
+	 * @since 3.2.1 Only run api integration tests when explicitly specified through environment vars.
 	 *
 	 * @return void
 	 */
@@ -69,7 +69,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	/**
 	 * Retrieve a single test key by its test ID
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @param string $key Test key ID. See `get_test_keys()` for available key ids.
 	 * @return strinng|boolaen The license key or `false`.
@@ -82,7 +82,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	/**
 	 * Activate a test key using the test key id
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @param string $key Test key ID. See `get_test_keys()` for available key ids.
 	 * @return array

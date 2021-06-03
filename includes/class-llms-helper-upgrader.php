@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -468,7 +468,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
-	 * @since [version] Correctly process addons which do not require a license (e.g. free products).
+	 * @since 3.2.1 Correctly process addons which do not require a license (e.g. free products).
 	 *
 	 * @param array $options Package option data.
 	 * @return array

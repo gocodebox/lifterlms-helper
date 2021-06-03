@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -133,7 +133,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Let the LifterLMS Core output flashed notices
-	 * @since [version] Flush cached addon and package update data when adding or removing keys.
+	 * @since 3.2.1 Flush cached addon and package update data when adding or removing keys.
 	 *
 	 * @return void
 	 */
@@ -310,7 +310,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Does not output for "featured" items on general settings.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Output single install action if the addon doesn't require license (e.g. free product).
+	 * @since 3.2.1 Output single install action if the addon doesn't require license (e.g. free product).
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -344,7 +344,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Does not output for "featured" items on general settings.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Output single update action if the addon doesn't require license (e.g. free product).
+	 * @since 3.2.1 Output single update action if the addon doesn't require license (e.g. free product).
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.

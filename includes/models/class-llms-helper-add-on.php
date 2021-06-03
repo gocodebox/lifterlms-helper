@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Models
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +23,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Use strict comparison for `in_array()`.
-	 * @since [version] Use `requires_license()` rather than checking the add-on's `has_license` prop directly.
+	 * @since 3.2.1 Use `requires_license()` rather than checking the add-on's `has_license` prop directly.
 	 *
 	 * @return string|false
 	 */
@@ -68,7 +68,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Retrieve download information for an add-on
 	 *
 	 * @since 3.0.0
-	 * @since [version] Allow getting download info for add-ons which do not require licenses.
+	 * @since 3.2.1 Allow getting download info for add-ons which do not require licenses.
 	 *
 	 * @return WP_Error|array
 	 */
@@ -143,7 +143,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Determine the status of an addon's license
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use `requires_license()` instead of checking `has_license` prop directly.
+	 * @since 3.2.1 Use `requires_license()` instead of checking `has_license` prop directly.
 	 *
 	 * @param bool $translate If true, returns the translated string for on-screen display.
 	 * @return string
@@ -201,7 +201,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	/**
 	 * Determines if the add-on requires a license
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return bool
 	 */

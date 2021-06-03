@@ -36,7 +36,7 @@ class LLMS_Helper_Tests_Bootstrap extends LLMS_Tests_Bootstrap {
 	/**
 	 * Runs immediately after $this->install()
 	 *
-	 * @since [version]
+	 * @since 3.2.1
 	 *
 	 * @return void
 	 */
