@@ -44,3 +44,18 @@ function llms_helper_get_available_add_ons( $installable_only = true ) {
 	return array_unique( $ids );
 
 }
+
+/**
+ * Deletes transient data related to plugin and theme updates
+ *
+ * @since 3.2.1
+ *
+ * @return void
+ */
+function llms_helper_flush_cache() {
+
+	delete_transient( 'llms_products_api_result' );
+	delete_site_transient( 'update_plugins' );
+	delete_site_transient( 'update_themes' );
+
+}

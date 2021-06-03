@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.0
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -51,6 +51,7 @@ class LLMS_Helper_Betas {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access `$_POST` directly.
+	 * @since 3.2.1 Flush transient caches when a subscription changes.
 	 *
 	 * @return null|string Returns null when nonce errors or invalid data are submitted, otherwise returns an array of addon subscription data.
 	 */
@@ -65,12 +66,20 @@ class LLMS_Helper_Betas {
 			return;
 		}
 
+		$new_subscription = false;
+
 		foreach ( $subs as $id => $channel ) {
 
 			$addon = llms_get_add_on( $id );
 			if ( 'channel' !== $addon->get_channel_subscription() ) {
 				$addon->subscribe_to_channel( sanitize_text_field( $channel ) );
+				$new_subscription = true;
 			}
+		}
+
+		// When a channel subscription changes also flush caches so we'll get the most recent add-on data immediately and allow upgrading immediately from wp core update screens.
+		if ( $new_subscription ) {
+			llms_helper_flush_cache();
 		}
 
 		return $subs;

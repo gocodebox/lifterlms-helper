@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.0
+ * @version 3.2.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -16,7 +16,6 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.0.0
  * @since 3.0.2 Unknown.
  * @since 3.1.0 Load changelogs from the make blog in favor of static html changelogs.
- * @since version] Use `$instance` in favor of `$_instance`.
  */
 class LLMS_Helper_Upgrader {
 
@@ -315,6 +314,7 @@ class LLMS_Helper_Upgrader {
 	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
 	 *
 	 * @since 3.0.0
+	 * @since 3.2.1 Set package to `true` for add-ons which don't require a license.
 	 *
 	 * @param string $id               Addon id.
 	 * @param bool   $include_sections Whether or not to include additional sections like the description and changelog.
@@ -362,7 +362,7 @@ class LLMS_Helper_Upgrader {
 			'compatibility'  => '',
 			'homepage'       => $addon->get( 'permalink' ),
 			'download_link'  => '',
-			'package'        => $addon->is_licensed() ? true : '',
+			'package'        => ( $addon->is_licensed() || ! $addon->requires_license() ),
 			'banners'        => array(
 				'low' => $addon->get( 'image' ),
 			),
@@ -469,6 +469,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since 3.2.1 Correctly process addons which do not require a license (e.g. free products).
 	 *
 	 * @param array $options Package option data.
 	 * @return array
@@ -488,7 +489,7 @@ class LLMS_Helper_Upgrader {
 		}
 
 		$addon = llms_get_add_on( $file, 'update_file' );
-		if ( ! $addon || ! $addon->is_installable() || ! $addon->is_licensed() ) {
+		if ( ! $addon || ! $addon->is_installable() || ( $addon->requires_license() && ! $addon->is_licensed() ) ) {
 			return $options;
 		}
 
