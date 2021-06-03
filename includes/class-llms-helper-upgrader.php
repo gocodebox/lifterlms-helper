@@ -314,6 +314,7 @@ class LLMS_Helper_Upgrader {
 	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
 	 *
 	 * @since 3.0.0
+	 * @since 3.2.1 Set package to `true` for add-ons which don't require a license.
 	 *
 	 * @param string $id               Addon id.
 	 * @param bool   $include_sections Whether or not to include additional sections like the description and changelog.
@@ -361,7 +362,7 @@ class LLMS_Helper_Upgrader {
 			'compatibility'  => '',
 			'homepage'       => $addon->get( 'permalink' ),
 			'download_link'  => '',
-			'package'        => $addon->is_licensed() ? true : '',
+			'package'        => ( $addon->is_licensed() || ! $addon->requires_license() ),
 			'banners'        => array(
 				'low' => $addon->get( 'image' ),
 			),
