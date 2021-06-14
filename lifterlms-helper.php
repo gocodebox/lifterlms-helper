@@ -5,12 +5,12 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 1.0.0
- * @version [version]
+ * @version 3.3.0
  *
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
- * Version: 3.2.1
+ * Version: 3.3.0
  * Author: LifterLMS
  * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper
