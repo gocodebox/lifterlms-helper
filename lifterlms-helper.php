@@ -53,7 +53,6 @@ if ( ! class_exists( 'LifterLMS_Helper' ) ) {
 	function llms_helper() {
 		return LifterLMS_Helper::instance();
 	}
-
 }
 
 /**
