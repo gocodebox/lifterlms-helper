@@ -1,6 +1,15 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.3.0 - 2021-06-14
+-------------------
+
++ This plugin is now included by default via the LifterLMS core in versions 5.0+. Installing this plugin directly will use the plugin version instead of the version included with the core. Direct installation is likely only required for development purposes when using LifterLMS 5.0+.
++ The main function `llms_helper()` is declared conditionally when the class `LifterLMS_Helper` is not yet declared.
++ Added a constant `LLMS_HELPER_DISABLE` which allows disabling of the plugin.
++ Distribution release zips now include a `composer.json` file to allow for installation via composer.
+
+
 v3.2.1 - 2021-06-03
 -------------------
 
