@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.0.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -162,7 +162,6 @@ class LLMS_Helper_Keys {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -192,6 +191,21 @@ class LLMS_Helper_Keys {
 
 		$req = new LLMS_Dot_Com_API( '/license/deactivate', $data );
 		return $req->get_result();
+
+	}
+
+	/**
+	 * Retrieve stored information about a key by the license key
+	 *
+	 * @since [version]
+	 *
+	 * @param string $key License key.
+	 * @return array Associative array of license key information.
+	 */
+	public static function get( $key ) {
+
+		$saved = llms_helper_options()->get_license_keys();
+		return isset( $saved[ $key ] ) ? $saved[ $key ] : false;
 
 	}
 
