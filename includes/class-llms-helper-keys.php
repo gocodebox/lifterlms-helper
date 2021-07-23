@@ -200,7 +200,7 @@ class LLMS_Helper_Keys {
 	 * @since [version]
 	 *
 	 * @param string $key License key.
-	 * @return array Associative array of license key information.
+	 * @return array|false Associative array of license key information. Returns `false` if the provided license key was not found.
 	 */
 	public static function get( $key ) {
 
