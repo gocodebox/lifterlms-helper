@@ -10,7 +10,7 @@
  * Plugin Name: LifterLMS Helper
  * Plugin URI: https://lifterlms.com/
  * Description: Update, install, and beta test LifterLMS and LifterLMS add-ons
- * Version: 3.3.0
+ * Version: 3.3.1
  * Author: LifterLMS
  * Author URI: https://lifterlms.com
  * Text Domain: lifterlms-helper

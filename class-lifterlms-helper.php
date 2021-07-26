@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 3.2.0
- * @version 3.2.0
+ * @version 3.3.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.3.0';
+	public $version = '3.3.1';
 
 	/**
 	 * Singleton instance reference
@@ -80,6 +80,7 @@ final class LifterLMS_Helper {
 	 * @since 1.0.0
 	 * @since 3.0.0 Unknown.
 	 * @since 3.2.0 Use `llms()` in favor of deprecated `LLMS()`.
+	 * @since 3.3.1 Load the upgrader instance in WP_CLI context.
 	 *
 	 * @return void
 	 */
@@ -91,7 +92,7 @@ final class LifterLMS_Helper {
 			$this->includes();
 			$this->crons();
 
-			if ( is_admin() ) {
+			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 				$this->upgrader = LLMS_Helper_Upgrader::instance();
 			}
 		}
