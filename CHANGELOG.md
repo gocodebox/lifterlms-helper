@@ -1,6 +1,12 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.3.1 - 2021-07-26
+-------------------
+
++ Load `llms_helper()->upgrader` WP_CLI context in preparation for forthcoming the `lifterlms-cli`.
+
+
 v3.3.0 - 2021-06-14
 -------------------
 

@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.3.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -197,7 +197,7 @@ class LLMS_Helper_Keys {
 	/**
 	 * Retrieve stored information about a key by the license key
 	 *
-	 * @since [version]
+	 * @since 3.3.1
 	 *
 	 * @param string $key License key.
 	 * @return array|false Associative array of license key information. Returns `false` if the provided license key was not found.

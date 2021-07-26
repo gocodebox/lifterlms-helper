@@ -14,7 +14,7 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * Test activate_keys() and deactivate_keys() with real active keys
 	 *
 	 * @since 3.2.1
-	 * @since [version] Add assertions form "LLMS_Helper_Keys::get()".
+	 * @since 3.3.1 Add assertions form "LLMS_Helper_Keys::get()".
 	 *
 	 * @return void
 	 */

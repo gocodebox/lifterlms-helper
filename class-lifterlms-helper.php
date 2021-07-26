@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 3.2.0
- * @version [version]
+ * @version 3.3.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.3.0';
+	public $version = '3.3.1';
 
 	/**
 	 * Singleton instance reference
@@ -80,7 +80,7 @@ final class LifterLMS_Helper {
 	 * @since 1.0.0
 	 * @since 3.0.0 Unknown.
 	 * @since 3.2.0 Use `llms()` in favor of deprecated `LLMS()`.
-	 * @since [version] Load the upgrader instance in WP_CLI context.
+	 * @since 3.3.1 Load the upgrader instance in WP_CLI context.
 	 *
 	 * @return void
 	 */
