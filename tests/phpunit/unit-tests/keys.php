@@ -14,12 +14,16 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * Test activate_keys() and deactivate_keys() with real active keys
 	 *
 	 * @since 3.2.1
+	 * @since 3.3.1 Add assertions form "LLMS_Helper_Keys::get()".
 	 *
 	 * @return void
 	 */
-	public function test_activate_deactivate_add_remove_keys_real_active_key() {
+	public function test_activate_deactivate_add_check_remove_keys_real_active_key() {
 
 		$key = $this->get_test_key( 'STRIPE' );
+
+		// Key not found.
+		$this->assertFalse( LLMS_Helper_Keys::get( $key ) );
 
 		$activation_res = LLMS_Helper_Keys::activate_keys( $key );
 		$activation     = $activation_res['data']['activations'][0];
@@ -48,6 +52,12 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 		);
 		$this->assertEquals( $expect, $options[ $key ] );
 
+		// Found.
+		$this->assertEquals( $expect, LLMS_Helper_Keys::get( $key ) );
+
+		// Test checking.
+		$check_res = LLMS_Helper_Keys::check_keys();
+
 		// Test deactivation.
 		$deactivation_res = LLMS_Helper_Keys::deactivate_keys( array( $key ) );
 		$deactivation     = $deactivation_res['data']['deactivations'][0];
@@ -65,6 +75,9 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 		// Remove the key.
 		$this->assertTrue( LLMS_Helper_Keys::remove_license_key( $key ) );
 		$this->assertEquals( array(),  llms_helper_options()->get_license_keys() );
+
+		// Gone.
+		$this->assertFalse( LLMS_Helper_Keys::get( $key ) );
 
 	}
 
