@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -78,6 +78,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Use strict comparison for `in_array()`.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param string|obj $addon_or_id ID for the add-on or an instance of the LLMS_Add_On.
 	 * @param string     $action      Installation type [install|update].
@@ -159,6 +160,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param array $plugin_data Array of plugin data.
 	 * @param array $res         Response data.

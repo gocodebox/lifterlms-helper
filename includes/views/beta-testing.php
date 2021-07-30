@@ -5,7 +5,8 @@
  * @package LifterLMS_Helper/Views
  *
  * @since 3.0.0
- * @version 3.0.0
+ * @since [version] Use core textdomain.
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;

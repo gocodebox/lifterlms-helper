@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.0.2
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -87,6 +87,7 @@ class LLMS_Helper_Install {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return void
 	 */
