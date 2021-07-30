@@ -43,7 +43,7 @@ class LLMS_Helper_Betas {
 	 * @return array
 	 */
 	public function add_tab( $tabs ) {
-		return llms_assoc_array_insert( $tabs, 'tools', 'betas', __( 'Beta Testing', 'lifterlms-helper' ) );
+		return llms_assoc_array_insert( $tabs, 'tools', 'betas', __( 'Beta Testing', 'lifterlms' ) );
 	}
 
 	/**

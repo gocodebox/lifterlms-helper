@@ -92,10 +92,10 @@ class LLMS_Helper_Install {
 	 */
 	private static function _migrate_300() {
 
-		$text  = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms-helper' ) . '</strong></p>';
-		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms-helper' ) . '</p>';
+		$text  = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms' ) . '</strong></p>';
+		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms' ) . '</p>';
 		// Translators: %1$s = Opening anchor tag; %2$s = closing anchor tag.
-		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms-helper' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
+		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
 
 		$keys   = array();
 		$addons = llms_get_add_ons();
@@ -131,7 +131,7 @@ class LLMS_Helper_Install {
 				if ( isset( $data['activations'] ) ) {
 
 					// Translators: %d = Number of keys that have been migrated.
-					$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms-helper' ), count( $data['activations'] ) ) . ':</p>';
+					$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms' ), count( $data['activations'] ) ) . ':</p>';
 
 					foreach ( $data['activations'] as $activation ) {
 						LLMS_Helper_Keys::add_license_key( $activation );

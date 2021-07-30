@@ -124,7 +124,7 @@ class LLMS_Helper_Keys {
 			include_once LLMS_PLUGIN_DIR . 'includes/admin/class.llms.admin.notices.php';
 
 			/* Translators: %s = License Key */
-			$msg = __( 'The license "%s" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information.', 'lifterlms-helper' );
+			$msg = __( 'The license "%s" is no longer valid and was deactivated. Please visit your account dashboard at https://lifterlms.com/my-account for more information.', 'lifterlms' );
 
 			// Output error responses.
 			if ( isset( $res['data']['errors'] ) ) {

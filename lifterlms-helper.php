@@ -13,7 +13,7 @@
  * Version: 3.3.1
  * Author: LifterLMS
  * Author URI: https://lifterlms.com
- * Text Domain: lifterlms-helper
+ * Text Domain: lifterlms
  * Domain Path: /i18n
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
