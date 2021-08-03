@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Models
  *
  * @since 3.0.0
- * @version 3.2.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -69,6 +69,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Allow getting download info for add-ons which do not require licenses.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return WP_Error|array
 	 */
@@ -77,7 +78,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		$key = $this->find_license();
 
 		if ( $this->requires_license() && ! $key ) {
-			return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms-helper' ) );
+			return new WP_Error( 'no_license', __( 'Unable to locate a license key for the selected add-on.', 'lifterlms' ) );
 		}
 
 		$args = array(
@@ -110,6 +111,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Translate strings
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param string $string Untranslated string / key.
 	 * @return string
@@ -118,20 +120,20 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 		$strings = array(
 
-			'active'           => __( 'Active', 'lifterlms-helper' ),
-			'inactive'         => __( 'Inactive', 'lifterlms-helper' ),
+			'active'           => __( 'Active', 'lifterlms' ),
+			'inactive'         => __( 'Inactive', 'lifterlms' ),
 
-			'installed'        => __( 'Installed', 'lifterlms-helper' ),
-			'uninstalled'      => __( 'Not Installed', 'lifterlms-helper' ),
+			'installed'        => __( 'Installed', 'lifterlms' ),
+			'uninstalled'      => __( 'Not Installed', 'lifterlms' ),
 
-			'activate'         => __( 'Activate', 'lifterlms-helper' ),
-			'deactivate'       => __( 'Deactivate', 'lifterlms-helper' ),
-			'install'          => __( 'Install', 'lifterlms-helper' ),
+			'activate'         => __( 'Activate', 'lifterlms' ),
+			'deactivate'       => __( 'Deactivate', 'lifterlms' ),
+			'install'          => __( 'Install', 'lifterlms' ),
 
-			'none'             => __( 'N/A', 'lifterlms-helper' ),
+			'none'             => __( 'N/A', 'lifterlms' ),
 
-			'license_active'   => __( 'Licensed', 'lifterlms-helper' ),
-			'license_inactive' => __( 'Unlicensed', 'lifterlms-helper' ),
+			'license_active'   => __( 'Licensed', 'lifterlms' ),
+			'license_inactive' => __( 'Unlicensed', 'lifterlms' ),
 
 		);
 
@@ -164,6 +166,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Install the add-on via LifterLMS.com
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return string|WP_Error
 	 */
@@ -174,7 +177,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		if ( true === $ret ) {
 
 			/* Translators: %s = Add-on name */
-			return sprintf( __( '%s was successfully installed.', 'lifterlms-helper' ), $this->get( 'title' ) );
+			return sprintf( __( '%s was successfully installed.', 'lifterlms' ), $this->get( 'title' ) );
 
 		} elseif ( is_wp_error( $ret ) ) {
 
@@ -183,7 +186,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		}
 
 		/* Translators: %s = Add-on name */
-		return new WP_Error( 'activation', sprintf( __( 'Could not install %s.', 'lifterlms-helper' ), $this->get( 'title' ) ) );
+		return new WP_Error( 'activation', sprintf( __( 'Could not install %s.', 'lifterlms' ), $this->get( 'title' ) ) );
 
 	}
 
@@ -229,6 +232,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Install the add-on via LifterLMS.com
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return string|WP_Error
 	 */
@@ -239,7 +243,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		if ( true === $ret ) {
 
 			/* Translators: %s = Add-on name */
-			return sprintf( __( '%s was successfully updated.', 'lifterlms-helper' ), $this->get( 'title' ) );
+			return sprintf( __( '%s was successfully updated.', 'lifterlms' ), $this->get( 'title' ) );
 
 		} elseif ( is_wp_error( $ret ) ) {
 
@@ -248,7 +252,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		}
 
 		/* Translators: %s = Add-on name */
-		return new WP_Error( 'activation', sprintf( __( 'Could not update %s.', 'lifterlms-helper' ), $this->get( 'title' ) ) );
+		return new WP_Error( 'activation', sprintf( __( 'Could not update %s.', 'lifterlms' ), $this->get( 'title' ) ) );
 
 	}
 

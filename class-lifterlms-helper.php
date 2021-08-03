@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 3.2.0
- * @version 3.3.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -61,6 +61,7 @@ final class LifterLMS_Helper {
 	 * Constructor, get things started!
 	 *
 	 * @since 1.0.0
+	 * @since [version] Only localize when loaded as an independent plugin.
 	 *
 	 * @return void
 	 */
@@ -69,7 +70,15 @@ final class LifterLMS_Helper {
 		// Define class constants.
 		$this->define_constants();
 
-		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
+		/**
+		 * When loaded as a library included by the LifterLMS core localization is handled by the LifterLMS core.
+		 *
+		 * When the plugin is loaded by itself as a plugin, we must localize it independently.
+		 */
+		if ( ! defined( 'LLMS_REST_API_LIB' ) || ! LLMS_REST_API_LIB ) {
+			add_action( 'init', array( $this, 'load_textdomain' ), 0 );
+		}
+
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
 	}
@@ -157,30 +166,40 @@ final class LifterLMS_Helper {
 	}
 
 	/**
-	 * Load l10n files
+	 * Load l10n files.
 	 *
-	 * The first loaded file takes priority
+	 * This method is only used when the plugin is loaded as a standalone plugin (for development purposes),
+	 * otherwise (when loaded as a library from within the LifterLMS core plugin) the localization
+	 * strings are included into the LifterLMS Core plugin's po/mo files and are localized by the LifterLMS
+	 * core plugin.
 	 *
-	 * Files can be found in the following order:
+	 * Files can be found in the following order (The first loaded file takes priority):
+	 *   1. WP_LANG_DIR/lifterlms/lifterlms-rest-LOCALE.mo
+	 *   2. WP_LANG_DIR/plugins/lifterlms-rest-LOCALE.mo
+	 *   3. WP_CONTENT_DIR/plugins/lifterlms-rest/i18n/lifterlms-rest-LOCALE.mo
 	 *
-	 *      WP_LANG_DIR/lifterlms/lifterlms-helper-LOCALE.mo (safe directory will never be automatically overwritten).
-	 *      WP_LANG_DIR/plugins/lifterlms-helper-LOCALE.mo (unsafe directory, may be automatically updated).
+	 * Note: The function `load_plugin_textdomain()` is not used because the same textdomain as the LifterLMS core
+	 * is used for this plugin but the file is named `lifterlms-rest` in order to allow using a separate language
+	 * file for each codebase.
 	 *
 	 * @since 2.5.0
+	 * @since [version] Updated to the core textdomain.
 	 *
 	 * @return void
 	 */
 	public function load_textdomain() {
 
 		// Load locale.
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'lifterlms-helper' );
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'lifterlms' );
 
-		// Load a lifterlms specific locale file if one exists.
-		load_textdomain( 'lifterlms-helper', WP_LANG_DIR . '/lifterlms/lifterlms-helper-' . $locale . '.mo' );
+		// Load from the LifterLMS "safe" directory if it exists.
+		load_textdomain( 'lifterlms', WP_LANG_DIR . '/lifterlms/lifterlms-helper-' . $locale . '.mo' );
 
-		// Load localization files.
-		load_plugin_textdomain( 'lifterlms-helper', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
+		// Load from the default plugins language file directory.
+		load_textdomain( 'lifterlms', WP_LANG_DIR . '/plugins/lifterlms-helper-' . $locale . '.mo' );
 
+		// Load from the plugin's language file directory.
+		load_textdomain( 'lifterlms', LLMS_HELPER_PLUGIN_DIR . '/i18n/lifterlms-helper-' . $locale . '.mo' );
 	}
 
 	/**

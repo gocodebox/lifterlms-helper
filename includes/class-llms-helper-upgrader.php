@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -78,6 +78,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Use strict comparison for `in_array()`.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param string|obj $addon_or_id ID for the add-on or an instance of the LLMS_Add_On.
 	 * @param string     $action      Installation type [install|update].
@@ -88,21 +89,21 @@ class LLMS_Helper_Upgrader {
 		// Setup the addon.
 		$addon = is_a( $addon_or_id, 'LLMS_Add_On' ) ? $addon_or_id : llms_get_add_on( $addon_or_id );
 		if ( ! $addon ) {
-			return new WP_Error( 'invalid_addon', __( 'Invalid add-on ID.', 'lifterlms-helper' ) );
+			return new WP_Error( 'invalid_addon', __( 'Invalid add-on ID.', 'lifterlms' ) );
 		}
 
 		if ( ! in_array( $action, array( 'install', 'update' ), true ) ) {
-			return new WP_Error( 'invalid_action', __( 'Invalid action.', 'lifterlms-helper' ) );
+			return new WP_Error( 'invalid_action', __( 'Invalid action.', 'lifterlms' ) );
 		}
 
 		if ( ! $addon->is_installable() ) {
-			return new WP_Error( 'not_installable', __( 'Add-on cannot be installable.', 'lifterlms-helper' ) );
+			return new WP_Error( 'not_installable', __( 'Add-on cannot be installable.', 'lifterlms' ) );
 		}
 
 		// Make sure it's not already installed.
 		if ( 'install' === $action && $addon->is_installed() ) {
 			// Translators: %s = Add-on name.
-			return new WP_Error( 'installed', sprintf( __( '%s is already installed', 'lifterlms-helper' ), $addon->get( 'title' ) ) );
+			return new WP_Error( 'installed', sprintf( __( '%s is already installed', 'lifterlms' ), $addon->get( 'title' ) ) );
 		}
 
 		// Get download info via llms.com api.
@@ -111,7 +112,7 @@ class LLMS_Helper_Upgrader {
 			return $dl_info;
 		}
 		if ( ! isset( $dl_info['data']['url'] ) ) {
-			return new WP_Error( 'no_url', __( 'An error occured while attempting to retrieve add-on download information. Please try again.', 'lifterlms-helper' ) );
+			return new WP_Error( 'no_url', __( 'An error occured while attempting to retrieve add-on download information. Please try again.', 'lifterlms' ) );
 		}
 
 		require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -130,7 +131,7 @@ class LLMS_Helper_Upgrader {
 
 		} else {
 
-			return new WP_Error( 'inconceivable', __( 'The requested action is not possible.', 'lifterlms-helper' ) );
+			return new WP_Error( 'inconceivable', __( 'The requested action is not possible.', 'lifterlms' ) );
 
 		}
 
@@ -147,7 +148,7 @@ class LLMS_Helper_Upgrader {
 		} elseif ( is_wp_error( $skin->result ) ) {
 			return $skin->result;
 		} elseif ( is_null( $result ) ) {
-			return new WP_Error( 'filesystem', __( 'Unable to connect to the filesystem. Please confirm your credentials.', 'lifterlms-helper' ) );
+			return new WP_Error( 'filesystem', __( 'Unable to connect to the filesystem. Please confirm your credentials.', 'lifterlms' ) );
 		}
 
 		return true;
@@ -159,6 +160,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param array $plugin_data Array of plugin data.
 	 * @param array $res         Response data.
@@ -171,17 +173,17 @@ class LLMS_Helper_Upgrader {
 			echo '<style>p.llms-msg:before { content: ""; }</style>';
 
 			echo '<p class="llms-msg"><strong>';
-			_e( 'Your LifterLMS add-on is currently unlicensed and cannot be updated!', 'lifterlms-helper' );
+			_e( 'Your LifterLMS add-on is currently unlicensed and cannot be updated!', 'lifterlms' );
 			echo '</strong></p>';
 
 			echo '<p class="llms-msg">';
 			// Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag.
-			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms-helper' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
+			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
 			echo '</p>';
 
 			echo '<p class="llms-msg">';
 			// Translators: %s = URI to licensing FAQ.
-			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms-helper' ), make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) );
+			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms' ), make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) );
 			echo '</p><p style="display:none;">';
 
 		}
@@ -408,7 +410,7 @@ class LLMS_Helper_Upgrader {
 		}
 
 		// Translators: %s = URL for the changelog website.
-		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms-helper' ), 'https://make.lifterlms.com/category/release-notes/' ) );
+		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms' ), 'https://make.lifterlms.com/category/release-notes/' ) );
 
 	}
 
@@ -447,14 +449,14 @@ class LLMS_Helper_Upgrader {
 					$split = array_filter( explode( ' ', $log['title']['rendered'] ) );
 					$ver   = end( $split );
 					// Translators: %1$s - Version number; %2$s - Release date.
-					$ret .= '<h4>' . sprintf( __( 'Version %1$s - %2$s', 'lifterlms-helper' ), sanitize_text_field( wp_strip_all_tags( trim( $ver ) ) ), $date ) . '</h4>';
+					$ret .= '<h4>' . sprintf( __( 'Version %1$s - %2$s', 'lifterlms' ), sanitize_text_field( wp_strip_all_tags( trim( $ver ) ) ), $date ) . '</h4>';
 					$ret .= strip_tags( $log['content']['rendered'], '<ul><li><p><a><b><strong><em><i>' );
 				}
 			}
 
 			$ret .= '<br>';
 			// Translators: %s = URL to the full changelog.
-			$ret .= '<p>' . make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms-helper' ), $url ) ) . '</p>';
+			$ret .= '<p>' . make_clickable( sprintf( __( 'View the full changelog at %s.', 'lifterlms' ), $url ) ) . '</p>';
 
 		}
 

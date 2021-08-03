@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.1
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -171,6 +171,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -194,7 +195,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			foreach ( $data['activations'] as $activation ) {
 				LLMS_Helper_Keys::add_license_key( $activation );
 				// Translators: %s = License key.
-				LLMS_Admin_Notices::flash_notice( sprintf( __( '"%s" has been saved!', 'lifterlms-helper' ), $activation['license_key'] ), 'success' );
+				LLMS_Admin_Notices::flash_notice( sprintf( __( '"%s" has been saved!', 'lifterlms' ), $activation['license_key'] ), 'success' );
 			}
 		}
 
@@ -207,6 +208,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -223,7 +225,7 @@ class LLMS_Helper_Admin_Add_Ons {
 		foreach ( $keys as $key ) {
 			LLMS_Helper_Keys::remove_license_key( $key );
 			/* Translators: %s = License Key */
-			LLMS_Admin_Notices::flash_notice( sprintf( __( 'License key "%s" was removed from this site.', 'lifterlms-helper' ), $key ), 'info' );
+			LLMS_Admin_Notices::flash_notice( sprintf( __( 'License key "%s" was removed from this site.', 'lifterlms' ), $key ), 'info' );
 		}
 
 		if ( isset( $data['errors'] ) ) {
@@ -255,6 +257,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output the HTML for the license manager area
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -270,14 +273,14 @@ class LLMS_Helper_Admin_Add_Ons {
 		?>
 		<section class="llms-licenses">
 			<button class="llms-button-primary" id="llms-active-keys-toggle">
-				<?php _e( 'My License Keys', 'lifterlms-helper' ); ?>
+				<?php _e( 'My License Keys', 'lifterlms' ); ?>
 				<i class="fa fa-chevron-down" aria-hidden="true"></i>
 			</button>
 
 			<form action="" class="llms-key-field" id="llms-key-field-form" method="POST">
 
 				<?php if ( $my_keys ) : ?>
-					<h4 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms-helper' ); ?></h4>
+					<h4 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms' ); ?></h4>
 					<ul class="llms-active-keys">
 					<?php foreach ( $my_keys as $key ) : ?>
 						<li>
@@ -289,14 +292,14 @@ class LLMS_Helper_Admin_Add_Ons {
 
 					<?php endforeach; ?>
 					</ul>
-					<button class="llms-button-danger small" name="llms_deactivate_keys" type="submit"><?php _e( 'Remove Selected', 'lifterlms-helper' ); ?></button>
+					<button class="llms-button-danger small" name="llms_deactivate_keys" type="submit"><?php _e( 'Remove Selected', 'lifterlms' ); ?></button>
 				<?php endif; ?>
 
 				<label for="llms_keys_field">
-					<h4 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms-helper' ); ?></h4>
-					<textarea name="llms_add_keys" id="llms_keys_field" placeholder="<?php esc_attr_e( 'Enter each license on a new line', 'lifterlms-helper' ); ?>"></textarea>
+					<h4 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms' ); ?></h4>
+					<textarea name="llms_add_keys" id="llms_keys_field" placeholder="<?php esc_attr_e( 'Enter each license on a new line', 'lifterlms' ); ?>"></textarea>
 				</label>
-				<button class="llms-button-primary small" name="llms_activate_keys" type="submit"><?php _e( 'Add New', 'lifterlms-helper' ); ?></button>
+				<button class="llms-button-primary small" name="llms_activate_keys" type="submit"><?php _e( 'Add New', 'lifterlms' ); ?></button>
 				<?php wp_nonce_field( 'llms_manage_keys', '_llms_manage_keys_nonce' ); ?>
 			</form>
 		</section>
@@ -311,6 +314,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Output single install action if the addon doesn't require license (e.g. free product).
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -328,9 +332,9 @@ class LLMS_Helper_Admin_Add_Ons {
 				<input class="llms-bulk-check" data-action="install" name="llms_install[]" id="<?php echo esc_attr( sprintf( '%s-install', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 				<i class="fa fa-cloud-download" aria-hidden="true"></i>
-				<span class="llms-status-text"><?php _e( 'Install', 'lifterlms-helper' ); ?></span>
+				<span class="llms-status-text"><?php _e( 'Install', 'lifterlms' ); ?></span>
 			</label>
-			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View add-on details', 'lifterlms-helper' ); ?>">
+			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View add-on details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
 			</span>
 			<?php
@@ -345,6 +349,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Output single update action if the addon doesn't require license (e.g. free product).
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -362,9 +367,9 @@ class LLMS_Helper_Admin_Add_Ons {
 				<input class="llms-bulk-check" data-action="update" name="llms_update[]" id="<?php echo esc_attr( sprintf( '%s-update', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 				<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms-helper' ); ?>
+				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms' ); ?>
 			</label>
-			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View update details', 'lifterlms-helper' ); ?>">
+			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View update details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
 			</span>
 			<?php
@@ -376,6 +381,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output additional navigation items
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use core textdomain.
 	 *
 	 * @param string $current_section Current section slug.
 	 * @return void
@@ -388,7 +394,7 @@ class LLMS_Helper_Admin_Add_Ons {
 
 		?>
 		<li class="llms-nav-item<?php echo ( 'mine' === $current_section ) ? ' llms-active' : ''; ?>">
-			<a class="llms-nav-link" href="<?php echo esc_url( admin_url( 'admin.php?page=llms-add-ons&section=mine' ) ); ?>"><?php _e( 'My Add-Ons', 'lifterlms-helper' ); ?></a>
+			<a class="llms-nav-link" href="<?php echo esc_url( admin_url( 'admin.php?page=llms-add-ons&section=mine' ) ); ?>"><?php _e( 'My Add-Ons', 'lifterlms' ); ?></a>
 		</li>
 		<?php
 
