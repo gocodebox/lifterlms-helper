@@ -34,6 +34,25 @@ class LLMS_Helper_Tests_Bootstrap extends LLMS_Tests_Bootstrap {
 	public $plugin_main = 'lifterlms-helper.php';
 
 	/**
+	 * Load the plugin and the LifterLMS core.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function load() {
+
+		// Disable the helper library so this version is tested.
+		add_filter( 'llms_included_libs', function( $libs ) {
+			$libs['helper']['test'] = false;
+			return $libs;
+		} );
+
+		parent::load();
+
+	}
+
+	/**
 	 * Runs immediately after $this->install()
 	 *
 	 * @since 3.2.1

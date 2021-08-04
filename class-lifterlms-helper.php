@@ -75,7 +75,7 @@ final class LifterLMS_Helper {
 		 *
 		 * When the plugin is loaded by itself as a plugin, we must localize it independently.
 		 */
-		if ( ! defined( 'LLMS_REST_API_LIB' ) || ! LLMS_REST_API_LIB ) {
+		if ( ! defined( 'LLMS_HELPER_LIB' ) || ! LLMS_HELPER_LIB ) {
 			add_action( 'init', array( $this, 'load_textdomain' ), 0 );
 		}
 
