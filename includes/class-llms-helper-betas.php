@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.2.1
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -38,12 +38,13 @@ class LLMS_Helper_Betas {
 	 * Add the tab to the nav
 	 *
 	 * @since 3.0.0
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param array $tabs Existing tabs.
 	 * @return array
 	 */
 	public function add_tab( $tabs ) {
-		return llms_assoc_array_insert( $tabs, 'tools', 'betas', __( 'Beta Testing', 'lifterlms-helper' ) );
+		return llms_assoc_array_insert( $tabs, 'tools', 'betas', __( 'Beta Testing', 'lifterlms' ) );
 	}
 
 	/**

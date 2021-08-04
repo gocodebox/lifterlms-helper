@@ -9,7 +9,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="lifterlms-helper" />
+				<element value="lifterlms" />
 			</property>
 		</properties>
 	</rule>
