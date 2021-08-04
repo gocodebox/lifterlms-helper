@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Models
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -69,7 +69,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Allow getting download info for add-ons which do not require licenses.
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return WP_Error|array
 	 */
@@ -111,7 +111,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Translate strings
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param string $string Untranslated string / key.
 	 * @return string
@@ -166,7 +166,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Install the add-on via LifterLMS.com
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return string|WP_Error
 	 */
@@ -232,7 +232,7 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 	 * Install the add-on via LifterLMS.com
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return string|WP_Error
 	 */

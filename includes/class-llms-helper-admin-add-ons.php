@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -171,7 +171,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -208,7 +208,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -257,7 +257,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output the HTML for the license manager area
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return void
 	 */
@@ -314,7 +314,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Output single install action if the addon doesn't require license (e.g. free product).
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -349,7 +349,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Output single update action if the addon doesn't require license (e.g. free product).
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param obj    $addon    LLMS_Add_On instance.
 	 * @param string $curr_tab Slug of the current tab being viewed.
@@ -381,7 +381,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * Output additional navigation items
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param string $current_section Current section slug.
 	 * @return void

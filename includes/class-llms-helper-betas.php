@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -38,7 +38,7 @@ class LLMS_Helper_Betas {
 	 * Add the tab to the nav
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param array $tabs Existing tabs.
 	 * @return array

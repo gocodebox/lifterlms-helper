@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -33,7 +33,7 @@ class LLMS_Helper_Install {
 	 * Checks the current LLMS version and runs installer if required
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use llms_helper() in favor of deprecated LLMS_Helper().
+	 * @since 3.4.0 Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @return void
 	 */
@@ -57,7 +57,7 @@ class LLMS_Helper_Install {
 	 * Core install function
 	 *
 	 * @since 3.0.0
-	 * @since [version] Skip migration when loaded as a library.
+	 * @since 3.4.0 Skip migration when loaded as a library.
 	 *
 	 * @return void
 	 */
@@ -82,7 +82,7 @@ class LLMS_Helper_Install {
 	 * Update the LifterLMS version record to the latest version
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use llms_helper() in favor of deprecated LLMS_Helper().
+	 * @since 3.4.0 Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @param string $version version number.
 	 * @return void
@@ -97,7 +97,7 @@ class LLMS_Helper_Install {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return void
 	 */

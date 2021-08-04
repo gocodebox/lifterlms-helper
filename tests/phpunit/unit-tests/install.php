@@ -6,7 +6,7 @@
  *
  * @group install
  *
- * @since [version]
+ * @since 3.4.0
  */
 class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 
@@ -20,7 +20,7 @@ class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test check_version()
 	 *
-	 * @since [version]
+	 * @since 3.4.0
 	 *
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
@@ -48,7 +48,7 @@ class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test installation when running as a lib
 	 *
-	 * @since [version]
+	 * @since 3.4.0
 	 *
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
@@ -77,7 +77,7 @@ class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test installation
 	 *
-	 * @since [version]
+	 * @since 3.4.0
 	 *
 	 * @return void
 	 */
@@ -101,7 +101,7 @@ class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 	/**
 	 * Test update_version()
 	 *
-	 * @since [version]
+	 * @since 3.4.0
 	 *
 	 * @return void
 	 */

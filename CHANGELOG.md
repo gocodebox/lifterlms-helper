@@ -1,6 +1,23 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.4.0 - 2021-08-04
+-------------------
+
+##### Localization updates
+
++ Only runs localization functions when loaded as an independent plugin.
++ Replace the textdoman 'lifterlms-helper' with 'lifterlms'.
+
+##### Updates
+
++ Use `llms_helper()` in favor of deprecated `LLMS_Helper()` in various locations.
+
+##### Bugfix
+
++ Don't attempt to run migrations from versions less than 3.0.0 during first run when loaded as a library.
+
+
 v3.3.1 - 2021-07-26
 -------------------
 

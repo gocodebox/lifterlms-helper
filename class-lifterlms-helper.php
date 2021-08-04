@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Main
  *
  * @since 3.2.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.3.1';
+	public $version = '3.4.0';
 
 	/**
 	 * Singleton instance reference
@@ -61,7 +61,7 @@ final class LifterLMS_Helper {
 	 * Constructor, get things started!
 	 *
 	 * @since 1.0.0
-	 * @since [version] Only localize when loaded as an independent plugin.
+	 * @since 3.4.0 Only localize when loaded as an independent plugin.
 	 *
 	 * @return void
 	 */
@@ -183,7 +183,7 @@ final class LifterLMS_Helper {
 	 * file for each codebase.
 	 *
 	 * @since 2.5.0
-	 * @since [version] Updated to the core textdomain.
+	 * @since 3.4.0 Updated to the core textdomain.
 	 *
 	 * @return void
 	 */

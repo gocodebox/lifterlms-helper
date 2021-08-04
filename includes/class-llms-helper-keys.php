@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -80,7 +80,7 @@ class LLMS_Helper_Keys {
 	 * Only make api calls to check once / week.
 	 *
 	 * @since 3.0.0
-	 * @since [version] Use core textdomain.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @param bool $force Ignore the once/week setting and force a check.
 	 * @return void

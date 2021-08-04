@@ -36,7 +36,7 @@ class LLMS_Helper_Tests_Bootstrap extends LLMS_Tests_Bootstrap {
 	/**
 	 * Load the plugin and the LifterLMS core.
 	 *
-	 * @since [version]
+	 * @since 3.4.0
 	 *
 	 * @return void
 	 */
