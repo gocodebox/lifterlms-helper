@@ -33,13 +33,23 @@ class LLMS_Helper_Install {
 	 * Checks the current LLMS version and runs installer if required
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @return void
 	 */
 	public static function check_version() {
-		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'llms_helper_version' ) !== LLMS_Helper()->version ) {
+
+		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'llms_helper_version' ) !== llms_helper()->version ) {
+
 			self::install();
+
+			/**
+			 * Action run after the helper library is updated.
+			 *
+			 * @since 3.0.0
+			 */
 			do_action( 'llms_helper_updated' );
+
 		}
 	}
 
@@ -47,6 +57,7 @@ class LLMS_Helper_Install {
 	 * Core install function
 	 *
 	 * @since 3.0.0
+	 * @since [version] Skip migration when loaded as a library.
 	 *
 	 * @return void
 	 */
@@ -58,10 +69,8 @@ class LLMS_Helper_Install {
 
 		do_action( 'llms_helper_before_install' );
 
-		if ( ! get_option( 'llms_helper_version', '' ) ) {
-
+		if ( ( ! defined( 'LLMS_HELPER_LIB' ) || ! LLMS_HELPER_LIB ) && ! get_option( 'llms_helper_version', '' ) ) {
 			self::_migrate_300();
-
 		}
 
 		self::update_version();
@@ -73,13 +82,14 @@ class LLMS_Helper_Install {
 	 * Update the LifterLMS version record to the latest version
 	 *
 	 * @since 3.0.0
+	 * @since [version] Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @param string $version version number.
 	 * @return void
 	 */
 	public static function update_version( $version = null ) {
 		delete_option( 'llms_helper_version' );
-		add_option( 'llms_helper_version', is_null( $version ) ? LLMS_Helper()->version : $version );
+		add_option( 'llms_helper_version', is_null( $version ) ? llms_helper()->version : $version );
 	}
 
 	/**
