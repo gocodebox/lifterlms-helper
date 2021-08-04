@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.0.2
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -33,13 +33,23 @@ class LLMS_Helper_Install {
 	 * Checks the current LLMS version and runs installer if required
 	 *
 	 * @since 3.0.0
+	 * @since 3.4.0 Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @return void
 	 */
 	public static function check_version() {
-		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'llms_helper_version' ) !== LLMS_Helper()->version ) {
+
+		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'llms_helper_version' ) !== llms_helper()->version ) {
+
 			self::install();
+
+			/**
+			 * Action run after the helper library is updated.
+			 *
+			 * @since 3.0.0
+			 */
 			do_action( 'llms_helper_updated' );
+
 		}
 	}
 
@@ -47,6 +57,7 @@ class LLMS_Helper_Install {
 	 * Core install function
 	 *
 	 * @since 3.0.0
+	 * @since 3.4.0 Skip migration when loaded as a library.
 	 *
 	 * @return void
 	 */
@@ -58,10 +69,8 @@ class LLMS_Helper_Install {
 
 		do_action( 'llms_helper_before_install' );
 
-		if ( ! get_option( 'llms_helper_version', '' ) ) {
-
+		if ( ( ! defined( 'LLMS_HELPER_LIB' ) || ! LLMS_HELPER_LIB ) && ! get_option( 'llms_helper_version', '' ) ) {
 			self::_migrate_300();
-
 		}
 
 		self::update_version();
@@ -73,13 +82,14 @@ class LLMS_Helper_Install {
 	 * Update the LifterLMS version record to the latest version
 	 *
 	 * @since 3.0.0
+	 * @since 3.4.0 Use llms_helper() in favor of deprecated LLMS_Helper().
 	 *
 	 * @param string $version version number.
 	 * @return void
 	 */
 	public static function update_version( $version = null ) {
 		delete_option( 'llms_helper_version' );
-		add_option( 'llms_helper_version', is_null( $version ) ? LLMS_Helper()->version : $version );
+		add_option( 'llms_helper_version', is_null( $version ) ? llms_helper()->version : $version );
 	}
 
 	/**
@@ -87,15 +97,16 @@ class LLMS_Helper_Install {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.2 Unknown.
+	 * @since 3.4.0 Use core textdomain.
 	 *
 	 * @return void
 	 */
 	private static function _migrate_300() {
 
-		$text  = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms-helper' ) . '</strong></p>';
-		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms-helper' ) . '</p>';
+		$text  = '<p><strong>' . __( 'Welcome to the LifterLMS Helper', 'lifterlms' ) . '</strong></p>';
+		$text .= '<p>' . __( 'This plugin allows your website to interact with your subscriptions at LifterLMS.com to ensure your add-ons stay up to date.', 'lifterlms' ) . '</p>';
 		// Translators: %1$s = Opening anchor tag; %2$s = closing anchor tag.
-		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms-helper' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
+		$text .= '<p>' . sprintf( __( 'You can activate your add-ons from the %1$sAdd-Ons & More%2$s screen.', 'lifterlms' ), '<a href="' . admin_url( 'admin.php?page=llms-add-ons' ) . '">', '</a>' ) . '</p>';
 
 		$keys   = array();
 		$addons = llms_get_add_ons();
@@ -131,7 +142,7 @@ class LLMS_Helper_Install {
 				if ( isset( $data['activations'] ) ) {
 
 					// Translators: %d = Number of keys that have been migrated.
-					$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms-helper' ), count( $data['activations'] ) ) . ':</p>';
+					$text .= '<p>' . sprintf( _n( '%d license has been automatically migrated from the previous version of the LifterLMS Helper', '%d licenses have been automatically migrated from the previous version of the LifterLMS Helper.', count( $data['activations'] ), 'lifterlms' ), count( $data['activations'] ) ) . ':</p>';
 
 					foreach ( $data['activations'] as $activation ) {
 						LLMS_Helper_Keys::add_license_key( $activation );
