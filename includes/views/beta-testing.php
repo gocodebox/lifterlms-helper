@@ -5,7 +5,6 @@
  * @package LifterLMS_Helper/Views
  *
  * @since 3.0.0
- * @since 3.4.0 Use core textdomain.
  * @version 3.4.0
  */
 
