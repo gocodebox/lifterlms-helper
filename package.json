@@ -13,10 +13,15 @@
   },
   "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "lifterlms-lib-tasks": "^3.7.0"
+    "rtlcss": "^3.3.0",
+    "sass": "^1.37.5"
   },
   "scripts": {
-    "build": "gulp styles && gulp styles-rtl && llms-dev pot"
+    "build:styles": "npm run build:styles:dev && npm run build:styles:min && npm run styles:rtl",
+    "build:styles:min": "sass assets/scss/llms-helper.scss:assets/css/llms-helper.min.css --style=compressed",
+    "build:styles:dev": "sass assets/scss/llms-helper.scss:assets/css/llms-helper.css --style=expanded",
+    "watch:styles": "npm run build:styles:dev -- --watch",
+    "styles:rtl": "rtlcss assets/css/llms-helper.css assets/css/llms-helper-rtl.css && rtlcss assets/css/llms-helper.min.css assets/css/llms-helper-rtl.min.css",
+    "build": "npm run build:styles && llms-dev pot"
   }
 }
