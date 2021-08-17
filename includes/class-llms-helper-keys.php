@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.0
+ * @version 3.4.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -169,6 +169,7 @@ class LLMS_Helper_Keys {
 	 * Deactivate LifterLMS API keys with remote server
 	 *
 	 * @since 3.0.0
+	 * @since 3.4.1 Ensure key exists before attempting to deactivate it.
 	 *
 	 * @param array $keys Array of keys.
 	 * @return array
@@ -185,7 +186,7 @@ class LLMS_Helper_Keys {
 
 		$saved = llms_helper_options()->get_license_keys();
 		foreach ( $keys as $key ) {
-			if ( $saved[ $key ] && $saved[ $key ]['update_key'] ) {
+			if ( isset( $saved[ $key ] ) && $saved[ $key ]['update_key'] ) {
 				$data['keys'][ $key ] = $saved[ $key ]['update_key'];
 			}
 		}

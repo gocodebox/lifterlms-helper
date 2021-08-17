@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: LifterLMS Helper 3.4.0\n"
+"Project-Id-Version: LifterLMS Helper 3.4.1\n"
 "Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
 "Last-Translator: Team LifterLMS <team@lifterlms.com>\n"
 "Language-Team: Team LifterLMS <team@lifterlms.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-08-04T11:50:18-06:00\n"
+"POT-Creation-Date: 2021-08-17T10:30:36-07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: llms-dev 1.0.0\n"
 "X-Domain: lifterlms\n"
@@ -205,7 +205,7 @@ msgid "Deactivate"
 msgstr ""
 
 #: includes/models/class-llms-helper-add-on.php:133
-#: includes/views/beta-testing.php:76
+#: includes/views/beta-testing.php:75
 msgid "N/A"
 msgstr ""
 
@@ -237,89 +237,89 @@ msgstr ""
 msgid "Could not update %s."
 msgstr ""
 
-#: includes/views/beta-testing.php:18
+#: includes/views/beta-testing.php:17
 msgid "Beta Testing Warnings and FAQs"
 msgstr ""
 
-#: includes/views/beta-testing.php:20
+#: includes/views/beta-testing.php:19
 msgid "Always test with caution!"
 msgstr ""
 
-#: includes/views/beta-testing.php:21
+#: includes/views/beta-testing.php:20
 msgid "Beta releases may not be stable. We may not be able to fix issues caused by using a beta release. We urge you to only use beta versions in testing environments!"
 msgstr ""
 
-#: includes/views/beta-testing.php:22
+#: includes/views/beta-testing.php:21
 msgid "Subscribing to the <em>beta channel</em> for LifterLMS or any available add-ons will allow you to automatically update to the latest beta release for the given plugin or theme."
 msgstr ""
 
-#: includes/views/beta-testing.php:23
+#: includes/views/beta-testing.php:22
 msgid "When no beta versions are available, automatic updates will be to the latest stable version of the plugin or theme."
 msgstr ""
 
-#: includes/views/beta-testing.php:25
+#: includes/views/beta-testing.php:24
 msgid "Rolling back and restoring data"
 msgstr ""
 
-#: includes/views/beta-testing.php:26
+#: includes/views/beta-testing.php:25
 msgid "This plugin does not provide you with the ability to rollback from a beta version."
 msgstr ""
 
-#: includes/views/beta-testing.php:27
+#: includes/views/beta-testing.php:26
 msgid "To rollback you should subscribe to the stable channel, delete the beta version of the plugin, and then re-install the latest version. If a database migration was run you should also restore your database from a backup."
 msgstr ""
 
-#: includes/views/beta-testing.php:29
+#: includes/views/beta-testing.php:28
 msgid "Reporting bugs and contributing"
 msgstr ""
 
 #. Translators: %1$s = Opening anchor link; %2$s = closing anchor link.
-#: includes/views/beta-testing.php:33
+#: includes/views/beta-testing.php:32
 msgid "We welcome contributions of all kinds, review our contribution guidelines on %1$sGitHub%2$s to get started."
 msgstr ""
 
 #. Translators: %s = Link to bug report.
-#: includes/views/beta-testing.php:39
+#: includes/views/beta-testing.php:38
 msgid "If you encounter a bug while beta testing, please report it at %s."
 msgstr ""
 
-#: includes/views/beta-testing.php:43
+#: includes/views/beta-testing.php:42
 msgid "Still have questions?"
 msgstr ""
 
 #. Translators: %s = Link to guide.
-#: includes/views/beta-testing.php:47
+#: includes/views/beta-testing.php:46
 msgid "Check out our Guide to Beta Testing at %s."
 msgstr ""
 
-#: includes/views/beta-testing.php:56
+#: includes/views/beta-testing.php:55
 msgid "Name"
 msgstr ""
 
-#: includes/views/beta-testing.php:57
+#: includes/views/beta-testing.php:56
 msgid "Channel"
 msgstr ""
 
-#: includes/views/beta-testing.php:58
+#: includes/views/beta-testing.php:57
 msgid "Installed Version"
 msgstr ""
 
-#: includes/views/beta-testing.php:59
+#: includes/views/beta-testing.php:58
 msgid "Beta Version"
 msgstr ""
 
-#: includes/views/beta-testing.php:71
+#: includes/views/beta-testing.php:70
 msgid "Stable"
 msgstr ""
 
-#: includes/views/beta-testing.php:72
+#: includes/views/beta-testing.php:71
 msgid "Beta"
 msgstr ""
 
-#: includes/views/beta-testing.php:82
+#: includes/views/beta-testing.php:81
 msgid "Save & Update"
 msgstr ""
 
-#: includes/views/beta-testing.php:89
+#: includes/views/beta-testing.php:88
 msgid "Are you sure you want to enable or disable beta testing for these plugins and themes?"
 msgstr ""
