@@ -1,6 +1,12 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.4.1 - 2021-08-17
+-------------------
+
++ Fixed undefined index error encountered when programmatically deactivating a key that was not previously activated on the site.
+
+
 v3.4.0 - 2021-08-04
 -------------------
 

@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -169,7 +169,7 @@ class LLMS_Helper_Keys {
 	 * Deactivate LifterLMS API keys with remote server
 	 *
 	 * @since 3.0.0
-	 * @since [version] Ensure key exists before attempting to deactivate it.
+	 * @since 3.4.1 Ensure key exists before attempting to deactivate it.
 	 *
 	 * @param array $keys Array of keys.
 	 * @return array
