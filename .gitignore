@@ -21,3 +21,5 @@ vendor/
 
 # Non-distributable.
 phpunit.xml
+
+composer.lock
