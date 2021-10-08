@@ -10,9 +10,9 @@
  */
 class LLMS_Helper_Test_Install extends LLMS_Helper_Unit_Test_Case {
 
-	public static function setupBeforeClass() {
+	public static function set_up_before_class() {
 
-		parent::setupBeforeClass();
+		parent::set_up_before_class();
 		require_once LLMS_PLUGIN_DIR . 'includes/admin/class.llms.admin.notices.php';
 
 	}

@@ -15,9 +15,9 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tear_down() {
 
-		parent::tearDown();
+		parent::tear_down();
 		delete_option( 'llms_helper_options' );
 
 	}
