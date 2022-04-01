@@ -134,6 +134,8 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	 *
 	 * @since 3.2.1
 	 *
+	 * @apiIntegration
+	 *
 	 * @return void
 	 */
 	public function test_get_download_info_err_with_license() {
@@ -175,6 +177,8 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	 *
 	 * @since 3.2.1
 	 *
+	 * @apiIntegration
+	 *
 	 * @return void
 	 */
 	public function test_get_download_info_success_license_required_single() {
@@ -195,6 +199,8 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	 *
 	 * @since 3.2.1
 	 *
+	 * @apiIntegration
+	 *
 	 * @return void
 	 */
 	public function test_get_download_info_success_license_required_bundle() {
@@ -214,6 +220,8 @@ class LLMS_Helper_Test_Add_On extends LLMS_Helper_Unit_Test_Case {
 	 * Test get_download_info() success for an add-on that does not require a license
 	 *
 	 * @since 3.2.1
+	 *
+	 * @apiIntegration
 	 *
 	 * @return void
 	 */

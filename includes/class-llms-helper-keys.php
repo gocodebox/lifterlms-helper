@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.1
+ * @version 3.4.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -18,10 +18,11 @@ defined( 'ABSPATH' ) || exit;
 class LLMS_Helper_Keys {
 
 	/**
-	 * Activate LifterLMS License Keys with the remote server
+	 * Activate LifterLMS License Keys with the remote server.
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.1 Unknown.
+	 * @since 3.4.2 Removed empty key lines.
 	 *
 	 * @param string|array $keys Array or a white-space separated list of API keys.
 	 * @return array
@@ -36,6 +37,7 @@ class LLMS_Helper_Keys {
 		$keys = array_map( 'sanitize_text_field', $keys );
 		$keys = array_map( 'trim', $keys );
 		$keys = array_unique( $keys );
+		$keys = array_filter( $keys ); // Remove empty keys.
 
 		$data = array(
 			'keys' => $keys,

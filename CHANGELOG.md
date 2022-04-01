@@ -1,6 +1,15 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.4.2 - 2022-04-01
+-------------------
+
+##### Bug Fixes
+
++ Fixed an issue where adding new license keys with an end-of-line symbol after the last key would result in an invalid license key error.
++ Fixed an issue that caused PHP warnings in the "Plugins -> Add New" page because the `plugin` property was missing. [#36](https://github.com/gocodebox/lifterlms-helper/issues/36)
+
+
 v3.4.1 - 2021-08-17
 -------------------
 
