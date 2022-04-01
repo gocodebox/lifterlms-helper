@@ -15,7 +15,7 @@
   },
   "require-dev": {
     "lifterlms/lifterlms-cs": "dev-trunk",
-    "lifterlms/lifterlms-tests": "^3.1.0"
+    "lifterlms/lifterlms-tests": "^3.3.1"
   },
   "archive": {
     "exclude": [
