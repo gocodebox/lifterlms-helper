@@ -16,6 +16,8 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * @since 3.2.1
 	 * @since 3.3.1 Add assertions form "LLMS_Helper_Keys::get()".
 	 *
+	 * @apiIntegration
+	 *
 	 * @return void
 	 */
 	public function test_activate_deactivate_add_check_remove_keys_real_active_key() {
@@ -85,6 +87,8 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * Test activate_keys() and deactivate_keys() with real inactive keys
 	 *
 	 * @since 3.2.1
+	 *
+	 * @apiIntegration
 	 *
 	 * @return void
 	 */

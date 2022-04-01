@@ -9,6 +9,20 @@
 class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 
 	/**
+	 * Set up the test.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function set_up() {
+
+		parent::set_up();
+		$this->skip_api_integration_test();
+
+	}
+
+	/**
 	 * Teardown the test case
 	 *
 	 * @since 3.2.1
@@ -27,23 +41,11 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	 *
 	 * @since 3.2.0
 	 * @since 3.2.1 Only run api integration tests when explicitly specified through environment vars.
+	 * @since [version] Removed test skip logic in favor of using `@apiIntegration` annotations to skip tests.
 	 *
 	 * @return void
 	 */
 	public function get_test_keys() {
-
-		/**
-		 * Skip test unless API integration tests are explicitly specified.
-		 *
-		 * This is used by Travis to only run API integrations tests on a single build
-		 * to prevent unnecessary load on the API server.
-		 *
-		 * We'll run the API tests when running code coverage too so that we get "credit"
-		 * for the integration tests.
-		 */
-		if ( ! getenv( 'LLMS_COM_API_INTEGRATION_TESTS' ) && ! getenv( 'RUN_CODE_COVERAGE' ) ) {
-			$this->markTestSkipped( 'Integration tests skipped in this environment.' );
-		}
 
 		$keys = array();
 
