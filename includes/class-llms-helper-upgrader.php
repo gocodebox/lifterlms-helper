@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.0
+ * @version 3.4.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -313,10 +313,12 @@ class LLMS_Helper_Upgrader {
 	}
 
 	/**
-	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org
+	 * Setup an object of addon data for use when requesting plugin information normally acquired from wp.org.
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Set package to `true` for add-ons which don't require a license.
+	 * @since 3.4.2 Added a `plugin` property to the returned plugin object,
+	 *              which is required by `WP_Plugin_Install_List_Table::prepare_items()`.
 	 *
 	 * @param string $id               Addon id.
 	 * @param bool   $include_sections Whether or not to include additional sections like the description and changelog.
@@ -354,6 +356,7 @@ class LLMS_Helper_Upgrader {
 		$item = array(
 			'name'           => $addon->get( 'title' ),
 			'slug'           => $id,
+			'plugin'         => $addon->get( 'update_file' ),
 			'version'        => $addon->get_latest_version(),
 			'new_version'    => $addon->get_latest_version(),
 			'author'         => '<a href="https://lifterlms.com/">' . $addon->get( 'author' )['name'] . '</a>',
