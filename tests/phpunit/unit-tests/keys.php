@@ -121,6 +121,8 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * Test activate_keys() to sanitize and parse acceptable types of input data.
 	 *
 	 * @since 3.2.0
+	 * @since [version] Added test of empty key removal.
+	 *              Replace "\n" line endings in multiple keys test with the platform specific `PHP_EOL` constant.
 	 *
 	 * @return void
 	 */
@@ -136,10 +138,10 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 		// Array is parsed and duplicates are removed.
 		LLMS_Helper_Keys::activate_keys( array( 1, 2, 2 ) );
 
-		// String with one key per line & extra white space trimmed.
-		LLMS_Helper_Keys::activate_keys( "1 \n 2 \n1" );
+		// Test a string with one key per line, trimming of extra white space, and removal of empty keys.
+		LLMS_Helper_Keys::activate_keys( '1 ' . PHP_EOL .  ' 2 ' . PHP_EOL . '1' . PHP_EOL );
 
-		remove_filter( 'pre_http_request', $handler, 10, 3 );
+		remove_filter( 'pre_http_request', $handler, 10 );
 
 	}
 
