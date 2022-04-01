@@ -1,0 +1,4 @@
+significance: patch
+type: fixed
+links: "#36"
+entry: Fixed an issue that caused PHP warnings in the "Plugins -> Add New" page because the `plugin` property was missing.
