@@ -11,7 +11,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	/**
 	 * Set up the test.
 	 *
-	 * @since [version]
+	 * @since 3.4.2
 	 *
 	 * @return void
 	 */
@@ -41,7 +41,7 @@ class LLMS_Helper_Unit_Test_Case extends LLMS_Unit_Test_Case {
 	 *
 	 * @since 3.2.0
 	 * @since 3.2.1 Only run api integration tests when explicitly specified through environment vars.
-	 * @since [version] Removed test skip logic in favor of using `@apiIntegration` annotations to skip tests.
+	 * @since 3.4.2 Removed test skip logic in favor of using `@apiIntegration` annotations to skip tests.
 	 *
 	 * @return void
 	 */

@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -22,7 +22,7 @@ class LLMS_Helper_Keys {
 	 *
 	 * @since 3.0.0
 	 * @since 3.0.1 Unknown.
-	 * @since [version] Removed empty key lines.
+	 * @since 3.4.2 Removed empty key lines.
 	 *
 	 * @param string|array $keys Array or a white-space separated list of API keys.
 	 * @return array

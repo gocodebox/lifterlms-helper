@@ -125,7 +125,7 @@ class LLMS_Helper_Test_Keys extends LLMS_Helper_Unit_Test_Case {
 	 * Test activate_keys() to sanitize and parse acceptable types of input data.
 	 *
 	 * @since 3.2.0
-	 * @since [version] Added test of empty key removal.
+	 * @since 3.4.2 Added test of empty key removal.
 	 *              Replace "\n" line endings in multiple keys test with the platform specific `PHP_EOL` constant.
 	 *
 	 * @return void

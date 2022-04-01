@@ -1,4 +1,0 @@
-significance: patch
-type: fixed
-entry: Fixed an issue where adding new license keys with an end-of-line symbol after the last key
-  would result in an invalid license key error.

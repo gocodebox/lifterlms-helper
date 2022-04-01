@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.4.2
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -317,7 +317,7 @@ class LLMS_Helper_Upgrader {
 	 *
 	 * @since 3.0.0
 	 * @since 3.2.1 Set package to `true` for add-ons which don't require a license.
-	 * @since [version] Added a `plugin` property to the returned plugin object,
+	 * @since 3.4.2 Added a `plugin` property to the returned plugin object,
 	 *              which is required by `WP_Plugin_Install_List_Table::prepare_items()`.
 	 *
 	 * @param string $id               Addon id.
