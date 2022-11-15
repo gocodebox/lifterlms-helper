@@ -71,6 +71,7 @@
     "tests-run": "\"vendor/bin/phpunit\""
   },
   "config": {
+    "lock": false,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
