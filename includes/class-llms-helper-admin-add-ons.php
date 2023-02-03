@@ -280,7 +280,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			<form action="" class="llms-key-field" id="llms-key-field-form" method="POST">
 
 				<?php if ( $my_keys ) : ?>
-					<h4 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms' ); ?></h4>
+					<h3 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms' ); ?></h3>
 					<ul class="llms-active-keys">
 					<?php foreach ( $my_keys as $key ) : ?>
 						<li>
@@ -296,7 +296,7 @@ class LLMS_Helper_Admin_Add_Ons {
 				<?php endif; ?>
 
 				<label for="llms_keys_field">
-					<h4 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms' ); ?></h4>
+					<h3 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms' ); ?></h3>
 					<textarea name="llms_add_keys" id="llms_keys_field" placeholder="<?php esc_attr_e( 'Enter each license on a new line', 'lifterlms' ); ?>"></textarea>
 				</label>
 				<button class="llms-button-primary small" name="llms_activate_keys" type="submit"><?php _e( 'Add New', 'lifterlms' ); ?></button>
