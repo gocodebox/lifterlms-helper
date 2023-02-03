@@ -336,7 +336,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			</label>
 			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View add-on details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
-			</span>
+			</a>
 			<?php
 		}
 
@@ -367,11 +367,11 @@ class LLMS_Helper_Admin_Add_Ons {
 				<input class="llms-bulk-check" data-action="update" name="llms_update[]" id="<?php echo esc_attr( sprintf( '%s-update', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 				<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms' ); ?>
+				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms' ); ?></span>
 			</label>
 			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View update details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
-			</span>
+			</a>
 			<?php
 		}
 
