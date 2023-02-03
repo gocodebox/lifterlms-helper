@@ -23,7 +23,7 @@
   padding: 0;
 }
 .wrap.lifterlms-addons .llms-licenses .llms-active-keys li {
-  margin: 0 0 15px;
+  margin: 0 0 10px;
   padding: 0;
 }
 .wrap.lifterlms-addons .llms-licenses .llms-active-keys li input:checked + span {
