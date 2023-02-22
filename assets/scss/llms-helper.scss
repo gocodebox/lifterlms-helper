@@ -4,14 +4,17 @@ $color-danger: $color-red;
 .wrap.lifterlms-addons {
 
 	.llms-licenses {
-		display: inline-block;
-		margin-left: 20px;
+		display: block;
 		position: relative;
 		vertical-align: middle;
 		z-index: 1;
 
+		.llms-button-primary {
+			width: 100%;
+		}
+
 		.llms-license-header {
-			margin: 0;
+			margin: 0 0 5px 0;
 		}
 
 		label {
@@ -22,10 +25,10 @@ $color-danger: $color-red;
 
 		.llms-active-keys {
 			list-style-type: none;
-			margin: 5px 0;
+			margin: 15px 0;
 			padding: 0;
 			li {
-				margin: 0 0 5px;
+				margin: 0 0 10px;
 				padding: 0;
 				input:checked + span {
 					color: $color-danger;
@@ -45,7 +48,7 @@ $color-danger: $color-red;
 			left: -1px;
 			padding: 20px;
 			top: calc( 100% - 2px );
-			width: 340px;
+			width: 90%;
 
 			textarea {
 				display: inline-block;
@@ -62,6 +65,21 @@ $color-danger: $color-red;
 
 		}
 
+	}
+
+	@media only screen and (min-width: 782px) {
+		.llms-licenses {
+			display: inline-block;
+			margin-left: 20px;
+
+			.llms-button-primary {
+				width: auto;
+			}
+
+			.llms-key-field {
+				width: 340px;
+			}
+		}
 	}
 
 }

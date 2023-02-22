@@ -1,12 +1,14 @@
 .wrap.lifterlms-addons .llms-licenses {
-  display: inline-block;
-  margin-left: 20px;
+  display: block;
   position: relative;
   vertical-align: middle;
   z-index: 1;
 }
+.wrap.lifterlms-addons .llms-licenses .llms-button-primary {
+  width: 100%;
+}
 .wrap.lifterlms-addons .llms-licenses .llms-license-header {
-  margin: 0;
+  margin: 0 0 5px 0;
 }
 .wrap.lifterlms-addons .llms-licenses label {
   display: block;
@@ -17,11 +19,11 @@
 }
 .wrap.lifterlms-addons .llms-licenses .llms-active-keys {
   list-style-type: none;
-  margin: 5px 0;
+  margin: 15px 0;
   padding: 0;
 }
 .wrap.lifterlms-addons .llms-licenses .llms-active-keys li {
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   padding: 0;
 }
 .wrap.lifterlms-addons .llms-licenses .llms-active-keys li input:checked + span {
@@ -40,7 +42,7 @@
   left: -1px;
   padding: 20px;
   top: calc( 100% - 2px );
-  width: 340px;
+  width: 90%;
 }
 .wrap.lifterlms-addons .llms-licenses .llms-key-field textarea {
   display: inline-block;
@@ -53,6 +55,18 @@
   resize: none;
   vertical-align: middle;
   width: 100%;
+}
+@media only screen and (min-width: 782px) {
+  .wrap.lifterlms-addons .llms-licenses {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .wrap.lifterlms-addons .llms-licenses .llms-button-primary {
+    width: auto;
+  }
+  .wrap.lifterlms-addons .llms-licenses .llms-key-field {
+    width: 340px;
+  }
 }
 
 @media only screen and (min-width: 800px) {
