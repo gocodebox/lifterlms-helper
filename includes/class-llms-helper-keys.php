@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.2
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,11 +23,13 @@ class LLMS_Helper_Keys {
 	 * @since 3.0.0
 	 * @since 3.0.1 Unknown.
 	 * @since 3.4.2 Removed empty key lines.
+	 * @since [version] Caching results. Added `$force` parameter.
 	 *
 	 * @param string|array $keys Array or a white-space separated list of API keys.
+	 * @param bool         $force Optional. Whether to force a remote check. Default `false`.
 	 * @return array
 	 */
-	public static function activate_keys( $keys ) {
+	public static function activate_keys( $keys, $force = false ) {
 
 		// Sanitize before sending.
 		if ( ! is_array( $keys ) ) {
@@ -44,7 +46,22 @@ class LLMS_Helper_Keys {
 			'url'  => get_site_url(),
 		);
 
+		// Check for a cached result based on the keys and url input.
+		$cache_hash = md5( wp_json_encode( $data ) );
+		if ( $force ) {
+			// Delete cache if forcing a remote check.
+			delete_site_transient( 'llms_helper_keys_activation_response_' . $cache_hash );
+		} else {
+			// Use the cached result if present.
+			$cached_req_result = get_site_transient( 'llms_helper_keys_activation_response_' . $cache_hash );
+			if ( ! empty( $cached_req_result ) ) {
+				return $cached_req_result;
+			}
+		}
+
 		$req = new LLMS_Dot_Com_API( '/license/activate', $data );
+		set_site_transient( 'llms_helper_keys_activation_response_' . $cache_hash, $req->get_result(), HOUR_IN_SECONDS );
+
 		return $req->get_result();
 
 	}
@@ -172,6 +189,7 @@ class LLMS_Helper_Keys {
 	 *
 	 * @since 3.0.0
 	 * @since 3.4.1 Ensure key exists before attempting to deactivate it.
+	 * @since [version] Deleting any cached activation result.
 	 *
 	 * @param array $keys Array of keys.
 	 * @return array
@@ -185,6 +203,10 @@ class LLMS_Helper_Keys {
 			'keys' => array(),
 			'url'  => get_site_url(),
 		);
+
+		// Delete any cached activation result.
+		$cache_hash = md5( wp_json_encode( $data ) );
+		delete_site_transient( 'llms_helper_keys_activation_response_' . $cache_hash );
 
 		$saved = llms_helper_options()->get_license_keys();
 		foreach ( $keys as $key ) {
