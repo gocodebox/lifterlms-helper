@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.0
+ * @version 3.5.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -172,12 +172,13 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
 	 * @since 3.4.0 Use core textdomain.
+	 * @since 3.5.0 Passing force parameter to activate_keys() method.
 	 *
 	 * @return void
 	 */
 	private function handle_activations() {
 
-		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys', FILTER_SANITIZE_STRING ) );
+		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys', FILTER_SANITIZE_STRING ), true );
 
 		if ( is_wp_error( $res ) ) {
 			LLMS_Admin_Notices::flash_notice( $res->get_error_message(), 'error' );
@@ -280,7 +281,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			<form action="" class="llms-key-field" id="llms-key-field-form" method="POST">
 
 				<?php if ( $my_keys ) : ?>
-					<h4 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms' ); ?></h4>
+					<h3 class="llms-license-header"><?php _e( 'Manage Saved License Keys', 'lifterlms' ); ?></h3>
 					<ul class="llms-active-keys">
 					<?php foreach ( $my_keys as $key ) : ?>
 						<li>
@@ -296,7 +297,7 @@ class LLMS_Helper_Admin_Add_Ons {
 				<?php endif; ?>
 
 				<label for="llms_keys_field">
-					<h4 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms' ); ?></h4>
+					<h3 class="llms-license-header"><?php _e( 'Add New License Keys', 'lifterlms' ); ?></h3>
 					<textarea name="llms_add_keys" id="llms_keys_field" placeholder="<?php esc_attr_e( 'Enter each license on a new line', 'lifterlms' ); ?>"></textarea>
 				</label>
 				<button class="llms-button-primary small" name="llms_activate_keys" type="submit"><?php _e( 'Add New', 'lifterlms' ); ?></button>
@@ -336,7 +337,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			</label>
 			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View add-on details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
-			</span>
+			</a>
 			<?php
 		}
 
@@ -367,11 +368,11 @@ class LLMS_Helper_Admin_Add_Ons {
 				<input class="llms-bulk-check" data-action="update" name="llms_update[]" id="<?php echo esc_attr( sprintf( '%s-update', $addon->get( 'id' ) ) ); ?>" type="checkbox" value="<?php echo esc_attr( $addon->get( 'id' ) ); ?>">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 				<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms' ); ?>
+				<span class="llms-status-text"><?php _e( 'Update', 'lifterlms' ); ?></span>
 			</label>
 			<a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $addon->get( 'id' ) . '&section=changelog&TB_iframe=true&width=600&height=800' ); ?>" class="thickbox open-plugin-details-modal tip--bottom-left" data-tip="<?php esc_attr_e( 'View update details', 'lifterlms' ); ?>">
 				<i class="fa fa-info-circle" aria-hidden="true"></i>
-			</span>
+			</a>
 			<?php
 		}
 
