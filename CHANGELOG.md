@@ -1,6 +1,26 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.0 - 2023-02-28
+-------------------
+
+##### Updates and Enhancements
+
++ Updated the appearance of the license dropdown.
+
+##### Bug Fixes
+
++ Fixed incorrect HTML code for single Add On displayed on the LifterLMS > Add-ons & more screen.
+
+##### Developer Notes
+
++ Added new paramater `$force`, `false` by default, to the static method `LLMS_Helper_Keys::activate_keys()`. It'll allow to force a remote call instead of using ccached results.
+
+##### Performance Improvements
+
++ Cache results from the activate keys calls to the LifterLMS license API. This prevents issues where sites are pinging the license server too often, specifically if they are "cloned" sites.
+
+
 v3.4.2 - 2022-04-01
 -------------------
 
