@@ -1,5 +1,0 @@
-significance: minor
-type: dev
-entry: Added new paramater `$force`, `false` by default, to the static method
-  `LLMS_Helper_Keys::activate_keys()`. It'll allow to force a remote call
-  instead of using ccached results.

@@ -1,5 +1,0 @@
-significance: patch
-type: performance
-entry: Cache results from the activate keys calls to the LifterLMS license
-  API. This prevents issues where sites are pinging the license server too
-  often, specifically if they are "cloned" sites.
