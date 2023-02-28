@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.5.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +23,7 @@ class LLMS_Helper_Keys {
 	 * @since 3.0.0
 	 * @since 3.0.1 Unknown.
 	 * @since 3.4.2 Removed empty key lines.
-	 * @since [version] Caching results. Added `$force` parameter.
+	 * @since 3.5.0 Caching results. Added `$force` parameter.
 	 *
 	 * @param string|array $keys  Array or a white-space separated list of API keys.
 	 * @param bool         $force Optional. Whether to force a remote check. Default `false`.
@@ -189,7 +189,7 @@ class LLMS_Helper_Keys {
 	 *
 	 * @since 3.0.0
 	 * @since 3.4.1 Ensure key exists before attempting to deactivate it.
-	 * @since [version] Deleting any cached activation result.
+	 * @since 3.5.0 Deleting any cached activation result.
 	 *
 	 * @param array $keys Array of keys.
 	 * @return array

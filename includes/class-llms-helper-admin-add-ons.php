@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version [version]
+ * @version 3.5.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -172,7 +172,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
 	 * @since 3.4.0 Use core textdomain.
-	 * @since [version] Passing force parameter to activate_keys() method.
+	 * @since 3.5.0 Passing force parameter to activate_keys() method.
 	 *
 	 * @return void
 	 */
