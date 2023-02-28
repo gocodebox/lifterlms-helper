@@ -5,7 +5,7 @@
  * @package LifterLMS_Helper/Classes
  *
  * @since 3.0.0
- * @version 3.4.0
+ * @version [version]
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -172,12 +172,13 @@ class LLMS_Helper_Admin_Add_Ons {
 	 * @since 3.0.0
 	 * @since 3.2.0 Don't access $_POST directly.
 	 * @since 3.4.0 Use core textdomain.
+	 * @since [version] Passing force parameter to activate_keys() method.
 	 *
 	 * @return void
 	 */
 	private function handle_activations() {
 
-		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys', FILTER_SANITIZE_STRING ) );
+		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys', FILTER_SANITIZE_STRING ), true );
 
 		if ( is_wp_error( $res ) ) {
 			LLMS_Admin_Notices::flash_notice( $res->get_error_message(), 'error' );
