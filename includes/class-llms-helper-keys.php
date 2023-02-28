@@ -25,7 +25,7 @@ class LLMS_Helper_Keys {
 	 * @since 3.4.2 Removed empty key lines.
 	 * @since [version] Caching results. Added `$force` parameter.
 	 *
-	 * @param string|array $keys Array or a white-space separated list of API keys.
+	 * @param string|array $keys  Array or a white-space separated list of API keys.
 	 * @param bool         $force Optional. Whether to force a remote check. Default `false`.
 	 * @return array
 	 */
