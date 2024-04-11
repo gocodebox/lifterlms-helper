@@ -22,6 +22,17 @@ function llms_helper_options() {
 }
 
 /**
+ * Obfuscate the license key for the front-end HTML.
+ *
+ * @param $key
+ *
+ * @return string
+ */
+function llms_obfuscate_license_key( $key ) {
+	return substr( $key, 0, 7 ) . str_repeat( '*', strlen( $key ) - 14 ) . substr( $key, -7 );
+}
+
+/**
  * Retrieve an array of addons that are available via currently active License Keys
  *
  * @since 3.0.0
@@ -42,7 +53,6 @@ function llms_helper_get_available_add_ons( $installable_only = true ) {
 	}
 
 	return array_unique( $ids );
-
 }
 
 /**
@@ -57,5 +67,4 @@ function llms_helper_flush_cache() {
 	delete_transient( 'llms_products_api_result' );
 	delete_site_transient( 'update_plugins' );
 	delete_site_transient( 'update_themes' );
-
 }
