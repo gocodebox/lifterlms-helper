@@ -47,19 +47,12 @@ if ( ! class_exists( 'LifterLMS_Helper' ) ) {
 	 * Returns the main instance of the LifterLMS_Helper class
 	 *
 	 * @since 3.2.0
-	 *
+	 * :
 	 * @return LifterLMS_Helper
 	 */
 	function llms_helper() {
 		return LifterLMS_Helper::instance();
 	}
 }
-
-/**
- * Allow usage of the deprecated `LLMS_Helper()` function.
- *
- * @deprecated 3.2.0 Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
- */
-use function LLMS_Helper;
 
 return llms_helper();
