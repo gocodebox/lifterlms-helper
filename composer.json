@@ -39,6 +39,7 @@
       "tests",
       "tmp",
       "vendor",
+      "composer.lock",
 
       "!/composer.json"
     ]
@@ -70,7 +71,6 @@
     "tests-run": "\"vendor/bin/phpunit\""
   },
   "config": {
-    "lock": false,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }

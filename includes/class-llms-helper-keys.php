@@ -63,7 +63,6 @@ class LLMS_Helper_Keys {
 		set_site_transient( 'llms_helper_keys_activation_response_' . $cache_hash, $req->get_result(), HOUR_IN_SECONDS );
 
 		return $req->get_result();
-
 	}
 
 	/**
@@ -86,7 +85,6 @@ class LLMS_Helper_Keys {
 		);
 
 		return llms_helper_options()->set_license_keys( $keys );
-
 	}
 
 	/**
@@ -217,7 +215,6 @@ class LLMS_Helper_Keys {
 
 		$req = new LLMS_Dot_Com_API( '/license/deactivate', $data );
 		return $req->get_result();
-
 	}
 
 	/**
@@ -232,7 +229,6 @@ class LLMS_Helper_Keys {
 
 		$saved = llms_helper_options()->get_license_keys();
 		return isset( $saved[ $key ] ) ? $saved[ $key ] : false;
-
 	}
 
 	/**
@@ -250,5 +246,4 @@ class LLMS_Helper_Keys {
 		}
 		return llms_helper_options()->set_license_keys( $keys );
 	}
-
 }
