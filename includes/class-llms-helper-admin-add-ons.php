@@ -217,7 +217,7 @@ class LLMS_Helper_Admin_Add_Ons {
 		$my_keys = llms_helper_options()->get_license_keys();
 		foreach ( $my_keys as $key ) {
 			foreach ( $obfuscated_keys as $obfuscated_key ) {
-				if ( $obfuscated_key === llms_obfuscate_license_key( $key['license_key'] ) ) {
+				if ( llms_obfuscate_license_key( $key['license_key'] ) === $obfuscated_key ) {
 					$keys[] = $key['license_key'];
 				}
 			}

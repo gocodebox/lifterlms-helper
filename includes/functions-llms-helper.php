@@ -24,7 +24,7 @@ function llms_helper_options() {
 /**
  * Obfuscate the license key for the front-end HTML.
  *
- * @param $key
+ * @param string $key License key to obfuscate.
  *
  * @return string
  */
