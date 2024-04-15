@@ -27,7 +27,6 @@ class LLMS_Helper_Assets {
 	public function __construct() {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
-
 	}
 
 	/**
@@ -56,8 +55,6 @@ class LLMS_Helper_Assets {
 
 		wp_style_add_data( 'llms-sl', 'rtl', 'replace' );
 		wp_style_add_data( 'llms-sl', 'suffix', LLMS_ASSETS_SUFFIX );
-
 	}
-
 }
 return new LLMS_Helper_Assets();

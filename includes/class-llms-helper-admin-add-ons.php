@@ -55,7 +55,6 @@ class LLMS_Helper_Admin_Add_Ons {
 		add_action( 'llms_add_ons_single_item_after_actions', array( $this, 'output_single_update_action' ), 5, 2 );
 
 		add_filter( 'llms_admin_addon_features_exclude_ids', array( $this, 'filter_feature_exclude_ids' ) );
-
 	}
 
 	/**
@@ -73,7 +72,6 @@ class LLMS_Helper_Admin_Add_Ons {
 		}
 
 		return $section;
-
 	}
 
 	/**
@@ -101,7 +99,6 @@ class LLMS_Helper_Admin_Add_Ons {
 		}
 
 		return $content;
-
 	}
 
 	/**
@@ -161,7 +158,6 @@ class LLMS_Helper_Admin_Add_Ons {
 		if ( $flush ) {
 			llms_helper_flush_cache();
 		}
-
 	}
 
 	/**
@@ -199,7 +195,6 @@ class LLMS_Helper_Admin_Add_Ons {
 				LLMS_Admin_Notices::flash_notice( sprintf( __( '"%s" has been saved!', 'lifterlms' ), $activation['license_key'] ), 'success' );
 			}
 		}
-
 	}
 
 	/**
@@ -234,7 +229,6 @@ class LLMS_Helper_Admin_Add_Ons {
 				LLMS_Admin_Notices::flash_notice( make_clickable( $error ), 'error' );
 			}
 		}
-
 	}
 
 	/**
@@ -251,7 +245,6 @@ class LLMS_Helper_Admin_Add_Ons {
 		}
 
 		return $this->has_keys;
-
 	}
 
 	/**
@@ -340,7 +333,6 @@ class LLMS_Helper_Admin_Add_Ons {
 			</a>
 			<?php
 		}
-
 	}
 
 	/**
@@ -375,7 +367,6 @@ class LLMS_Helper_Admin_Add_Ons {
 			</a>
 			<?php
 		}
-
 	}
 
 	/**
@@ -398,9 +389,7 @@ class LLMS_Helper_Admin_Add_Ons {
 			<a class="llms-nav-link" href="<?php echo esc_url( admin_url( 'admin.php?page=llms-add-ons&section=mine' ) ); ?>"><?php _e( 'My Add-Ons', 'lifterlms' ); ?></a>
 		</li>
 		<?php
-
 	}
-
 }
 
 return new LLMS_Helper_Admin_Add_Ons();

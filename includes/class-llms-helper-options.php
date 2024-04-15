@@ -58,7 +58,6 @@ class LLMS_Helper_Options {
 		}
 
 		return $default;
-
 	}
 
 	/**
@@ -86,7 +85,6 @@ class LLMS_Helper_Options {
 		$options         = $this->get_options();
 		$options[ $key ] = $val;
 		return update_option( 'llms_helper_options', $options, false );
-
 	}
 
 	/**
@@ -157,5 +155,4 @@ class LLMS_Helper_Options {
 	public function set_license_keys( $keys ) {
 		return $this->set_option( 'license_keys', $keys );
 	}
-
 }

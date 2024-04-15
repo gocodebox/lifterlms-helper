@@ -27,7 +27,6 @@ class LLMS_Helper_Cloned {
 	public function __construct() {
 
 		add_action( 'llms_site_clone_detected', array( $this, 'handle_clone' ) );
-
 	}
 
 	/**
@@ -60,9 +59,7 @@ class LLMS_Helper_Cloned {
 				}
 			}
 		}
-
 	}
-
 }
 
 return new LLMS_Helper_Cloned();

@@ -49,7 +49,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		}
 
 		return false;
-
 	}
 
 	/**
@@ -104,7 +103,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		}
 
 		return $data;
-
 	}
 
 	/**
@@ -138,7 +136,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		);
 
 		return $strings[ $string ];
-
 	}
 
 	/**
@@ -159,7 +156,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		}
 
 		return $translate ? $this->get_l10n( $ret ) : $ret;
-
 	}
 
 	/**
@@ -187,7 +183,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 		/* Translators: %s = Add-on name */
 		return new WP_Error( 'activation', sprintf( __( 'Could not install %s.', 'lifterlms' ), $this->get( 'title' ) ) );
-
 	}
 
 	/**
@@ -225,7 +220,6 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 		$channels                       = llms_helper_options()->get_channels();
 		$channels[ $this->get( 'id' ) ] = $channel;
 		return llms_helper_options()->set_channels( $channels );
-
 	}
 
 	/**
@@ -253,7 +247,5 @@ class LLMS_Helper_Add_On extends LLMS_Add_On {
 
 		/* Translators: %s = Add-on name */
 		return new WP_Error( 'activation', sprintf( __( 'Could not update %s.', 'lifterlms' ), $this->get( 'title' ) ) );
-
 	}
-
 }

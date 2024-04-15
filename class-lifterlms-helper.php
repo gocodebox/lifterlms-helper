@@ -80,7 +80,6 @@ final class LifterLMS_Helper {
 		}
 
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
-
 	}
 
 	/**
@@ -105,7 +104,6 @@ final class LifterLMS_Helper {
 				$this->upgrader = LLMS_Helper_Upgrader::instance();
 			}
 		}
-
 	}
 
 	/**
@@ -122,7 +120,6 @@ final class LifterLMS_Helper {
 		if ( ! wp_next_scheduled( 'llms_helper_check_license_keys' ) ) {
 			wp_schedule_event( time(), 'daily', 'llms_helper_check_license_keys' );
 		}
-
 	}
 
 	/**
@@ -137,7 +134,6 @@ final class LifterLMS_Helper {
 		if ( ! defined( 'LLMS_HELPER_VERSION' ) ) {
 			define( 'LLMS_HELPER_VERSION', $this->version );
 		}
-
 	}
 
 	/**
@@ -162,7 +158,6 @@ final class LifterLMS_Helper {
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/models/class-llms-helper-add-on.php';
 
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/functions-llms-helper.php';
-
 	}
 
 	/**
@@ -212,5 +207,4 @@ final class LifterLMS_Helper {
 	public function upgrader() {
 		return $this->upgrader;
 	}
-
 }
