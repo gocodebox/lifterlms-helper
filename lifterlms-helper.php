@@ -32,7 +32,7 @@ if ( ! defined( 'LLMS_HELPER_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'LLMS_HELPER_PLUGIN_DIR' ) ) {
-	define( 'LLMS_HELPER_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
+	define( 'LLMS_HELPER_PLUGIN_DIR', __DIR__ . '/' );
 }
 
 if ( ! defined( 'LLMS_HELPER_PLUGIN_URL' ) ) {
@@ -60,6 +60,6 @@ if ( ! class_exists( 'LifterLMS_Helper' ) ) {
  *
  * @deprecated 3.2.0 Function `LLMS_Helper()` is deprecated in favor of `llms_helper()`.
  */
-use function LLMS_Helper as llms_helper;
+use function LLMS_Helper;
 
 return llms_helper();
