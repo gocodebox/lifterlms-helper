@@ -70,7 +70,6 @@ class LLMS_Helper_Upgrader {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -152,7 +151,6 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -187,7 +185,6 @@ class LLMS_Helper_Upgrader {
 			echo '</p><p style="display:none;">';
 
 		}
-
 	}
 
 	/**
@@ -229,7 +226,6 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return $response;
-
 	}
 
 	/**
@@ -309,7 +305,6 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return $value;
-
 	}
 
 	/**
@@ -383,7 +378,6 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return (object) $item;
-
 	}
 
 	/**
@@ -414,7 +408,6 @@ class LLMS_Helper_Upgrader {
 
 		// Translators: %s = URL for the changelog website.
 		return $logs ? $logs : make_clickable( sprintf( __( 'There was an error retrieving the changelog.<br>Try visiting %s for recent changelogs.', 'lifterlms' ), 'https://make.lifterlms.com/category/release-notes/' ) );
-
 	}
 
 	/**
@@ -464,7 +457,6 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return $ret;
-
 	}
 
 	/**
@@ -508,7 +500,5 @@ class LLMS_Helper_Upgrader {
 		}
 
 		return $options;
-
 	}
-
 }

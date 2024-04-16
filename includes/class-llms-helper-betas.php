@@ -31,7 +31,6 @@ class LLMS_Helper_Betas {
 		add_action( 'llms_before_admin_page_status', array( $this, 'output_tab' ) );
 
 		add_action( 'admin_init', array( $this, 'handle_form_submit' ) );
-
 	}
 
 	/**
@@ -84,7 +83,6 @@ class LLMS_Helper_Betas {
 		}
 
 		return $subs;
-
 	}
 
 	/**
@@ -104,8 +102,6 @@ class LLMS_Helper_Betas {
 		$addons = llms_helper_get_available_add_ons();
 		array_unshift( $addons, 'lifterlms-com-lifterlms', 'lifterlms-com-lifterlms-helper' );
 		include 'views/beta-testing.php';
-
 	}
-
 }
 return new LLMS_Helper_Betas();
