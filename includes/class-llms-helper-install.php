@@ -166,9 +166,7 @@ class LLMS_Helper_Install {
 		foreach ( $remove as $opt ) {
 			delete_option( $opt );
 		}
-
 	}
-
 }
 
 LLMS_Helper_Install::init();

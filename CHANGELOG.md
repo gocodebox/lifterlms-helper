@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.1 - 2024-04-16
+-------------------
+
+##### New Features
+
++ Obfuscates license keys. [#47](https://github.com/gocodebox/lifterlms-helper#47)
+
+
 v3.5.0 - 2023-02-28
 -------------------
 
