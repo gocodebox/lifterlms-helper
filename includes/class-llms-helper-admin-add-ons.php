@@ -210,8 +210,20 @@ class LLMS_Helper_Admin_Add_Ons {
 	 */
 	private function handle_deactivations() {
 
-		$keys = llms_filter_input( INPUT_POST, 'llms_remove_keys', FILTER_UNSAFE_RAW, FILTER_REQUIRE_ARRAY );
-		$res  = LLMS_Helper_Keys::deactivate_keys( $keys );
+		$obfuscated_keys = llms_filter_input( INPUT_POST, 'llms_remove_keys', FILTER_UNSAFE_RAW, FILTER_REQUIRE_ARRAY );
+		$keys            = array();
+
+		// De-obfuscate the keys before sending to deactivation server or removing from the site.
+		$my_keys = llms_helper_options()->get_license_keys();
+		foreach ( $my_keys as $key ) {
+			foreach ( $obfuscated_keys as $obfuscated_key ) {
+				if ( llms_obfuscate_license_key( $key['license_key'] ) === $obfuscated_key ) {
+					$keys[] = $key['license_key'];
+				}
+			}
+		}
+
+		$res = LLMS_Helper_Keys::deactivate_keys( $keys );
 
 		if ( is_wp_error( $res ) ) {
 			LLMS_Admin_Notices::flash_notice( $res->get_error_message(), 'error' );
@@ -221,7 +233,7 @@ class LLMS_Helper_Admin_Add_Ons {
 		foreach ( $keys as $key ) {
 			LLMS_Helper_Keys::remove_license_key( $key );
 			/* Translators: %s = License Key */
-			LLMS_Admin_Notices::flash_notice( sprintf( __( 'License key "%s" was removed from this site.', 'lifterlms' ), $key ), 'info' );
+			LLMS_Admin_Notices::flash_notice( sprintf( __( 'License key "%s" was removed from this site.', 'lifterlms' ), llms_obfuscate_license_key( $key ) ), 'info' );
 		}
 
 		if ( isset( $data['errors'] ) ) {
@@ -278,9 +290,9 @@ class LLMS_Helper_Admin_Add_Ons {
 					<ul class="llms-active-keys">
 					<?php foreach ( $my_keys as $key ) : ?>
 						<li>
-							<label for="llms_key_<?php echo esc_attr( $key['license_key'] ); ?>">
-								<input id="llms_key_<?php echo esc_attr( $key['license_key'] ); ?>" name="llms_remove_keys[]" type="checkbox" value="<?php echo esc_attr( $key['license_key'] ); ?>">
-								<span><?php echo $key['license_key']; ?></span>
+							<label for="llms_key_<?php echo esc_attr( llms_obfuscate_license_key( $key['license_key'] ) ); ?>">
+								<input id="llms_key_<?php echo esc_attr( llms_obfuscate_license_key( $key['license_key'] ) ); ?>" name="llms_remove_keys[]" type="checkbox" value="<?php echo esc_attr( llms_obfuscate_license_key( $key['license_key'] ) ); ?>">
+								<span><?php echo esc_html( llms_obfuscate_license_key( $key['license_key'] ) ); ?></span>
 							</label>
 						</li>
 

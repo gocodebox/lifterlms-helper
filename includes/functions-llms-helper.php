@@ -22,6 +22,17 @@ function llms_helper_options() {
 }
 
 /**
+ * Obfuscate the license key for the front-end HTML.
+ *
+ * @param string $key License key to obfuscate.
+ *
+ * @return string
+ */
+function llms_obfuscate_license_key( $key ) {
+	return substr( $key, 0, 7 ) . str_repeat( '*', strlen( $key ) - 14 ) . substr( $key, -7 );
+}
+
+/**
  * Retrieve an array of addons that are available via currently active License Keys
  *
  * @since 3.0.0
