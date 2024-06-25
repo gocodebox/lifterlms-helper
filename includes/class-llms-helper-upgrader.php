@@ -211,7 +211,7 @@ class LLMS_Helper_Upgrader {
 
 		if ( 'lifterlms' === $args->slug ) {
 			$addon = llms_get_add_on(  'lifterlms-com-lifterlms' );
-			if ( 'beta' === $addon->get_channel_subscription() ) {
+			if ( false !== strpos( $addon->get_channel_subscription(), 'beta' ) ) {
 				remove_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
 				$args->slug = 'lifterlms-com-lifterlms';
 				$core       = true;
