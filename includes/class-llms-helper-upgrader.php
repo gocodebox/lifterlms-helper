@@ -171,17 +171,17 @@ class LLMS_Helper_Upgrader {
 			echo '<style>p.llms-msg:before { content: ""; }</style>';
 
 			echo '<p class="llms-msg"><strong>';
-			_e( 'Your LifterLMS add-on is currently unlicensed and cannot be updated!', 'lifterlms' );
+			esc_html_e( 'Your LifterLMS add-on is currently unlicensed and cannot be updated!', 'lifterlms' );
 			echo '</strong></p>';
 
 			echo '<p class="llms-msg">';
 			// Translators: %1$s = Opening anchor tag; %2$s = Closing anchor tag.
-			printf( __( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
+			printf( esc_html__( 'If you already have a license, you can activate it on the %1$sadd-ons management screen%2$s.', 'lifterlms' ), '<a href="' . esc_url( admin_url( 'admin.php?page=llms-add-ons' ) ) . '">', '</a>' );
 			echo '</p>';
 
 			echo '<p class="llms-msg">';
 			// Translators: %s = URI to licensing FAQ.
-			printf( __( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms' ), make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) );
+			printf( esc_html__( 'Learn more about LifterLMS add-on licensing at %s.', 'lifterlms' ), wp_kses_post( make_clickable( 'https://lifterlms.com/docs/lifterlms-helper/' ) ) );
 			echo '</p><p style="display:none;">';
 
 		}
