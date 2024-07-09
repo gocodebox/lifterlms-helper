@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.2 - 2024-07-09
+-------------------
+
+##### Security Fixes
+
++ Adding additional security checks.
+
+
 v3.5.1 - 2024-04-16
 -------------------
 
