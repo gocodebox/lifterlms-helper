@@ -81,7 +81,9 @@ class LLMS_Helper_Upgrader {
 		}
 		foreach ( (array) $products['items'] as $product ) {
 			if ( isset( $product['slug'] ) && $product['slug'] ) {
-				if ( ! is_plugin_active( $product['slug'] . '/' . $product['slug'] . '.php' ) ) {
+				$addon = llms_get_add_on( $product );
+
+				if ( ! $addon->is_installable() || ! $addon->is_installed() ) {
 					continue;
 				}
 
