@@ -74,6 +74,13 @@ class LLMS_Helper_Upgrader {
 		}
 	}
 
+	/**
+	 * Check for translation updates.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
 	public function register_addon_translation_updates() {
 		$products = llms_get_add_ons();
 		if ( is_wp_error( $products ) || ! isset( $products['items'] ) ) {
