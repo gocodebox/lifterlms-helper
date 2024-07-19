@@ -1,0 +1,78 @@
+{
+    "packages": [
+        {
+            "name": "wearerequired/traduttore-registry",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wearerequired/traduttore-registry.git",
+                "reference": "dd13b4418e949ac0322c7e3aa3822cd2b41d3bfc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wearerequired/traduttore-registry/zipball/dd13b4418e949ac0322c7e3aa3822cd2b41d3bfc",
+                "reference": "dd13b4418e949ac0322c7e3aa3822cd2b41d3bfc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "phpunit/phpunit": "^7.5.13",
+                "wearerequired/coding-standards": "^1.0",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "time": "2022-06-10T14:34:24+00:00",
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "inc/namespace.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "required",
+                    "email": "support@required.ch",
+                    "homepage": "https://required.com",
+                    "role": "Company"
+                },
+                {
+                    "name": "Dominik Schilling",
+                    "email": "dominik@required.ch",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Pascal Birchler",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Allows loading translation files from a custom GlotPress site running Traduttore",
+            "homepage": "https://github.com/wearerequired/traduttore-registry",
+            "keywords": [
+                "glotpress",
+                "translations",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/wearerequired/traduttore-registry/issues",
+                "source": "https://github.com/wearerequired/traduttore-registry/tree/master"
+            },
+            "install-path": "../wearerequired/traduttore-registry"
+        }
+    ],
+    "dev": false,
+    "dev-package-names": []
+}

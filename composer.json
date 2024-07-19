@@ -11,7 +11,8 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.3"
+    "php": ">=7.3",
+    "wearerequired/traduttore-registry": "2.x-dev"
   },
   "require-dev": {
     "lifterlms/lifterlms-cs": "dev-trunk",
@@ -38,7 +39,6 @@
       "node_modules",
       "tests",
       "tmp",
-      "vendor",
       "composer.lock",
 
       "!/composer.json"

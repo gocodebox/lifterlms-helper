@@ -1,6 +1,18 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.3 - 2024-07-19
+-------------------
+
+##### New Features
+
++ Check for translations in add-ons when available.
+
+##### Bug Fixes
+
++ Fix "View Details" showing for core LifterLMS. [#52](https://github.com/gocodebox/lifterlms-helper#52)
+
+
 v3.5.2 - 2024-07-09
 -------------------
 
