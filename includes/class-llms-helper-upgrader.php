@@ -61,6 +61,8 @@ class LLMS_Helper_Upgrader {
 		add_filter( 'pre_set_site_transient_update_themes', array( $this, 'pre_set_site_transient_update_things' ) );
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_things' ) );
 
+		add_action( 'admin_init', array( $this, 'register_addon_translation_updates' ) );
+
 		$products = llms_get_add_ons();
 		if ( ! is_wp_error( $products ) && isset( $products['items'] ) ) {
 			foreach ( (array) $products['items'] as $product ) {
@@ -68,6 +70,35 @@ class LLMS_Helper_Upgrader {
 				if ( 'plugin' === $product['type'] && $product['update_file'] ) {
 					add_action( "in_plugin_update_message-{$product['update_file']}", array( $this, 'in_plugin_update_message' ), 10, 2 );
 				}
+			}
+		}
+	}
+
+	/**
+	 * Check for translation updates.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
+	public function register_addon_translation_updates() {
+		$products = llms_get_add_ons();
+		if ( is_wp_error( $products ) || ! isset( $products['items'] ) ) {
+			return;
+		}
+		foreach ( (array) $products['items'] as $product ) {
+			if ( isset( $product['slug'] ) && $product['slug'] ) {
+				$addon = llms_get_add_on( $product );
+
+				if ( ! $addon->is_installable() || ! $addon->is_installed() ) {
+					continue;
+				}
+
+				\Required\Traduttore_Registry\add_project(
+					$product['type'],
+					$product['slug'],
+					'https://translate.lifterlms.com/translate/api/translations/' . $product['slug']
+				);
 			}
 		}
 	}

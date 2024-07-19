@@ -1,0 +1,3 @@
+significance: patch
+type: added
+entry: Check for translations in add-ons when available.
