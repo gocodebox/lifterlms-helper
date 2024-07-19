@@ -1,0 +1,5 @@
+significance: patch
+type: fixed
+links:
+  - "#52"
+entry: Fix "View Details" showing for core LifterLMS.

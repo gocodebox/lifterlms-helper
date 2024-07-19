@@ -210,9 +210,12 @@ class LLMS_Helper_Upgrader {
 		$core = false;
 
 		if ( 'lifterlms' === $args->slug ) {
-			remove_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
-			$args->slug = 'lifterlms-com-lifterlms';
-			$core       = true;
+			$addon = llms_get_add_on(  'lifterlms-com-lifterlms' );
+			if ( false !== strpos( $addon->get_channel_subscription(), 'beta' ) ) {
+				remove_filter( 'plugins_api', array( $this, 'plugins_api' ), 10, 3 );
+				$args->slug = 'lifterlms-com-lifterlms';
+				$core       = true;
+			}
 		}
 
 		if ( 0 !== strpos( $args->slug, 'lifterlms-com-' ) ) {
