@@ -10,9 +10,39 @@
     }
   ],
   "minimum-stability": "dev",
+  "extra": {
+    "strauss": {
+      "target_directory": "vendor-prefixed",
+      "packages": [
+        "wearerequired/traduttore-registry"
+      ],
+      "update_call_sites": false,
+      "override_autoload": {
+      },
+      "exclude_from_copy": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "exclude_from_prefix": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "namespace_replacement_patterns" : {
+      },
+      "delete_vendor_packages": false,
+      "delete_vendor_files": false
+    }
+  },
   "require": {
-    "php": ">=7.3",
-    "wearerequired/traduttore-registry": "2.x-dev"
+    "php": ">=7.3"
   },
   "require-dev": {
     "lifterlms/lifterlms-cs": "dev-trunk",
