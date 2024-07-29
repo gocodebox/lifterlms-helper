@@ -42,6 +42,8 @@
       "tmp",
       "composer.lock",
 
+      "vendor",
+
       "!/composer.json"
     ]
   },
