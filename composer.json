@@ -16,7 +16,8 @@
   },
   "require-dev": {
     "lifterlms/lifterlms-cs": "dev-trunk",
-    "lifterlms/lifterlms-tests": "^4.3"
+    "lifterlms/lifterlms-tests": "^4.3",
+    "brianhenryie/strauss": "dev-master"
   },
   "archive": {
     "exclude": [
@@ -51,8 +52,16 @@
       "\"vendor/bin/phpcs\" --config-set default_standard 'LifterLMS Core'"
     ],
     "fix-cs": "\"vendor/bin/phpcbf\"",
-    "post-install-cmd": "@config-cs",
-    "post-update-cmd": "@config-cs",
+    "post-install-cmd": [
+      "@config-cs",
+      "vendor/bin/strauss",
+      "composer dump-autoload"
+    ],
+    "post-update-cmd": [
+      "@config-cs",
+      "vendor/bin/strauss",
+      "composer dump-autoload"
+    ],
     "post-update-install-cmd": [
       "@tests-install",
       "@config-cs"
