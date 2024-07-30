@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.5.2';
+	public $version = '3.5.4';
 
 	/**
 	 * Singleton instance reference
@@ -145,6 +145,8 @@ final class LifterLMS_Helper {
 	 * @return void
 	 */
 	private function includes() {
+
+		require_once 'vendor-prefixed/autoload.php';
 
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/class-llms-helper-admin-add-ons.php';
 		require_once LLMS_HELPER_PLUGIN_DIR . 'includes/class-llms-helper-assets.php';

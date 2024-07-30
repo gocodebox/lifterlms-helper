@@ -10,12 +10,44 @@
     }
   ],
   "minimum-stability": "dev",
+  "extra": {
+    "strauss": {
+      "target_directory": "vendor-prefixed",
+      "packages": [
+        "wearerequired/traduttore-registry"
+      ],
+      "update_call_sites": false,
+      "override_autoload": {
+      },
+      "exclude_from_copy": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "exclude_from_prefix": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "namespace_replacement_patterns" : {
+      },
+      "delete_vendor_packages": false,
+      "delete_vendor_files": false
+    }
+  },
   "require": {
     "php": ">=7.3"
   },
   "require-dev": {
     "lifterlms/lifterlms-cs": "dev-trunk",
-    "lifterlms/lifterlms-tests": "^4.3"
+    "lifterlms/lifterlms-tests": "^4.3",
+    "brianhenryie/strauss": "dev-master"
   },
   "archive": {
     "exclude": [
@@ -38,8 +70,9 @@
       "node_modules",
       "tests",
       "tmp",
-      "vendor",
       "composer.lock",
+
+      "vendor",
 
       "!/composer.json"
     ]
@@ -51,8 +84,16 @@
       "\"vendor/bin/phpcs\" --config-set default_standard 'LifterLMS Core'"
     ],
     "fix-cs": "\"vendor/bin/phpcbf\"",
-    "post-install-cmd": "@config-cs",
-    "post-update-cmd": "@config-cs",
+    "post-install-cmd": [
+      "@config-cs",
+      "vendor/bin/strauss",
+      "composer dump-autoload"
+    ],
+    "post-update-cmd": [
+      "@config-cs",
+      "vendor/bin/strauss",
+      "composer dump-autoload"
+    ],
     "post-update-install-cmd": [
       "@tests-install",
       "@config-cs"
