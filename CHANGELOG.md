@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.4 - 2024-07-30
+-------------------
+
+##### Bug Fixes
+
++ Avoid conflicts with other plugins using the translation loader library.
+
+
 v3.5.3 - 2024-07-19
 -------------------
 
