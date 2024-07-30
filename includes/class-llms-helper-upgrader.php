@@ -94,7 +94,7 @@ class LLMS_Helper_Upgrader {
 					continue;
 				}
 
-				\Required\Traduttore_Registry\add_project(
+				Lifterlms\Lifterlms_Helper\Required\Traduttore_Registry\add_project(
 					$product['type'],
 					$product['slug'],
 					'https://translate.lifterlms.com/translate/api/translations/' . $product['slug']
