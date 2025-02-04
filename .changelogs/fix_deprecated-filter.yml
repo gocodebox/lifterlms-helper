@@ -1,0 +1,5 @@
+significance: patch
+type: fixed
+links:
+  - "#61"
+entry: Removing deprecated function param when activating license key.
