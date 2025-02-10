@@ -174,7 +174,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 */
 	private function handle_activations() {
 
-		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys', FILTER_SANITIZE_STRING ), true );
+		$res = LLMS_Helper_Keys::activate_keys( llms_filter_input( INPUT_POST, 'llms_add_keys' ), true );
 
 		if ( is_wp_error( $res ) ) {
 			LLMS_Admin_Notices::flash_notice( $res->get_error_message(), 'error' );
