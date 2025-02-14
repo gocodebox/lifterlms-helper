@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.5 - 2025-02-14
+-------------------
+
+##### Bug Fixes
+
++ Removing deprecated function param when activating license key. [#61](https://github.com/gocodebox/lifterlms-helper#61)
+
+
 v3.5.4 - 2024-07-30
 -------------------
 
