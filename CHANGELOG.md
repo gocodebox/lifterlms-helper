@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.6 - 2025-08-19
+-------------------
+
+##### Bug Fixes
+
++ Fix i18n translation warning when plugin first loaded.
+
+
 v3.5.5 - 2025-02-14
 -------------------
 
