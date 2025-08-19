@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.5.5';
+	public $version = '3.5.6';
 
 	/**
 	 * Singleton instance reference
@@ -98,7 +98,9 @@ final class LifterLMS_Helper {
 		if ( function_exists( 'llms' ) && version_compare( '3.22.0', llms()->version, '<=' ) ) {
 
 			$this->includes();
-			$this->crons();
+
+			// Must load on init to avoid issues with i18n warnings.
+			add_action( 'init', array( $this, 'crons' ) );
 
 			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 				$this->upgrader = LLMS_Helper_Upgrader::instance();
@@ -113,7 +115,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @return void
 	 */
-	private function crons() {
+	public function crons() {
 
 		add_action( 'llms_helper_check_license_keys', array( 'LLMS_Helper_Keys', 'check_keys' ) );
 
