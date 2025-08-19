@@ -1,6 +1,6 @@
 {
   "name": "lifterlms-helper",
-  "version": "3.5.5",
+  "version": "3.5.6",
   "description": "Assists premium LifterLMS theme and plugin updates",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/gocodebox/lifterlms-updater#readme",
   "devDependencies": {
-    "@lifterlms/dev": "^0.0.4-alpha.0",
+    "@lifterlms/dev": "^0.2.2",
     "rtlcss": "^3.3.0",
     "sass": "^1.37.5"
   },
