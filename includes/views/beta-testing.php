@@ -64,15 +64,15 @@ defined( 'ABSPATH' ) || exit;
 			$addon = llms_get_add_on( $addon );
 			?>
 			<tr>
-				<td><?php echo $addon->get( 'title' ); ?></td>
+				<td><?php echo esc_html( $addon->get( 'title' ) ); ?></td>
 				<td>
-					<select name="llms_channel_subscriptions[<?php echo $addon->get( 'id' ); ?>]">
+					<select name="llms_channel_subscriptions[<?php echo esc_attr( $addon->get( 'id' ) ); ?>]">
 						<option value="stable" <?php selected( 'stable', $addon->get_channel_subscription() ); ?>><?php esc_html_e( 'Stable', 'lifterlms' ); ?></option>
 						<option value="beta" <?php selected( 'beta', $addon->get_channel_subscription() ); ?>><?php esc_html_e( 'Beta', 'lifterlms' ); ?></option>
 					</select>
 				</td>
-				<td><?php echo $addon->get_installed_version(); ?></td>
-				<td><?php echo $addon->get( 'version_beta' ) ? $addon->get( 'version_beta' ) : __( 'N/A', 'lifterlms' ); ?></td>
+				<td><?php echo esc_html( $addon->get_installed_version() ); ?></td>
+				<td><?php echo esc_html( $addon->get( 'version_beta' ) ? $addon->get( 'version_beta' ) : __( 'N/A', 'lifterlms' ) ); ?></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
