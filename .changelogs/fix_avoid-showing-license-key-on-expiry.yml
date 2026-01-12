@@ -1,5 +1,0 @@
-significance: patch
-type: changed
-links:
-  - "#68"
-entry: Avoid showing license key on error.

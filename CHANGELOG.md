@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.7 - 2026-01-12
+-------------------
+
+##### Updates and Enhancements
+
++ Avoid showing license key on error. [#68](https://github.com/gocodebox/lifterlms-helper/issues/68)
+
+
 v3.5.6 - 2025-08-19
 -------------------
 
