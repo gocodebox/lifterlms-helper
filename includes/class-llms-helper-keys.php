@@ -149,8 +149,8 @@ class LLMS_Helper_Keys {
 				foreach ( array_keys( $res['data']['errors'] ) as $key ) {
 					self::remove_license_key( $key );
 					LLMS_Admin_Notices::add_notice(
-						'key_check_' . sanitize_text_field( $key ),
-						make_clickable( sprintf( $msg, $key ) ),
+						'key_check_' . llms_obfuscate_license_key( sanitize_text_field( $key ) ),
+						make_clickable( sprintf( $msg, llms_obfuscate_license_key( $key ) ) ),
 						array(
 							'type'             => 'error',
 							'dismiss_for_days' => 0,
@@ -169,8 +169,8 @@ class LLMS_Helper_Keys {
 
 					self::remove_license_key( $key );
 					LLMS_Admin_Notices::add_notice(
-						'key_check_' . sanitize_text_field( $key ),
-						make_clickable( sprintf( $msg, $key ) ),
+						'key_check_' . llms_obfuscate_license_key( sanitize_text_field( $key ) ),
+						make_clickable( sprintf( $msg, llms_obfuscate_license_key( $key ) ) ),
 						array(
 							'type'             => 'error',
 							'dismiss_for_days' => 0,
