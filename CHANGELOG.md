@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.8 - 2026-02-10
+-------------------
+
+##### Updates and Enhancements
+
++ Additional escaping.
+
+
 v3.5.7 - 2026-01-12
 -------------------
 
