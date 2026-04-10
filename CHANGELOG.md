@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.9 - 2026-04-10
+-------------------
+
+##### Updates and Enhancements
+
++ Using standard WP nonce check functions instead of llms_verify_nonce.
+
+
 v3.5.8 - 2026-02-10
 -------------------
 

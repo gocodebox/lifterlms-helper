@@ -57,7 +57,10 @@ class LLMS_Helper_Betas {
 	 */
 	public function handle_form_submit() {
 
-		if ( ! llms_verify_nonce( '_llms_beta_sub_nonce', 'llms_save_channel_subscriptions' ) ) {
+		if ( ! isset( $_REQUEST['_llms_beta_sub_nonce'] ) ) {
+			return;
+		}
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_llms_beta_sub_nonce'] ) ), 'llms_save_channel_subscriptions' ) ) {
 			return;
 		}
 
