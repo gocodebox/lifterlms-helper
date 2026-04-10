@@ -137,7 +137,10 @@ class LLMS_Helper_Admin_Add_Ons {
 	public function handle_actions() {
 
 		// License key addition & removal.
-		if ( ! llms_verify_nonce( '_llms_manage_keys_nonce', 'llms_manage_keys' ) ) {
+		if ( ! isset( $_REQUEST['_llms_manage_keys_nonce'] ) ) {
+			return;
+		}
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_llms_manage_keys_nonce'] ) ), 'llms_manage_keys' ) ) {
 			return;
 		}
 
