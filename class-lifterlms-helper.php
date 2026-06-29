@@ -24,7 +24,7 @@ final class LifterLMS_Helper {
 	 *
 	 * @var string
 	 */
-	public $version = '3.5.9';
+	public $version = '3.5.10';
 
 	/**
 	 * Singleton instance reference
