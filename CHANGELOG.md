@@ -1,6 +1,14 @@
 LifterLMS Helper Changelog
 ==========================
 
+v3.5.10 - 2026-06-29
+--------------------
+
+##### Security Fixes
+
++ Additional checks on the add-ons management screen.
+
+
 v3.5.9 - 2026-04-10
 -------------------
 
