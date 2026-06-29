@@ -331,7 +331,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 */
 	public function output_single_install_action( $addon, $curr_tab ) {
 
-		if ( 'featured' === $curr_tab ) {
+		if ( 'featured' === $curr_tab || ! current_user_can( 'install_plugins' ) ) {
 			return;
 		}
 
@@ -365,7 +365,7 @@ class LLMS_Helper_Admin_Add_Ons {
 	 */
 	public function output_single_update_action( $addon, $curr_tab ) {
 
-		if ( 'featured' === $curr_tab ) {
+		if ( 'featured' === $curr_tab || ! current_user_can( 'install_plugins' ) ) {
 			return;
 		}
 
